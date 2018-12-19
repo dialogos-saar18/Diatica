@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE wizard SYSTEM "Wizard.dtd">
+
+<wizard>
+	<plugin type="de.saar.coli.jython_dialogos_plugin">
+	</plugin>
+	<plugin type="dialogos.plugin.tts">
+	</plugin>
+	<plugin type="dialogos.plugin.sphinx">
+		<att name="language" type="string" value="de_DE"/>
+	</plugin>
+	<graph directed="1" Graphic="1" Layout="points">
+		<att name="width" type="integer" value="750"/>
+		<att name="height" type="integer" value="588"/>
+		<groovyFunctions></groovyFunctions>
+		<variable uid="461a1c5a-2637-4594-bc32-9e123b5d3875">
+			<name>Test</name>
+			<type>string</type>
+			<value>&quot;Erfolg&quot;</value>
+			<export/>
+		</variable>
+		<node uid="4664d658-bc3c-46e2-8ec0-e4b7ffc59d3c" class="com.clt.diamant.graph.nodes.StartNode">
+			<graphics x="375" y="17" fill="#9999ff"/>
+			<att name="title" type="string" value="Start"/>
+		</node>
+		<node uid="799b1fdd-3f46-4dde-8c05-ea6680edf8b5" class="com.clt.diamant.graph.nodes.EndNode">
+			<graphics x="367" y="389" fill="#9999ff"/>
+			<att name="title" type="string" value="Ende"/>
+		</node>
+		<node uid="8d1233ca-5a33-44b5-b5df-4afb1a213567" class="de.saar.coli.jython_dialogos_plugin.HabiticaNode">
+			<graphics x="365" y="138" fill="#ff2dff"/>
+			<att name="title" type="string" value="Habitica"/>
+			<att name="api-user" type="string" value=""/>
+			<att name="api-key" type="string" value=""/>
+			<att name="resultVar" type="string" value="Test"/>
+		</node>
+		<node uid="a39b6285-d525-4199-8583-b24855a8d6d0" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="264" y="263" fill="#00b200"/>
+			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="prompt" type="text">
+				<value>Test</value>
+			</att>
+			<att name="prompt_type" type="string" value="expression"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="bfe38d58-6e0f-4187-a63f-c30634373d0a" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="427" y="252" fill="#00b200"/>
+			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="prompt" type="text">
+				<value>Kein Erfolg</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<edge src="4664d658-bc3c-46e2-8ec0-e4b7ffc59d3c" tgt="8d1233ca-5a33-44b5-b5df-4afb1a213567">
+		</edge>
+		<edge src="8d1233ca-5a33-44b5-b5df-4afb1a213567" tgt="a39b6285-d525-4199-8583-b24855a8d6d0">
+		</edge>
+		<edge src="8d1233ca-5a33-44b5-b5df-4afb1a213567" tgt="bfe38d58-6e0f-4187-a63f-c30634373d0a">
+		</edge>
+		<edge src="a39b6285-d525-4199-8583-b24855a8d6d0" tgt="799b1fdd-3f46-4dde-8c05-ea6680edf8b5">
+		</edge>
+		<edge src="bfe38d58-6e0f-4187-a63f-c30634373d0a" tgt="799b1fdd-3f46-4dde-8c05-ea6680edf8b5">
+		</edge>
+	</graph>
+</wizard>
