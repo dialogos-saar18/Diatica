@@ -23,24 +23,21 @@ import javax.swing.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
-
-
 /**
- *
  * @author peter,borisenkov
  */
 public class HabiticaNode extends Node {
 
     public static final String API_USER = "api-user";
     public static final String API_KEY = "api-key";
-    private static final String RESULT_VAR = "resultVar";
+    public static final String RESULT_VAR = "resultVar";
+    public static final String Eingang_VAR = "eingangsVar";
 
     public HabiticaNode(){
       this.addEdge();
       this.addEdge();
       this.setProperty(API_USER,"");
-      this.setProperty(API_KEY,"");
+      this.setProperty(Eingang_VAR,"");
       this.setProperty(RESULT_VAR,"");
     }
     public Slot getSlot(String name) {
@@ -55,9 +52,9 @@ public class HabiticaNode extends Node {
     @Override
     public Node execute(WozInterface wozInterface, InputCenter inputCenter, ExecutionLogger executionLogger){
 
-        String api_user = this.getProperty(API_USER).toString();
-        String api_key = this.getProperty(API_KEY).toString();
-        System.out.println(api_user);
+        List<Slot> slotlist = this.getGraph().getAllVariables(Graph.LOCAL);
+        String api-user = slotlist.get((slotlist.indexOf("api-user")));
+        String api-key = slotlist.get((slotlist.indexOf("api-key")));
 
         HttpURLConnectionExample diaticaCo = new HttpURLConnectionExample();
         String result = "";
@@ -67,28 +64,13 @@ public class HabiticaNode extends Node {
           String varName = this.getProperty(RESULT_VAR).toString();
           Slot var = getSlot(varName);
           System.out.println(result);
-          var.setValue(result);
+          var.setValue(new StringValue(result));
 
           return getEdge(0).getTarget();
         } catch(Exception e) {
           System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
           return getEdge(1).getTarget();
         }
-
-
-        //var.setInitValue("\"Erfolg\"");
-
-        //System.out.println("vor setValue: " + var.getValue());
-        //System.out.println("");
-        //String sValue = "\"Du schläfst nun.\"";
-        //System.out.println("was setValue setzen soll: " + sValue);
-
-        //var.setValue(sValue);
-        //System.out.println("nach setValue: " + var.getValue());
-
-//      var.setValue("Schwarze Magie verhindert deinen Schlaf!");
-      //(getEdge(0).getTarget()).setProperty(,"Test");
-
     }
 
     @Override
@@ -99,8 +81,9 @@ public class HabiticaNode extends Node {
         horiz.add(NodePropertiesDialog.createTextField(properties, API_USER));
         p.add(horiz);
         horiz = new JPanel();
-        horiz.add(new JLabel("api-key"));
-        horiz.add(NodePropertiesDialog.createTextField(properties, API_KEY));
+        horiz.add(new JLabel("eingangsVar"));
+        horiz.add(NodePropertiesDialog.createComboBox(properties, Eingang_VAR,
+                this.getGraph().getallVariables(Graph.LOCAL)));
         p.add(horiz);
         horiz = new JPanel();
         horiz.add(new JLabel("return:"));
@@ -116,11 +99,12 @@ public class HabiticaNode extends Node {
         Graph.printAtt(out, API_USER, this.getProperty(API_USER).toString());
         Graph.printAtt(out, API_KEY, this.getProperty(API_KEY).toString());
         Graph.printAtt(out, RESULT_VAR, this.getProperty(RESULT_VAR).toString());
+        Graph.printAtt(out, Eingang_VAR, this.getProperty(Eingang_VAR).toString());
     }
 
     @Override
     public void readAttribute(XMLReader r, String name, String value, IdMap uid_map) throws SAXException {
-        if (name.equals(API_USER) || name.equals(API_KEY)|| name.equals(RESULT_VAR)) {
+        if (name.equals(API_USER) ||name.equals(RESULT_VAR))|| name.equals(Eingang_VAR)) {
             this.setProperty(name, value);
         } else {
             super.readAttribute(r, name, value, uid_map);
