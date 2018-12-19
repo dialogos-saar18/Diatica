@@ -16,7 +16,7 @@ public class HttpURLConnectionExample {
 		HttpURLConnectionExample http = new HttpURLConnectionExample();
 
 	//	System.out.println("Testing 1 - Send Http GET request");
-		http.sendGet();
+	//	http.sendGet();
 
 	//	System.out.println("\nTesting 2 - Send Http POST request");
 	//	http.sendPost();
@@ -25,7 +25,7 @@ public class HttpURLConnectionExample {
 
 	// HTTP GET request
 	// TODO changed type from void to STRING
-	public String sendGet() throws Exception {
+	public String sendGet(String user, String key) throws Exception {
 
 		String url = "https://habitica.com/api/v3/user?userFields=stats.hp";
 
@@ -34,8 +34,10 @@ public class HttpURLConnectionExample {
 
 		// optional default is GET
 		con.setRequestMethod("GET");
-		// set request header
+						// set request header TODO
 		con.setRequestProperty("x-api-user", "02ee1e91-da26-4492-99bb-a1df1fabec3d");
+		System.out.println(user);//"02ee1e91-da26-4492-99bb-a1df1fabec3d");
+		System.out.println(key); //"fd7eb04d-3c02-4249-90d7-53bb912a5a13");
 		con.setRequestProperty("x-api-key", "fd7eb04d-3c02-4249-90d7-53bb912a5a13");
 
 
@@ -66,7 +68,7 @@ public class HttpURLConnectionExample {
 
 
 	// HTTP POST request
-	public String sendPost() throws Exception {
+	public String sendPost(String user, String key) throws Exception {
 
 		String url = "https://habitica.com/api/v3/user/sleep";
 		URL obj = new URL(url);
@@ -74,8 +76,8 @@ public class HttpURLConnectionExample {
 
 		//add reuqest header
 		con.setRequestMethod("POST");
-		con.setRequestProperty("x-api-user", "02ee1e91-da26-4492-99bb-a1df1fabec3d");
-		con.setRequestProperty("x-api-key", "fd7eb04d-3c02-4249-90d7-53bb912a5a13");
+		con.setRequestProperty("x-api-user", user);//"02ee1e91-da26-4492-99bb-a1df1fabec3d");
+		con.setRequestProperty("x-api-key", key);//"fd7eb04d-3c02-4249-90d7-53bb912a5a13");
 
 		String urlParameters = "";
 

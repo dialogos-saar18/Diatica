@@ -14,9 +14,27 @@
 		<att name="height" type="integer" value="588"/>
 		<groovyFunctions></groovyFunctions>
 		<variable uid="461a1c5a-2637-4594-bc32-9e123b5d3875">
-			<name>Test</name>
+			<name>apiuser</name>
 			<type>string</type>
-			<value>&quot;Erfolg&quot;</value>
+			<value>&quot;02ee1e91-da26-4492-99bb-a1df1fabec3d&quot;</value>
+			<export/>
+		</variable>
+		<variable uid="c3cd4c67-e826-45fa-92d6-214b906aec92">
+			<name>input</name>
+			<type>string</type>
+			<value>undefined</value>
+			<export/>
+		</variable>
+		<variable uid="19e7c970-42c2-4704-adaf-a4afc7a0357e">
+			<name>output</name>
+			<type>string</type>
+			<value>undefined</value>
+			<export/>
+		</variable>
+		<variable uid="69456db8-59a0-4fc6-8b28-afb154262eea">
+			<name>apikey</name>
+			<type>string</type>
+			<value>&quot;fd7eb04d-3c02-4249-90d7-53bb912a5a13&quot;</value>
 			<export/>
 		</variable>
 		<node uid="4664d658-bc3c-46e2-8ec0-e4b7ffc59d3c" class="com.clt.diamant.graph.nodes.StartNode">
@@ -30,15 +48,14 @@
 		<node uid="8d1233ca-5a33-44b5-b5df-4afb1a213567" class="de.saar.coli.jython_dialogos_plugin.HabiticaNode">
 			<graphics x="365" y="138" fill="#ff2dff"/>
 			<att name="title" type="string" value="Habitica"/>
-			<att name="api-user" type="string" value=""/>
-			<att name="api-key" type="string" value=""/>
-			<att name="resultVar" type="string" value="Test"/>
+			<att name="resultVar" type="string" value="output"/>
+			<att name="eingangsVar" type="string" value="input"/>
 		</node>
 		<node uid="a39b6285-d525-4199-8583-b24855a8d6d0" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
-			<graphics x="264" y="263" fill="#00b200"/>
+			<graphics x="239" y="254" fill="#00b200"/>
 			<att name="title" type="string" value="Sprachsynthese"/>
 			<att name="prompt" type="text">
-				<value>Test</value>
+				<value>output</value>
 			</att>
 			<att name="prompt_type" type="string" value="expression"/>
 			<att name="wait" type="boolean" value="1"/>
