@@ -68,7 +68,7 @@ public class HttpURLConnectionExample {
 
 
 	// HTTP POST request
-	public String sendPost(String user, String key) throws Exception {
+	public void sendPost(String user, String key) throws Exception {
 
 		String url = "https://habitica.com/api/v3/user/sleep";
 		URL obj = new URL(url);
@@ -76,8 +76,8 @@ public class HttpURLConnectionExample {
 
 		//add reuqest header
 		con.setRequestMethod("POST");
-		con.setRequestProperty("x-api-user", user);//"02ee1e91-da26-4492-99bb-a1df1fabec3d");
-		con.setRequestProperty("x-api-key", key);//"fd7eb04d-3c02-4249-90d7-53bb912a5a13");
+		con.setRequestProperty("x-api-user","02ee1e91-da26-4492-99bb-a1df1fabec3d");//);
+		con.setRequestProperty("x-api-key", "fd7eb04d-3c02-4249-90d7-53bb912a5a13");//);
 
 		String urlParameters = "";
 
@@ -104,7 +104,7 @@ public class HttpURLConnectionExample {
 		in.close();
 
 		//print result
-		return response.toString();
+		//return response.toString();
 
 	}
 

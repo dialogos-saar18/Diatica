@@ -54,23 +54,41 @@ public class HabiticaNode extends Node {
         Slot apikey = slotlist.get(3);
         String xapiuser = (apiuser.getValue()).toString();
         String xapikey = (apikey.getValue()).toString();
-
+        String eingabe = getSlot(this.getProperty(Eingang_VAR).toString()).getValue().toString();
         //System.out.println(xapiuser);
         HttpURLConnectionExample diaticaCo = new HttpURLConnectionExample();
         String result = "";
-        try{
-          //result = diaticaCo.sendPost(xapiuser, xapikey); //für POST
-          result = diaticaCo.sendGet(xapiuser, xapikey); //für GET
+        System.out.println(eingabe);
 
-          String varName = this.getProperty(RESULT_VAR).toString();
-          Slot var = getSlot(varName);
-          var.setValue(new StringValue(result));
+        if (eingabe.equals("\"hp\"")){
+          try{
+            //result = diaticaCo.sendPost(xapiuser, xapikey); //für POST
+            result = diaticaCo.sendGet(xapiuser, xapikey); //für GET
 
-          return getEdge(0).getTarget();
-        } catch(Exception e) {
-          System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
-          return getEdge(1).getTarget();
+            String varName = this.getProperty(RESULT_VAR).toString();
+            Slot var = getSlot(varName);
+            var.setValue(new StringValue(result));
+
+            return getEdge(0).getTarget();
+          } catch(Exception e) {
+            System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
+            return getEdge(1).getTarget();
+          }
+        } else {
+          try{
+            diaticaCo.sendPost(xapiuser, xapikey); //für POST
+
+            String varName = this.getProperty(RESULT_VAR).toString();
+            Slot var = getSlot(varName);
+            var.setValue(new StringValue("Du bist Schrödingers vielleicht schlafende Katze."));
+
+            return getEdge(0).getTarget();
+          } catch(Exception e) {
+            System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
+            return getEdge(1).getTarget();
+          }
         }
+
     }
 
     @Override
