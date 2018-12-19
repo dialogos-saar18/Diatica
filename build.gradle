@@ -1,0 +1,23 @@
+plugins {
+  id 'java'
+  id 'maven'
+  id 'application'
+}
+repositories {
+  mavenLocal()
+  jcenter()
+  maven { url "https://jitpack.io" }
+}
+
+dependencies {
+  implementation(group:'com.github.dialogos-project', name:'dialogos',  version:'2.0.4')
+//  implementation 'com.github.dialogos-project:jython-plugin:1.0'
+// implementation 'org.python:jython-standalone:2.7.1'
+  
+}
+
+mainClassName = 'com.clt.dialogos.DialogOS'
+version = '1.0'
+
+
+

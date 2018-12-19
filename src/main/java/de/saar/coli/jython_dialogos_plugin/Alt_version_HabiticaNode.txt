@@ -1,0 +1,11 @@
+Text für Jython Diatica Node
+public class HabiticaNode extends JythonNodeAdapter {
+
+    public HabiticaNode() {
+        super("jython.habitica", "Habitica");
+    }
+
+    public static String getNodeTypeName(Class<?> c) {
+        return "Habitica test";
+    }
+}
