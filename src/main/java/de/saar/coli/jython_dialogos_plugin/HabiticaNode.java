@@ -62,16 +62,20 @@ public class HabiticaNode extends Node {
         HttpURLConnectionExample diaticaCo = new HttpURLConnectionExample();
         String result = "";
         try{
-        //  result = diaticaCo.sendPost(); //für POST
-          diaticaCo.sendGet(); //für GET
+          //result = diaticaCo.sendPost(); //für POST
+          result = diaticaCo.sendGet(); //für GET
+          String varName = this.getProperty(RESULT_VAR).toString();
+          Slot var = getSlot(varName);
+          System.out.println(result);
+          var.setValue(result);
+
           return getEdge(0).getTarget();
         } catch(Exception e) {
           System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
           return getEdge(1).getTarget();
         }
 
-        //String varName = this.getProperty(RESULT_VAR).toString();
-        //Slot var = getSlot(varName);
+
         //var.setInitValue("\"Erfolg\"");
 
         //System.out.println("vor setValue: " + var.getValue());

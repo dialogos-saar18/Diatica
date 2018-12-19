@@ -25,7 +25,7 @@ public class HttpURLConnectionExample {
 
 	// HTTP GET request
 	// TODO changed type from void to STRING
-	public void sendGet() throws Exception {
+	public String sendGet() throws Exception {
 
 		String url = "https://habitica.com/api/v3/user?userFields=stats.hp";
 
@@ -52,11 +52,14 @@ public class HttpURLConnectionExample {
 			response.append(inputLine);
 		}
 		in.close();
-		String bla = response.substring(34,36) + response.substring(38,40);
-		String blub = response.toString();
+		int hp_index = response.indexOf("hp");
+		//int str_length = ("hp").length();
+		String stat = response.substring(hp_index,hp_index+2);
+		String wert = response.substring((hp_index + 4),(hp_index+6));
+
 		//print result
-		System.out.println(bla);
-		System.out.println(blub);
+		String result = "";
+		return result = "du hast noch " + wert +" "+ (stat.toUpperCase());
 		//System.out.println(response.toString());
 
 	}
