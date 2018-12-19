@@ -62,7 +62,8 @@ public class HabiticaNode extends Node {
         HttpURLConnectionExample diaticaCo = new HttpURLConnectionExample();
         String result = "";
         try{
-          result = diaticaCo.sendPost();
+        //  result = diaticaCo.sendPost(); //für POST
+          diaticaCo.sendGet(); //für GET
           return getEdge(0).getTarget();
         } catch(Exception e) {
           System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");

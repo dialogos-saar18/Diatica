@@ -27,7 +27,7 @@ public class HttpURLConnectionExample {
 	// TODO changed type from void to STRING
 	public void sendGet() throws Exception {
 
-		String url = "https://habitica.com/api/v3/user?userFields=stats";
+		String url = "https://habitica.com/api/v3/user?userFields=stats.hp";
 
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -52,9 +52,12 @@ public class HttpURLConnectionExample {
 			response.append(inputLine);
 		}
 		in.close();
-
+		String bla = response.substring(34,36) + response.substring(38,40);
+		String blub = response.toString();
 		//print result
-		System.out.println(response.toString());
+		System.out.println(bla);
+		System.out.println(blub);
+		//System.out.println(response.toString());
 
 	}
 
