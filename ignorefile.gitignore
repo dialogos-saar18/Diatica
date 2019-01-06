@@ -1,0 +1,7 @@
+build/
+gradle/
+log/
+README.md
+protokoll.md
+gradlew.bat
+build.gradle
