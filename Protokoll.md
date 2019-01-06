@@ -62,3 +62,9 @@
 - Aktuelle DialogOS Version für PlugIn:
   - Jython auskommentieren soll dies beheben
 # Nächster Termin am 20.12.18, Donnerstag um 10 Uhr
+
+## Sitzung 7
+- Planung eines sauberen Habitica-Dialogs, welcher sich erst beendet wenn es gewünscht wird
+- Auseinandersetzung mit dem Task-System von Habitica
+- Code-Bereinung (in Funktionen umschreiben, Kommentare einfügen, ...)
+- Starke Auseinandersetzung mit GitHub
