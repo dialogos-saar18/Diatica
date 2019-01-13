@@ -63,15 +63,9 @@ public class HabiticaNode extends Node {
 
         if (eingabe.equals("hp")){
           try{
-<<<<<<< HEAD
-            //result = diaticaCo.sendPost(xapiuser, xapikey); //für POST
-            result = diaticaCo.sendGet(xapiuser, xapikey); //für GET
-            System.out.println("Ich bin in hp.");
-=======
 
             result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/user?userFields=stats.hp"); //für GET
 
->>>>>>> 2446ced753ca24bfdde585ef488fbfd5bfecd6ca
             String varName = this.getProperty(RESULT_VAR).toString();
             Slot var = getSlot(varName);
             var.setValue(new StringValue(result));
@@ -81,7 +75,6 @@ public class HabiticaNode extends Node {
             System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
             return getEdge(1).getTarget();
           }
-<<<<<<< HEAD
         }
         else if(eingabe.equals("\"test\"")){
             try{
@@ -99,9 +92,7 @@ public class HabiticaNode extends Node {
             }
           }
         else {
-=======
         } else if(eingabe.equals("sleep")){ // TODO sleep zu sleep und wake up 
->>>>>>> 2446ced753ca24bfdde585ef488fbfd5bfecd6ca
           try{
             result = diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep"); //für POST
 

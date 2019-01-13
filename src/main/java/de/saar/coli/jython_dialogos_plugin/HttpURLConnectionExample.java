@@ -7,15 +7,6 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-<<<<<<< HEAD
-import java.util.*;
-import java.util.stream.*;
-import javax.net.ssl.HttpsURLConnection;
-import org.json.*;
-import org.json.JSONObject;
-//import org.json.simple.parser.JSONParser;
-//import org.json.simple.JSONObject;
-=======
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.*;
@@ -23,7 +14,6 @@ import javax.net.ssl.HttpsURLConnection;
 import java.io.DataOutputStream;
 import java.util.regex.Pattern;
 import java.text.ParseException;
->>>>>>> 2446ced753ca24bfdde585ef488fbfd5bfecd6ca
 
 public class HttpURLConnectionExample {
 
@@ -38,20 +28,13 @@ public class HttpURLConnectionExample {
 	}
 
 	// HTTP GET request
-<<<<<<< HEAD
-	// TODO changed type from void to STRING
-
-	public String sendGet(String user, String key) throws Exception {
-
-		String url = "https://habitica.com/api/v3/tasks/cc5d85be-964f-4cd3-a1db-8130958f01ba"; // for one specific daily
-		//"https://habitica.com/api/v3/tasks/user?type=dailys"; //a request for all dailys 
-		//"https://habitica.com/api/v3/user?userFields=stats.hp"; //for hp request
-=======
 
 	public String sendGet(String user, String key, String url) throws Exception {
 
 		//String url = "https://habitica.com/api/v3/user?userFields=stats.hp";
->>>>>>> 2446ced753ca24bfdde585ef488fbfd5bfecd6ca
+		/*"https://habitica.com/api/v3/tasks/cc5d85be-964f-4cd3-a1db-8130958f01ba"; // for one specific daily
+		//"https://habitica.com/api/v3/tasks/user?type=dailys"; //a request for all dailys 
+		//"https://habitica.com/api/v3/user?userFields=stats.hp"; //for hp request*/ 
 
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -78,36 +61,6 @@ public class HttpURLConnectionExample {
 		while ((inputLine = in.readLine()) != null) {
 			response.append(inputLine);
 		}
-<<<<<<< HEAD
-		System.out.println(response.substring(0).toString());
-		System.out.println("vor json");
-		JSONObject test = new JSONObject(response.substring(0));
-		System.out.println(test.toString());
-		String frq = (test.getJSONArray("data")).toString();
-		System.out.println(frq);
-
-
-		//System.out.println(test);^
-		//System.out.println(frq);
-		//System.out.println("start of test1:" + "\n" + response[1]);
-		//System.out.println("start of test2:" + "\n"+ response.substring(1));
-		//String httpresquest[];
-		//httpresquest = response.substring(1);
-		//in.close();
-		/*
-		int hp_index = response.indexOf("hp");
-		//int str_length = ("hp").length();
-		String stat = response.substring(hp_index,hp_index+2);
-		String wert = response.substring((hp_index + 4),(hp_index+6));
-
-		//print result
-		String result = "";
-		return result = "du hast noch " + wert +" "+ (stat.toUpperCase());
-		//System.out.println(response.toString());
-		*/
-		//System.out.println(response.toString());
-		return response.toString();
-=======
 
 		if (url.equals("https://habitica.com/api/v3/user?userFields=stats.hp")){
 			int hp_index = response.indexOf("hp");
@@ -140,7 +93,6 @@ public class HttpURLConnectionExample {
 			return null;
 		}
 
->>>>>>> 2446ced753ca24bfdde585ef488fbfd5bfecd6ca
 	}
 
 	// HTTP POST request
