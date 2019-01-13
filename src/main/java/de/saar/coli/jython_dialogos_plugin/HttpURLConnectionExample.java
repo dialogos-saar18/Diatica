@@ -4,11 +4,15 @@ package de.saar.coli.jython_dialogos_plugin;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import java.util.LinkedList;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
+import java.util.ArrayList;
+import java.util.stream.*;
 import javax.net.ssl.HttpsURLConnection;
-
+import java.text.ParseException;
 public class HttpURLConnectionExample {
 
 	public static void main(String[] args) throws Exception {
@@ -25,9 +29,9 @@ public class HttpURLConnectionExample {
 
 	// HTTP GET request
 	// TODO changed type from void to STRING
-	public String sendGet(String user, String key) throws Exception {
+	public String sendGet(String user, String key, String url) throws Exception {
 
-		String url = "https://habitica.com/api/v3/user?userFields=stats.hp";
+		//String url = "https://habitica.com/api/v3/user?userFields=stats.hp";
 
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -35,11 +39,8 @@ public class HttpURLConnectionExample {
 		// optional default is GET
 		con.setRequestMethod("GET");
 						// set request header TODO
-		con.setRequestProperty("x-api-user", "02ee1e91-da26-4492-99bb-a1df1fabec3d");
-		System.out.println(user);//"02ee1e91-da26-4492-99bb-a1df1fabec3d");
-		System.out.println(key); //"fd7eb04d-3c02-4249-90d7-53bb912a5a13");
-		con.setRequestProperty("x-api-key", "fd7eb04d-3c02-4249-90d7-53bb912a5a13");
-
+		con.setRequestProperty("x-api-user", user);
+		con.setRequestProperty("x-api-key", key);
 
 		int responseCode = con.getResponseCode();
 		System.out.println("\nSending 'GET' request to URL : " + url);
@@ -53,31 +54,47 @@ public class HttpURLConnectionExample {
 		while ((inputLine = in.readLine()) != null) {
 			response.append(inputLine);
 		}
-		in.close();
-		int hp_index = response.indexOf("hp");
-		//int str_length = ("hp").length();
-		String stat = response.substring(hp_index,hp_index+2);
-		String wert = response.substring((hp_index + 4),(hp_index+6));
 
-		//print result
-		String result = "";
-		return result = "du hast noch " + wert +" "+ (stat.toUpperCase());
-		//System.out.println(response.toString());
+		if (url.equals("https://habitica.com/api/v3/user?userFields=stats.hp")){
+			int hp_index = response.indexOf("hp");
+
+			String stat = response.substring(hp_index,hp_index+2);
+			String wert = response.substring((hp_index + 4),(hp_index+6));
+
+			//print result
+			String result = "";
+			in.close();
+			return result = "du hast noch " + wert +" "+ (stat.toUpperCase());
+
+		} else if(url.equals("https://habitica.com/api/v3/user?userFields=stats.exp")) {
+
+			String responsestring = response.substring(0);
+			Pattern reg = Pattern.compile("\\{\"exp\"\\:(\\d+)}");
+			Matcher m = reg.matcher(responsestring);
+			if(m.find()){
+				in.close();
+				return "deine Erfahrungspunkte betragen, " + m.group(1);
+
+			}else{
+				return null; //new ParseException("Failed to retrieve Account information");
+				}
+		}else{
+			return null;
+		}
 
 	}
 
-
 	// HTTP POST request
-	public void sendPost(String user, String key) throws Exception {
+	public String sendPost(String user, String key, String url) throws Exception {
 
-		String url = "https://habitica.com/api/v3/user/sleep";
+		//String url = "https://habitica.com/api/v3/user/sleep";
 		URL obj = new URL(url);
 		HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
 
 		//add reuqest header
 		con.setRequestMethod("POST");
-		con.setRequestProperty("x-api-user","02ee1e91-da26-4492-99bb-a1df1fabec3d");//);
-		con.setRequestProperty("x-api-key", "fd7eb04d-3c02-4249-90d7-53bb912a5a13");//);
+		con.setRequestProperty("x-api-user",user);//);
+		con.setRequestProperty("x-api-key", key);//);
 
 		String urlParameters = "";
 
@@ -91,7 +108,7 @@ public class HttpURLConnectionExample {
 		int responseCode = con.getResponseCode();
 //		System.out.println("\nSending 'POST' request to URL : " + url);
 //		System.out.println("Post parameters : " + urlParameters);
-//		System.out.println("Response Code : " + responseCode);
+		System.out.println("Response Code : " + responseCode);
 
 		BufferedReader in = new BufferedReader(
 		        new InputStreamReader(con.getInputStream()));
@@ -102,6 +119,21 @@ public class HttpURLConnectionExample {
 			response.append(inputLine);
 		}
 		in.close();
+		String responsestring = response.substring(0);
+		System.out.println(responsestring);
+		Pattern reg = Pattern.compile("\"data\"\\:(true|false)");
+		Matcher m = reg.matcher(responsestring);
+		if(m.find()){
+			String s = m.group(1);
+			if (s.equals("false")){
+				return "Willkommen zurück!";
+			}
+			else{
+				return "Gute Nacht";
+			}
+		}else{
+			return null;
+		}
 
 		//print result
 		//return response.toString();
