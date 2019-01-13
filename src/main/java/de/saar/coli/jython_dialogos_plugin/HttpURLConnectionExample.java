@@ -9,6 +9,10 @@ import java.net.URL;
 import java.util.*;
 import java.util.stream.*;
 import javax.net.ssl.HttpsURLConnection;
+import org.json.*;
+import org.json.JSONObject;
+//import org.json.simple.parser.JSONParser;
+//import org.json.simple.JSONObject;
 
 public class HttpURLConnectionExample {
 
@@ -29,9 +33,9 @@ public class HttpURLConnectionExample {
 
 	public String sendGet(String user, String key) throws Exception {
 
-		String url = //"https://habitica.com/api/v3/tasks/30be9c8f-837b-4bba-baa0-94e482a2c5d0"; // for one specific daily
-		"https://habitica.com/api/v3/tasks/user?type=dailys"; //a request for all dailys 
-		//"https://habitica.com/api/v3/user?userFields=stats.hp"; for hp request
+		String url = "https://habitica.com/api/v3/tasks/cc5d85be-964f-4cd3-a1db-8130958f01ba"; // for one specific daily
+		//"https://habitica.com/api/v3/tasks/user?type=dailys"; //a request for all dailys 
+		//"https://habitica.com/api/v3/user?userFields=stats.hp"; //for hp request
 
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -50,15 +54,28 @@ public class HttpURLConnectionExample {
 		System.out.println("Response Code : " + responseCode);
 
 		BufferedReader in = new BufferedReader(
-		        new InputStreamReader(con.getInputStream()));
-		//String inputLine;
-		//StringBuffer response = new ArrayBuffer();
+				new InputStreamReader(con.getInputStream()));
+		
 
-		//while ((inputLine = in.readLine()) != null) {
-		//	response.append(inputLine);
-		//}
-		System.out.println("start of test1:" + "\n" + response[1]);
-		splitter(response);
+		String inputLine;
+		StringBuffer response = new StringBuffer();
+
+		//String str = response.toString();
+
+		while ((inputLine = in.readLine()) != null) {
+			response.append(inputLine);
+		}
+		System.out.println(response.substring(0).toString());
+		System.out.println("vor json");
+		JSONObject test = new JSONObject(response.substring(0));
+		System.out.println(test.toString());
+		String frq = (test.getJSONArray("data")).toString();
+		System.out.println(frq);
+
+
+		//System.out.println(test);^
+		//System.out.println(frq);
+		//System.out.println("start of test1:" + "\n" + response[1]);
 		//System.out.println("start of test2:" + "\n"+ response.substring(1));
 		//String httpresquest[];
 		//httpresquest = response.substring(1);

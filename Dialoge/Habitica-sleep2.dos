@@ -27,6 +27,14 @@ $sl = sleep | wake up;
 $test = test | experiment;
 //$exp = exp | experience;</value>
 		</grammar>
+		<grammar id="10e95709-9463-408a-b559-79120d60529d">
+			<name>janein - sleep</name>
+			<value>root $input;
+ $input = $sl ?{$=&quot;sleep&quot;} 
+| $no{$=&quot;no&quot;} ;
+$sl = yes| of course| naturally| yeah| yep;
+$no = no| nope | not really ;</value>
+		</grammar>
 		<variable uid="461a1c5a-2637-4594-bc32-9e123b5d3875">
 			<name>apiuser</name>
 			<type>string</type>
