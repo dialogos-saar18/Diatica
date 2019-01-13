@@ -6,7 +6,8 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
+import java.util.*;
+import java.util.stream.*;
 import javax.net.ssl.HttpsURLConnection;
 
 public class HttpURLConnectionExample {
@@ -25,9 +26,20 @@ public class HttpURLConnectionExample {
 
 	// HTTP GET request
 	// TODO changed type from void to STRING
+
+	public static void splitter(String[] args) {
+		Pattern p = Pattern.compile("[,]");
+		final CharSequence splitIt = 
+			new FileAsCharSequence(
+				   new File("C:\\Users\\write\\Desktop\\SplitFileAsStream.java"));
+		p.splitAsStream(splitIt).forEach(System.out::println);
+	}
+
 	public String sendGet(String user, String key) throws Exception {
 
-		String url = "https://habitica.com/api/v3/user?userFields=stats.hp";
+		String url = //"https://habitica.com/api/v3/tasks/30be9c8f-837b-4bba-baa0-94e482a2c5d0"; // for one specific daily
+		"https://habitica.com/api/v3/tasks/user?type=dailys"; //a request for all dailys 
+		//"https://habitica.com/api/v3/user?userFields=stats.hp"; for hp request
 
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -47,13 +59,19 @@ public class HttpURLConnectionExample {
 
 		BufferedReader in = new BufferedReader(
 		        new InputStreamReader(con.getInputStream()));
-		String inputLine;
-		StringBuffer response = new StringBuffer();
+		//String inputLine;
+		//StringBuffer response = new ArrayBuffer();
 
-		while ((inputLine = in.readLine()) != null) {
-			response.append(inputLine);
-		}
-		in.close();
+		//while ((inputLine = in.readLine()) != null) {
+		//	response.append(inputLine);
+		//}
+		System.out.println("start of test1:" + "\n" + response[1]);
+		splitter(response);
+		//System.out.println("start of test2:" + "\n"+ response.substring(1));
+		//String httpresquest[];
+		//httpresquest = response.substring(1);
+		//in.close();
+		/*
 		int hp_index = response.indexOf("hp");
 		//int str_length = ("hp").length();
 		String stat = response.substring(hp_index,hp_index+2);
@@ -63,7 +81,9 @@ public class HttpURLConnectionExample {
 		String result = "";
 		return result = "du hast noch " + wert +" "+ (stat.toUpperCase());
 		//System.out.println(response.toString());
-
+		*/
+		//System.out.println(response.toString());
+		return response.toString();
 	}
 
 

@@ -64,7 +64,7 @@ public class HabiticaNode extends Node {
           try{
             //result = diaticaCo.sendPost(xapiuser, xapikey); //für POST
             result = diaticaCo.sendGet(xapiuser, xapikey); //für GET
-
+            System.out.println("Ich bin in hp.");
             String varName = this.getProperty(RESULT_VAR).toString();
             Slot var = getSlot(varName);
             var.setValue(new StringValue(result));
@@ -74,7 +74,23 @@ public class HabiticaNode extends Node {
             System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
             return getEdge(1).getTarget();
           }
-        } else {
+        }
+        else if(eingabe.equals("\"test\"")){
+            try{
+                System.out.println("Ich bin in Test.");
+                result = diaticaCo.sendGet(xapiuser, xapikey); //für GET
+
+                String varName = this.getProperty(RESULT_VAR).toString();
+                Slot var = getSlot(varName);
+                var.setValue(new StringValue(result));
+    
+                return getEdge(0).getTarget();
+              } catch(Exception e) {
+                System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
+                return getEdge(1).getTarget();
+            }
+          }
+        else {
           try{
             diaticaCo.sendPost(xapiuser, xapikey); //für POST
 

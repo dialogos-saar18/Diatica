@@ -16,9 +16,15 @@
 		<grammar id="579a2a0d-942a-422d-b20c-fb67e0f2f1b5">
 			<name>hp and sleep (and exp)</name>
 			<value>root $input;
- $input = How much $hp do I have?{$=&quot;hp&quot;} | I want to $sl{$=&quot;sleep&quot;}; //| How much $exp do I have?{$=&quot;exp&quot;}| How much $hp and $exp do I have?{$=&quot;hp,exp&quot;} | How much $exp and $hp do I have?{$=&quot;hp,exp&quot;};
+ $input = How much $hp do I have?{$=&quot;hp&quot;} 
+| I want to $sl{$=&quot;sleep&quot;} 
+| I want to $test{$ = &quot;test&quot;}; 
+//| How much $exp do I have?{$=&quot;exp&quot;}
+//| How much $hp and $exp do I have?{$=&quot;hp,exp&quot;} 
+//| How much $exp and $hp do I have?{$=&quot;hp,exp&quot;};
 $hp = health | hp;
 $sl = sleep | wake up;
+$test = test | experiment;
 //$exp = exp | experience;</value>
 		</grammar>
 		<variable uid="461a1c5a-2637-4594-bc32-9e123b5d3875">
