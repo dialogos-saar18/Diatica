@@ -1,34 +1,34 @@
 package de.saar.coli.jython_dialogos_plugin;
 
-
+import org.json.JSONObject;
+import org.json.*;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-import java.util.LinkedList;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.*;
 import javax.net.ssl.HttpsURLConnection;
+import java.io.DataOutputStream;
+import java.util.regex.Pattern;
 import java.text.ParseException;
+
 public class HttpURLConnectionExample {
 
 	public static void main(String[] args) throws Exception {
 
-		HttpURLConnectionExample http = new HttpURLConnectionExample();
-
+	//HttpURLConnectionExample http = new HttpURLConnectionExample();
 	//	System.out.println("Testing 1 - Send Http GET request");
 	//	http.sendGet();
-
 	//	System.out.println("\nTesting 2 - Send Http POST request");
 	//	http.sendPost();
 
 	}
 
 	// HTTP GET request
-	// TODO changed type from void to STRING
+
 	public String sendGet(String user, String key, String url) throws Exception {
 
 		//String url = "https://habitica.com/api/v3/user?userFields=stats.hp";
@@ -38,7 +38,7 @@ public class HttpURLConnectionExample {
 
 		// optional default is GET
 		con.setRequestMethod("GET");
-						// set request header TODO
+
 		con.setRequestProperty("x-api-user", user);
 		con.setRequestProperty("x-api-key", key);
 
@@ -67,13 +67,17 @@ public class HttpURLConnectionExample {
 			return result = "du hast noch " + wert +" "+ (stat.toUpperCase());
 
 		} else if(url.equals("https://habitica.com/api/v3/user?userFields=stats.exp")) {
+			JSONObject jo = new JSONObject(response.substring(0));
+			int foo = ((jo.getJSONObject("data")).getJSONObject("stats")).getInt("exp");
+			String foob = jo.getJSONObject("data").toString();
+			System.out.println(foob);
 
 			String responsestring = response.substring(0);
 			Pattern reg = Pattern.compile("\\{\"exp\"\\:(\\d+)}");
 			Matcher m = reg.matcher(responsestring);
 			if(m.find()){
 				in.close();
-				return "deine Erfahrungspunkte betragen, " + m.group(1);
+				return "du besitzt, " + foo + " Erfahrungspunkte"; //m.group(1);
 
 			}else{
 				return null; //new ParseException("Failed to retrieve Account information");
