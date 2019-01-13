@@ -27,14 +27,6 @@ public class HttpURLConnectionExample {
 	// HTTP GET request
 	// TODO changed type from void to STRING
 
-	public static void splitter(String[] args) {
-		Pattern p = Pattern.compile("[,]");
-		final CharSequence splitIt = 
-			new FileAsCharSequence(
-				   new File("C:\\Users\\write\\Desktop\\SplitFileAsStream.java"));
-		p.splitAsStream(splitIt).forEach(System.out::println);
-	}
-
 	public String sendGet(String user, String key) throws Exception {
 
 		String url = //"https://habitica.com/api/v3/tasks/30be9c8f-837b-4bba-baa0-94e482a2c5d0"; // for one specific daily
