@@ -23,6 +23,7 @@ import javax.swing.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.*;
 /**
  * @author peter,borisenkov
  */
@@ -32,10 +33,10 @@ public class HabiticaNode extends Node {
     public static final String Eingang_VAR = "eingangsVar";
 
     public HabiticaNode(){
-      this.addEdge();
-      this.addEdge();
-      this.setProperty(Eingang_VAR,"");
-      this.setProperty(RESULT_VAR,"");
+      addEdge();
+      addEdge();
+      setProperty(Eingang_VAR,"");
+      setProperty(RESULT_VAR,"");
     }
     public Slot getSlot(String name) {
         List<Slot> slots = this.getGraph().getAllVariables(Graph.LOCAL);
@@ -52,19 +53,25 @@ public class HabiticaNode extends Node {
         List<Slot> slotlist = this.getGraph().getAllVariables(Graph.LOCAL);
         Slot apiuser = slotlist.get(0);
         Slot apikey = slotlist.get(3);
-        String xapiuser = (apiuser.getValue()).toString();
-        String xapikey = (apikey.getValue()).toString();
-        String eingabe = getSlot(this.getProperty(Eingang_VAR).toString()).getValue().toString();
+        String xapiuser = (apiuser.getValue()).getReadableValue().toString();
+        String xapikey = (apikey.getValue()).getReadableValue().toString();
+        String eingabe = getSlot(this.getProperty(Eingang_VAR).toString()).getValue().getReadableValue().toString();
         //System.out.println(xapiuser);
         HttpURLConnectionExample diaticaCo = new HttpURLConnectionExample();
         String result = "";
         System.out.println(eingabe);
 
-        if (eingabe.equals("\"hp\"")){
+        if (eingabe.equals("hp")){
           try{
+<<<<<<< HEAD
             //result = diaticaCo.sendPost(xapiuser, xapikey); //für POST
             result = diaticaCo.sendGet(xapiuser, xapikey); //für GET
             System.out.println("Ich bin in hp.");
+=======
+
+            result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/user?userFields=stats.hp"); //für GET
+
+>>>>>>> 2446ced753ca24bfdde585ef488fbfd5bfecd6ca
             String varName = this.getProperty(RESULT_VAR).toString();
             Slot var = getSlot(varName);
             var.setValue(new StringValue(result));
@@ -74,6 +81,7 @@ public class HabiticaNode extends Node {
             System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
             return getEdge(1).getTarget();
           }
+<<<<<<< HEAD
         }
         else if(eingabe.equals("\"test\"")){
             try{
@@ -91,20 +99,38 @@ public class HabiticaNode extends Node {
             }
           }
         else {
+=======
+        } else if(eingabe.equals("sleep")){ // TODO sleep zu sleep und wake up 
+>>>>>>> 2446ced753ca24bfdde585ef488fbfd5bfecd6ca
           try{
-            diaticaCo.sendPost(xapiuser, xapikey); //für POST
+            result = diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep"); //für POST
 
             String varName = this.getProperty(RESULT_VAR).toString();
             Slot var = getSlot(varName);
-            var.setValue(new StringValue("Du bist Schrödingers vielleicht schlafende Katze."));
+            var.setValue(new StringValue(result));
 
             return getEdge(0).getTarget();
           } catch(Exception e) {
             System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
             return getEdge(1).getTarget();
           }
-        }
+        }else if (eingabe.equals("exp")){
+          try{
+            result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/user?userFields=stats.exp"); //für GET
+            String varName = this.getProperty(RESULT_VAR).toString();
+            Slot var = getSlot(varName);
+            var.setValue(new StringValue(result));
 
+            return getEdge(0).getTarget();
+          } catch(Exception e) {
+              System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
+              return getEdge(1).getTarget();
+            }
+        }
+        else {
+
+          return getEdge(1).getTarget();
+        }
     }
 
     @Override

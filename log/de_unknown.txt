@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+=======
+3 aufwecken
+3 schläfst
+>>>>>>> 2446ced753ca24bfdde585ef488fbfd5bfecd6ca
