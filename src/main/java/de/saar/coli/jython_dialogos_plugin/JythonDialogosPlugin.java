@@ -5,6 +5,7 @@
  */
 package de.saar.coli.jython_dialogos_plugin;
 
+import com.clt.gui.Images;
 import com.clt.dialogos.plugin.Plugin;
 import com.clt.dialogos.plugin.PluginRuntime;
 import com.clt.dialogos.plugin.PluginSettings;
@@ -35,7 +36,7 @@ public class JythonDialogosPlugin implements Plugin {
 
     @Override
     public String getId() {
-        return "de.saar.coli.jython_dialogos_plugin";
+        return "resources.de.dialogos.plugin";//saar.coli.jython_dialogos_plugin";
     }
 
     @Override
@@ -45,7 +46,8 @@ public class JythonDialogosPlugin implements Plugin {
 
     @Override
     public Icon getIcon() {
-        return UIManager.getIcon("FileView.computerIcon");
+      //return UIManager.getIcon("FileView.computerIcon");
+      return Images.load(this,"habitica-button_2.png");
     }
 
     @Override
@@ -74,6 +76,7 @@ public class JythonDialogosPlugin implements Plugin {
         return new PluginSettings() {
             @Override
             public void writeAttributes(XMLWriter writer, IdMap idmap) {
+
             }
 
             @Override

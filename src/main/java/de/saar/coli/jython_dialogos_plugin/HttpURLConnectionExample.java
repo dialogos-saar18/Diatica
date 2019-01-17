@@ -33,8 +33,8 @@ public class HttpURLConnectionExample {
 
 		//String url = "https://habitica.com/api/v3/user?userFields=stats.hp";
 		/*"https://habitica.com/api/v3/tasks/cc5d85be-964f-4cd3-a1db-8130958f01ba"; // for one specific daily
-		//"https://habitica.com/api/v3/tasks/user?type=dailys"; //a request for all dailys 
-		//"https://habitica.com/api/v3/user?userFields=stats.hp"; //for hp request*/ 
+		//"https://habitica.com/api/v3/tasks/user?type=dailys"; //a request for all dailys
+		//"https://habitica.com/api/v3/user?userFields=stats.hp"; //for hp request*/
 
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -51,7 +51,7 @@ public class HttpURLConnectionExample {
 
 		BufferedReader in = new BufferedReader(
 				new InputStreamReader(con.getInputStream()));
-		
+
 
 		String inputLine;
 		StringBuffer response = new StringBuffer();
@@ -130,21 +130,26 @@ public class HttpURLConnectionExample {
 			response.append(inputLine);
 		}
 		in.close();
-		String responsestring = response.substring(0);
-		System.out.println(responsestring);
-		Pattern reg = Pattern.compile("\"data\"\\:(true|false)");
-		Matcher m = reg.matcher(responsestring);
-		if(m.find()){
-			String s = m.group(1);
-			if (s.equals("false")){
-				return "Willkommen zurück!";
+		if (url.equals("https://habitica.com/api/v3/user/sleep")){
+			String responsestring = response.substring(0);
+			System.out.println(responsestring);
+			Pattern reg = Pattern.compile("\"data\"\\:(true|false)");
+			Matcher m = reg.matcher(responsestring);
+			if(m.find()){
+				String s = m.group(1);
+				if (s.equals("false")){
+					return "wach";
+				}
+				else{
+					return "schlaf";
+				}
+			} else{
+					return "Bla"; //TODO better Post
 			}
-			else{
-				return "Gute Nacht";
-			}
-		}else{
-			return null;
 		}
+		return "blbla"; //TODO better backtype
+
+
 
 		//print result
 		//return response.toString();
