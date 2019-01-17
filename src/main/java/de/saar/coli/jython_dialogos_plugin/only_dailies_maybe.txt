@@ -10,7 +10,7 @@
         "su":true
         },
 "challenge":{},
-    "group":{
+"group":{
         "approval":{
         "required":false,
         "approved":false,
