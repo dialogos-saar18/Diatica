@@ -79,7 +79,8 @@ public class HabiticaNode extends Node {
           try{
             String sleepstatus = diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep"); //für POST
             if (sleepstatus.equals("wach")){
-              result = diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep");
+              diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep");
+              result = "Du schläfst bereits.";
             }
             String varName = this.getProperty(RESULT_VAR).toString();
             Slot var = getSlot(varName);
@@ -94,7 +95,8 @@ public class HabiticaNode extends Node {
             try{
               String sleepstatus = diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep"); //für POST
               if (sleepstatus.equals("schlaf")){
-                result = diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep");
+                 diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep");
+                 result = "Du bist bereits wach.";
               }
               String varName = this.getProperty(RESULT_VAR).toString();
               Slot var = getSlot(varName);
