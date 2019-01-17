@@ -75,6 +75,9 @@ public class HabiticaNode extends Node {
             System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
             return getEdge(1).getTarget();
           }
+<<<<<<< HEAD
+        } else if(eingabe.equals("sleep")){
+=======
         }
         else if(eingabe.equals("\"test\"")){
             try{
@@ -92,9 +95,13 @@ public class HabiticaNode extends Node {
             }
           }
         else if(eingabe.equals("sleep")){ // TODO sleep zu sleep und wake up 
+>>>>>>> 5a7087584ef1d487852046bf5c0c5977b9fa182d
           try{
-            result = diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep"); //für POST
-
+            String sleepstatus = diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep"); //für POST
+            if (sleepstatus.equals("wach")){
+              diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep");
+              result = "Du schläfst bereits.";
+            }
             String varName = this.getProperty(RESULT_VAR).toString();
             Slot var = getSlot(varName);
             var.setValue(new StringValue(result));
@@ -104,6 +111,22 @@ public class HabiticaNode extends Node {
             System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
             return getEdge(1).getTarget();
           }
+        } else if(eingabe.equals("wake_up")){
+            try{
+              String sleepstatus = diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep"); //für POST
+              if (sleepstatus.equals("schlaf")){
+                 diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep");
+                 result = "Du bist bereits wach.";
+              }
+              String varName = this.getProperty(RESULT_VAR).toString();
+              Slot var = getSlot(varName);
+              var.setValue(new StringValue(result));
+
+              return getEdge(0).getTarget();
+            } catch(Exception e) {
+              System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
+              return getEdge(1).getTarget();
+            }
         }else if (eingabe.equals("exp")){
           try{
             result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/user?userFields=stats.exp"); //für GET
