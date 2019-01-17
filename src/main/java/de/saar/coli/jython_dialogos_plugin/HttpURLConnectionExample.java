@@ -2,6 +2,7 @@ package de.saar.coli.jython_dialogos_plugin;
 
 import org.json.JSONObject;
 import org.json.*;
+import org.json.JSONArray;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -14,6 +15,9 @@ import javax.net.ssl.HttpsURLConnection;
 import java.io.DataOutputStream;
 import java.util.regex.Pattern;
 import java.text.ParseException;
+import java.util.LinkedList;
+import java.util.ListIterator;
+import java.util.Iterator;
 
 public class HttpURLConnectionExample {
 
@@ -33,8 +37,7 @@ public class HttpURLConnectionExample {
 
 		//String url = "https://habitica.com/api/v3/user?userFields=stats.hp";
 		/*"https://habitica.com/api/v3/tasks/cc5d85be-964f-4cd3-a1db-8130958f01ba"; // for one specific daily
-		//"https://habitica.com/api/v3/tasks/user?type=dailys"; //a request for all dailys 
-		//"https://habitica.com/api/v3/user?userFields=stats.hp"; //for hp request*/ 
+		//"https://habitica.com/api/v3/tasks/user?type=dailys"; //a request for all dailys */ 
 
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -74,6 +77,7 @@ public class HttpURLConnectionExample {
 			return result = "du hast noch " + wert +" "+ (stat.toUpperCase());
 
 		} else if(url.equals("https://habitica.com/api/v3/user?userFields=stats.exp")) {
+			
 			JSONObject jo = new JSONObject(response.substring(0));
 			int foo = ((jo.getJSONObject("data")).getJSONObject("stats")).getInt("exp");
 			String foob = jo.getJSONObject("data").toString();
@@ -89,10 +93,32 @@ public class HttpURLConnectionExample {
 			}else{
 				return null; //new ParseException("Failed to retrieve Account information");
 				}
-		}else{
+		}else if(url.equals("https://habitica.com/api/v3/tasks/user?type=dailys")) {
+			JSONObject jo = new JSONObject(response.substring(0));
+			LinkedList tasks = new LinkedList(); 
+			JSONArray jsonArray = jo.getJSONArray("data");
+			for (int i = 0; i<jsonArray.length(); i++){
+				JSONObject objt = jsonArray.getJSONObject(i);
+				String id = objt.getString("text");
+				tasks.add(id);
+			}
+
+			if(tasks.isEmpty()){  
+				return null; 
+			}else{
+				String task_list = "";
+				for(int num=0; num<tasks.size(); num++)
+      			{
+					task_list += " " + tasks.get(num);
+      			}
+				return task_list;
+				}
+
+		}
+		else{
 			return null;
 		}
-
+		
 	}
 
 	// HTTP POST request
