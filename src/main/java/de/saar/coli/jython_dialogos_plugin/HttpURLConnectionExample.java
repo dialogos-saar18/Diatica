@@ -108,7 +108,7 @@ public class HttpURLConnectionExample {
 				String task_list = "";
 				for(int num=0; num<tasks.size(); num++)
       			{
-					task_list += " " + tasks.get(num);
+					task_list += ", " + tasks.get(num);
       			}
 				return task_list;
 				}
