@@ -68,3 +68,8 @@
 - Auseinandersetzung mit dem Task-System von Habitica
 - Code-Bereinung (in Funktionen umschreiben, Kommentare einfügen, ...)
 - Starke Auseinandersetzung mit GitHub
+
+
+- ca 3-5 user tests
+- je härteres Feedback desto besser
+- Feedback geben nach Eingabe
