@@ -37,11 +37,7 @@ public class HttpURLConnectionExample {
 
 		//String url = "https://habitica.com/api/v3/user?userFields=stats.hp";
 		/*"https://habitica.com/api/v3/tasks/cc5d85be-964f-4cd3-a1db-8130958f01ba"; // for one specific daily
-<<<<<<< HEAD
-		//"https://habitica.com/api/v3/tasks/user?type=dailys"; //a request for all dailys */
-=======
 		//"https://habitica.com/api/v3/tasks/user?type=dailys"; //a request for all dailys */ 
->>>>>>> 5a7087584ef1d487852046bf5c0c5977b9fa182d
 
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -81,11 +77,8 @@ public class HttpURLConnectionExample {
 			return result = "du hast noch " + wert +" "+ (stat.toUpperCase());
 
 		} else if(url.equals("https://habitica.com/api/v3/user?userFields=stats.exp")) {
-<<<<<<< HEAD
 
-=======
 			
->>>>>>> 5a7087584ef1d487852046bf5c0c5977b9fa182d
 			JSONObject jo = new JSONObject(response.substring(0));
 			int foo = ((jo.getJSONObject("data")).getJSONObject("stats")).getInt("exp");
 			String foob = jo.getJSONObject("data").toString();
@@ -103,11 +96,7 @@ public class HttpURLConnectionExample {
 				}
 		}else if(url.equals("https://habitica.com/api/v3/tasks/user?type=dailys")) {
 			JSONObject jo = new JSONObject(response.substring(0));
-<<<<<<< HEAD
-			LinkedList tasks = new LinkedList();
-=======
 			LinkedList tasks = new LinkedList(); 
->>>>>>> 5a7087584ef1d487852046bf5c0c5977b9fa182d
 			JSONArray jsonArray = jo.getJSONArray("data");
 			for (int i = 0; i<jsonArray.length(); i++){
 				JSONObject objt = jsonArray.getJSONObject(i);
@@ -115,13 +104,8 @@ public class HttpURLConnectionExample {
 				tasks.add(id);
 			}
 
-<<<<<<< HEAD
-			if(tasks.isEmpty()){
-				return null;
-=======
 			if(tasks.isEmpty()){  
 				return null; 
->>>>>>> 5a7087584ef1d487852046bf5c0c5977b9fa182d
 			}else{
 				String task_list = "";
 				for(int num=0; num<tasks.size(); num++)

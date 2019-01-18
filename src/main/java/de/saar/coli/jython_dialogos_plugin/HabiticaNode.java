@@ -75,9 +75,6 @@ public class HabiticaNode extends Node {
             System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
             return getEdge(1).getTarget();
           }
-<<<<<<< HEAD
-        } else if(eingabe.equals("sleep")){
-=======
         }
         else if(eingabe.equals("\"test\"")){
             try{
@@ -95,7 +92,6 @@ public class HabiticaNode extends Node {
             }
           }
         else if(eingabe.equals("sleep")){ // TODO sleep zu sleep und wake up 
->>>>>>> 5a7087584ef1d487852046bf5c0c5977b9fa182d
           try{
             String sleepstatus = diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep"); //für POST
             if (sleepstatus.equals("wach")){
