@@ -75,3 +75,4 @@
 - je härteres Feedback desto besser
 - Feedback geben nach Eingabe
 - README fertig schreiben und auf Piazza posten, dass es nun zum test bereit steht
+- Wie wollen leute mit meinem System reden
