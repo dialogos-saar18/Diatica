@@ -74,3 +74,4 @@
 - ca 3-5 user tests
 - je härteres Feedback desto besser
 - Feedback geben nach Eingabe
+- README fertig schreiben und auf Piazza posten, dass es nun zum test bereit steht
