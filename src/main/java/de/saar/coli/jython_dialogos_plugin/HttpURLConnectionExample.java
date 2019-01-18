@@ -102,16 +102,16 @@ public class HttpURLConnectionExample {
 				tasks.add(id);
 			}
 
-			if(tasks.isEmpty()){
+			if(tasks.isEmpty()) {
 				return null;
 			}else{
 				String task_list = "";
-				for(int num=0; num<tasks.size(); num++)
-      			{
+				for(int num=0; num<tasks.size(); num++) {
 					task_list += ", " + tasks.get(num);
-      			}
+      	}
+				
 				return task_list;
-				}
+			}
 
 		}
 		else{

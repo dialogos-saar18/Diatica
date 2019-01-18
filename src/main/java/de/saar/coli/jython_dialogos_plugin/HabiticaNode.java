@@ -134,6 +134,20 @@ public class HabiticaNode extends Node {
               return getEdge(1).getTarget();
             }
         }
+        else if (eingabe.equals("1h_tasks")){
+          try{
+            result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/tasks/user?type=dailys"); //für GET
+            String varName = this.getProperty(RESULT_VAR).toString();
+            Slot var = getSlot(varName);
+            var.setValue(new StringValue(result));
+
+            return getEdge(0).getTarget();
+
+          }catch(Exception e) {
+              System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
+              return getEdge(1).getTarget();
+            }
+        }
         else {
 
           return getEdge(1).getTarget();
