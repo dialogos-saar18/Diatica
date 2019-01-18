@@ -70,6 +70,7 @@
 - Starke Auseinandersetzung mit GitHub
 
 
+## Sitzung zum Featureschluss
 - ca 3-5 user tests
 - je härteres Feedback desto besser
 - Feedback geben nach Eingabe
