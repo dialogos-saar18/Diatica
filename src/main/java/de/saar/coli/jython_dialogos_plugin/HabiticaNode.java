@@ -5,6 +5,8 @@
  */
 package de.saar.coli.jython_dialogos_plugin;
 
+
+import java.util.LinkedList;
 import com.clt.diamant.*;
 import com.clt.diamant.graph.Graph;
 import com.clt.diamant.graph.Node;
@@ -77,9 +79,9 @@ public class HabiticaNode extends Node {
           }
         } else if(eingabe.equals("sleep")){
           try{
-            String sleepstatus = diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep"); //für POST
+            String sleepstatus = diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep", null); //für POST
             if (sleepstatus.equals("wach")){
-              diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep");
+              diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep", null);
               result = "Du schläfst bereits.";
             }
             String varName = this.getProperty(RESULT_VAR).toString();
@@ -93,9 +95,9 @@ public class HabiticaNode extends Node {
           }
         } else if(eingabe.equals("wake_up")){
             try{
-              String sleepstatus = diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep"); //für POST
+              String sleepstatus = diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep",null); //für POST
               if (sleepstatus.equals("schlaf")){
-                 diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep");
+                 diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep",null);
                  result = "Du bist bereits wach.";
               }
               String varName = this.getProperty(RESULT_VAR).toString();
@@ -134,14 +136,22 @@ public class HabiticaNode extends Node {
               return getEdge(1).getTarget();
             }
         }
-        else if (eingabe.equals("1h_tasks")){
+        else if (eingabe.equals("add_tags")){
           try{
-            result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/tasks/user?type=dailys"); //für GET
-            String varName = this.getProperty(RESULT_VAR).toString();
-            Slot var = getSlot(varName);
-            var.setValue(new StringValue(result));
+              LinkedList tags = new LinkedList<String>();
+              tags.add("1h");
+              tags.add("30min");
+              tags.add("15min");
 
-            return getEdge(0).getTarget();
+              for (int i=0; i< tags.size(); i++){
+                diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/tags",(tags.get(i)).toString()); //für GET
+              }
+              result = "Ich habe die Tags für dich hinzugefügt";
+              String varName = this.getProperty(RESULT_VAR).toString();
+              Slot var = getSlot(varName);
+              var.setValue(new StringValue(result));
+
+              return getEdge(0).getTarget();
 
           }catch(Exception e) {
               System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");

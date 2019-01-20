@@ -24,7 +24,8 @@ How much $exp and $hp do I have?{$=&quot;hp,exp&quot;} |
 Hey wake up{$=&quot;wake_up&quot;} | wake up {$=&quot;wake_up&quot;}
 No{$=&quot;no&quot;}
 | I want my tasks{$=&quot;all_due_tasks&quot;}| 
-(show|tell) me my tasks{$=&quot;all_due_tasks&quot;};
+(show|tell) me my tasks{$=&quot;all_due_tasks&quot;}|
+Add tags {$=&quot;add_tags&quot;};
 $hp = health | hp;
 $sl = sleep;
 $exp = exp | experience;</value>
@@ -128,7 +129,7 @@ Bitte sprich deine Befehle auf Englisch ein.
 		<node uid="a39b6285-d525-4199-8583-b24855a8d6d0" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
 			<graphics x="299" y="481" fill="#00b200"/>
 			<att name="title" type="string" value="Sprachsynthese"/>
-			<att name="voice" type="string" value="cmu-slt-hsmm"/>
+			<att name="voice" type="string" value="bits1-hsmm"/>
 			<att name="prompt" type="text">
 				<value>output</value>
 			</att>
@@ -182,7 +183,7 @@ Möchtest du es gleich ausprobieren oder die Anweisungen nochmal hören?</value>
 		</node>
 		<edge src="16710812-8b9d-4a88-881f-ad737d758506" tgt="56667e63-0bdb-41f0-a288-f275bde67325">
 		</edge>
-		<edge src="4664d658-bc3c-46e2-8ec0-e4b7ffc59d3c" tgt="16710812-8b9d-4a88-881f-ad737d758506">
+		<edge src="4664d658-bc3c-46e2-8ec0-e4b7ffc59d3c" tgt="9d672e38-7427-48a6-b4c0-bb8a1057f992">
 		</edge>
 		<edge src="56667e63-0bdb-41f0-a288-f275bde67325" tgt="9464d5ec-71b1-4018-95e1-e8a54b0a117e">
 		</edge>
