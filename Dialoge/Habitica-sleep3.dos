@@ -16,31 +16,30 @@
 		<grammar id="579a2a0d-942a-422d-b20c-fb67e0f2f1b5">
 			<name>hp and sleep (and exp)</name>
 			<value>root $input;
- $input = How much $hp do I have?{$=&quot;hp&quot;} | 
-I want to $sl{$=&quot;sleep&quot;}| go to $sl{$=&quot;sleep&quot;}| 
-How much $exp do I have?{$=&quot;exp&quot;}| 
-How much $hp and $exp do I have?{$=&quot;hp,exp&quot;} | 
-How much $exp and $hp do I have?{$=&quot;hp,exp&quot;} |
-Hey wake up{$=&quot;wake_up&quot;} | wake up {$=&quot;wake_up&quot;}
-No{$=&quot;no&quot;}
-| I want my tasks{$=&quot;all_due_tasks&quot;}| 
-(show|tell) me my tasks{$=&quot;all_due_tasks&quot;};
-$hp = health | hp;
-$sl = sleep;
-$exp = exp | experience;</value>
+ $input = Wieviel $hp (habe|besitze) ich?{$=&quot;hp&quot;} | 
+Ich möchte $sl{$=&quot;sleep&quot;}| (gehen) {$=&quot;sleep&quot;}| 
+Wieviel $exp habe ich?{$=&quot;exp&quot;}| 
+(Hey,) wach(e) auf{$=&quot;wake_up&quot;} | 
+Nein{$=&quot;no&quot;}
+| Ich möchte meine Aufgaben{$=&quot;all_due_tasks&quot;}| 
+(Zeig(e)|Sag(e)) meine Aufgaben{$=&quot;all_due_tasks&quot;}| 
+Füge tegs {$=&quot;add_tags&quot;};
+$hp = Gesundheit | hp;
+$sl = schlafen;
+$exp = exp | Erfahrung;</value>
 		</grammar>
 		<grammar id="f56d1d24-8dd0-4e12-9ebf-05b3b96f58de">
 			<name>No</name>
 			<value>root $input;
 $input = $no{$=&quot;no&quot;} ;
-$no = no| nope | not really ;</value>
+$no = nein| nope | nicht wirklich ;</value>
 		</grammar>
 		<grammar id="fb400c88-0094-4f6c-a70f-f92df5e83e8e">
 			<name>Sleep</name>
 			<value>root $input;
 $input = $sl {$=&quot;sleep&quot;};
-$sl = yes| of course| naturally| yeah| yep;
-</value>
+$sl = ( ja | jawohl )| natürlich| klar| (a)jo| yep
+ [ bitte | gerne | genau] | richtig | korrekt;</value>
 		</grammar>
 		<variable uid="461a1c5a-2637-4594-bc32-9e123b5d3875">
 			<name>apiuser</name>
@@ -100,7 +99,8 @@ Bitte sprich deine Befehle auf Englisch ein.
 			<graphics x="624" y="622" fill="#b20000"/>
 			<att name="title" type="string" value="Spracherkenner"/>
 			<att name="threshold" type="integer" value="60"/>
-			<att name="language" type="string" value="US English"/>
+			<att name="language" type="string" value="Deutsch"/>
+			<att name="grammar" type="string" value="f56d1d24-8dd0-4e12-9ebf-05b3b96f58de"/>
 		</node>
 		<node uid="8d1233ca-5a33-44b5-b5df-4afb1a213567" class="de.saar.coli.jython_dialogos_plugin.HabiticaNode">
 			<graphics x="465" y="321" fill="#5a0099"/>
@@ -110,19 +110,19 @@ Bitte sprich deine Befehle auf Englisch ein.
 		</node>
 		<node uid="9464d5ec-71b1-4018-95e1-e8a54b0a117e" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
 			<graphics x="332" y="147" fill="#b20000"/>
-			<att name="title" type="string" value="Spracherkenner"/>
+			<att name="title" type="string" value="Brauchst du Hilfe?"/>
 			<att name="threshold" type="integer" value="80"/>
-			<att name="language" type="string" value="US English"/>
+			<att name="language" type="string" value="Deutsch"/>
 		</node>
 		<node uid="962035a7-4b65-4f14-8c5c-ceec5bd6ecae" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
 			<graphics x="205" y="299" fill="#b20000"/>
-			<att name="title" type="string" value="Spracherkenner"/>
+			<att name="title" type="string" value="Wiederhole Anleitung? / Ausprobieren?"/>
 			<att name="language" type="string" value="Deutsch"/>
 		</node>
 		<node uid="9d672e38-7427-48a6-b4c0-bb8a1057f992" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
 			<graphics x="580" y="259" fill="#b20000"/>
 			<att name="title" type="string" value="Spracherkenner"/>
-			<att name="language" type="string" value="US English"/>
+			<att name="language" type="string" value="Deutsch"/>
 			<att name="grammar" type="string" value="579a2a0d-942a-422d-b20c-fb67e0f2f1b5"/>
 		</node>
 		<node uid="a39b6285-d525-4199-8583-b24855a8d6d0" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
@@ -187,26 +187,26 @@ Möchtest du es gleich ausprobieren oder die Anweisungen nochmal hören?</value>
 		<edge src="56667e63-0bdb-41f0-a288-f275bde67325" tgt="9464d5ec-71b1-4018-95e1-e8a54b0a117e">
 		</edge>
 		<edge src="8376c49e-519b-47fa-b417-b44bed21295e" tgt="9d672e38-7427-48a6-b4c0-bb8a1057f992">
-			<att name="condition" type="string" value="yes"/>
+			<att name="condition" type="string" value="( ja | jawohl )| natürlich| klar| (a)jo| yep  [ bitte | gerne | genau] | richtig | korrekt;"/>
 		</edge>
 		<edge src="8376c49e-519b-47fa-b417-b44bed21295e" tgt="d3ea7949-c2df-4935-8586-08494422c4f3">
-			<att name="condition" type="string" value="no"/>
+			<att name="condition" type="string" value="No"/>
 		</edge>
 		<edge src="8d1233ca-5a33-44b5-b5df-4afb1a213567" tgt="a39b6285-d525-4199-8583-b24855a8d6d0">
 		</edge>
 		<edge src="8d1233ca-5a33-44b5-b5df-4afb1a213567" tgt="bfe38d58-6e0f-4187-a63f-c30634373d0a">
 		</edge>
 		<edge src="9464d5ec-71b1-4018-95e1-e8a54b0a117e" tgt="c9c9b393-dded-465c-96bb-ce5f5e48f62d">
-			<att name="condition" type="string" value="I need help | help please |help| instructions"/>
+			<att name="condition" type="string" value="(Ich) brauche Hilfe | Hilfe (bitte) | "/>
 		</edge>
 		<edge src="9464d5ec-71b1-4018-95e1-e8a54b0a117e" tgt="bb820b04-a39a-4f82-891f-a18ea2df724c">
-			<att name="condition" type="string" value="I know| no thank you |no"/>
+			<att name="condition" type="string" value="Sleep"/>
 		</edge>
 		<edge src="962035a7-4b65-4f14-8c5c-ceec5bd6ecae" tgt="bb820b04-a39a-4f82-891f-a18ea2df724c">
-			<att name="condition" type="string" value="i want to try it out | try out | try it out"/>
+			<att name="condition" type="string" value="Ich will es (aus)probieren | (aus)probieren"/>
 		</edge>
 		<edge src="962035a7-4b65-4f14-8c5c-ceec5bd6ecae" tgt="c9c9b393-dded-465c-96bb-ce5f5e48f62d">
-			<att name="condition" type="string" value="Instructions | again | again please | i want to hear the instructions again| i want to hear the instructions again please| help | help me"/>
+			<att name="condition" type="string" value="Anleitung | Hilfe | (bitte) wiederholen | I möchte (die (Anleitung|Hilfe)) (bitte) (wieder) hören | Hilf mir"/>
 		</edge>
 		<edge src="9d672e38-7427-48a6-b4c0-bb8a1057f992" tgt="8d1233ca-5a33-44b5-b5df-4afb1a213567">
 			<att name="condition" type="string" value="input"/>
