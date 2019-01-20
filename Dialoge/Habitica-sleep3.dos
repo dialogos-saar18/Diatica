@@ -2,7 +2,7 @@
 <!DOCTYPE wizard SYSTEM "Wizard.dtd">
 
 <wizard>
-	<plugin type="de.saar.coli.jython_dialogos_plugin">
+	<plugin type="resources.de.dialogos.plugin">
 	</plugin>
 	<plugin type="dialogos.plugin.tts">
 	</plugin>
@@ -16,10 +16,31 @@
 		<grammar id="579a2a0d-942a-422d-b20c-fb67e0f2f1b5">
 			<name>hp and sleep (and exp)</name>
 			<value>root $input;
- $input = How much $hp do I have?{$=&quot;hp&quot;} | I want to $sl{$=&quot;sleep&quot;}| How much $exp do I have?{$=&quot;exp&quot;}| How much $hp and $exp do I have?{$=&quot;hp,exp&quot;} | How much $exp and $hp do I have?{$=&quot;hp,exp&quot;};
+ $input = How much $hp do I have?{$=&quot;hp&quot;} | 
+I want to $sl{$=&quot;sleep&quot;}| go to $sl{$=&quot;sleep&quot;}| 
+How much $exp do I have?{$=&quot;exp&quot;}| 
+How much $hp and $exp do I have?{$=&quot;hp,exp&quot;} | 
+How much $exp and $hp do I have?{$=&quot;hp,exp&quot;} |
+Hey wake up{$=&quot;wake_up&quot;} | wake up {$=&quot;wake_up&quot;}
+No{$=&quot;no&quot;}
+| I want my tasks{$=&quot;all_due_tasks&quot;}| 
+(show|tell) me my tasks{$=&quot;all_due_tasks&quot;};
 $hp = health | hp;
-$sl = sleep | wake up;
+$sl = sleep;
 $exp = exp | experience;</value>
+		</grammar>
+		<grammar id="f56d1d24-8dd0-4e12-9ebf-05b3b96f58de">
+			<name>No</name>
+			<value>root $input;
+$input = $no{$=&quot;no&quot;} ;
+$no = no| nope | not really ;</value>
+		</grammar>
+		<grammar id="fb400c88-0094-4f6c-a70f-f92df5e83e8e">
+			<name>Sleep</name>
+			<value>root $input;
+$input = $sl {$=&quot;sleep&quot;};
+$sl = yes| of course| naturally| yeah| yep;
+</value>
 		</grammar>
 		<variable uid="461a1c5a-2637-4594-bc32-9e123b5d3875">
 			<name>apiuser</name>
@@ -30,13 +51,13 @@ $exp = exp | experience;</value>
 		<variable uid="c3cd4c67-e826-45fa-92d6-214b906aec92">
 			<name>input</name>
 			<type>string</type>
-			<value>&quot;xp&quot;</value>
+			<value></value>
 			<export/>
 		</variable>
 		<variable uid="19e7c970-42c2-4704-adaf-a4afc7a0357e">
 			<name>output</name>
 			<type>string</type>
-			<value>undefined</value>
+			<value></value>
 			<export/>
 		</variable>
 		<variable uid="69456db8-59a0-4fc6-8b28-afb154262eea">
@@ -45,56 +66,160 @@ $exp = exp | experience;</value>
 			<value>&quot;fd7eb04d-3c02-4249-90d7-53bb912a5a13&quot;</value>
 			<export/>
 		</variable>
+		<variable uid="302dcc79-d518-4d7a-90ff-3a4d29952a4e">
+			<name>input2</name>
+			<type>string</type>
+			<value>undefined</value>
+			<export/>
+		</variable>
+		<node uid="16710812-8b9d-4a88-881f-ad737d758506" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="332" y="11" fill="#6666ff"/>
+			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="prompt" type="text">
+				<value>Willkommen bei Diatica, einer Sprachsteuerung für Habitica.
+Bitte sprich deine Befehle auf Englisch ein.
+</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
 		<node uid="4664d658-bc3c-46e2-8ec0-e4b7ffc59d3c" class="com.clt.diamant.graph.nodes.StartNode">
-			<graphics x="361" y="9" fill="#9999ff"/>
+			<graphics x="179" y="3" fill="#9999ff"/>
 			<att name="title" type="string" value="Start"/>
 		</node>
-		<node uid="799b1fdd-3f46-4dde-8c05-ea6680edf8b5" class="com.clt.diamant.graph.nodes.EndNode">
-			<graphics x="364" y="404" fill="#9999ff"/>
-			<att name="title" type="string" value="Ende"/>
+		<node uid="56667e63-0bdb-41f0-a288-f275bde67325" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="332" y="77" fill="#00cccc"/>
+			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="prompt" type="text">
+				<value>Brauchst du Hilfe?</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="8376c49e-519b-47fa-b417-b44bed21295e" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
+			<graphics x="624" y="622" fill="#b20000"/>
+			<att name="title" type="string" value="Spracherkenner"/>
+			<att name="threshold" type="integer" value="60"/>
+			<att name="language" type="string" value="US English"/>
 		</node>
 		<node uid="8d1233ca-5a33-44b5-b5df-4afb1a213567" class="de.saar.coli.jython_dialogos_plugin.HabiticaNode">
-			<graphics x="355" y="160" fill="#ff2dff"/>
+			<graphics x="465" y="321" fill="#5a0099"/>
 			<att name="title" type="string" value="Habitica"/>
 			<att name="resultVar" type="string" value="output"/>
 			<att name="eingangsVar" type="string" value="input"/>
 		</node>
+		<node uid="9464d5ec-71b1-4018-95e1-e8a54b0a117e" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
+			<graphics x="332" y="147" fill="#b20000"/>
+			<att name="title" type="string" value="Spracherkenner"/>
+			<att name="threshold" type="integer" value="80"/>
+			<att name="language" type="string" value="US English"/>
+		</node>
+		<node uid="962035a7-4b65-4f14-8c5c-ceec5bd6ecae" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
+			<graphics x="205" y="299" fill="#b20000"/>
+			<att name="title" type="string" value="Spracherkenner"/>
+			<att name="language" type="string" value="Deutsch"/>
+		</node>
 		<node uid="9d672e38-7427-48a6-b4c0-bb8a1057f992" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
-			<graphics x="250" y="78" fill="#b20000"/>
+			<graphics x="580" y="259" fill="#b20000"/>
 			<att name="title" type="string" value="Spracherkenner"/>
 			<att name="language" type="string" value="US English"/>
 			<att name="grammar" type="string" value="579a2a0d-942a-422d-b20c-fb67e0f2f1b5"/>
 		</node>
 		<node uid="a39b6285-d525-4199-8583-b24855a8d6d0" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
-			<graphics x="232" y="253" fill="#00b200"/>
+			<graphics x="299" y="481" fill="#00b200"/>
 			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="voice" type="string" value="cmu-slt-hsmm"/>
 			<att name="prompt" type="text">
 				<value>output</value>
 			</att>
 			<att name="prompt_type" type="string" value="expression"/>
 			<att name="wait" type="boolean" value="1"/>
 		</node>
-		<node uid="bfe38d58-6e0f-4187-a63f-c30634373d0a" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
-			<graphics x="427" y="252" fill="#00b200"/>
+		<node uid="bb820b04-a39a-4f82-891f-a18ea2df724c" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="581" y="171" fill="#00b200"/>
 			<att name="title" type="string" value="Sprachsynthese"/>
 			<att name="prompt" type="text">
-				<value>Kein Erfolg</value>
+				<value>Was kann ich für dich tun?</value>
 			</att>
 			<att name="prompt_type" type="string" value="text"/>
 			<att name="wait" type="boolean" value="1"/>
 		</node>
-		<edge src="4664d658-bc3c-46e2-8ec0-e4b7ffc59d3c" tgt="8d1233ca-5a33-44b5-b5df-4afb1a213567">
+		<node uid="bfe38d58-6e0f-4187-a63f-c30634373d0a" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="511" y="451" fill="#00b200"/>
+			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="prompt" type="text">
+				<value>Das konnte ich leider nicht tun</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="c9c9b393-dded-465c-96bb-ce5f5e48f62d" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="204" y="211" fill="#00b200"/>
+			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="prompt" type="text">
+				<value>In Ordnung. Du kannst mich momentan 3 Dinge abfragen.
+Erstens, kannst du mich Fragen, wie viel Gesundheit dein Avatar noch besitzt.
+Zweitens kannst du mich fragen wie viele Erfahrungspunkte du bereits gesammelt hast.
+Drittens kann ich dir dabei helfen keine Gesundheit zu verlieren indem ich dich schlafen lege. Und mit wake up kann ich dich auch wieder aufwecken.
+Viertens kann ich dir deine Täglichen Aufgaben sagen.
+Möchtest du es gleich ausprobieren oder die Anweisungen nochmal hören?</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="d3ea7949-c2df-4935-8586-08494422c4f3" class="com.clt.diamant.graph.nodes.EndNode">
+			<graphics x="605" y="727" fill="#9999ff"/>
+			<att name="title" type="string" value="Ende"/>
+		</node>
+		<node uid="ef6bd7d3-5f48-4308-950c-6281078bb06c" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="475" y="546" fill="#00b200"/>
+			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="prompt" type="text">
+				<value>Kann ich sonst noch was für dich tun?</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<edge src="16710812-8b9d-4a88-881f-ad737d758506" tgt="56667e63-0bdb-41f0-a288-f275bde67325">
+		</edge>
+		<edge src="4664d658-bc3c-46e2-8ec0-e4b7ffc59d3c" tgt="16710812-8b9d-4a88-881f-ad737d758506">
+		</edge>
+		<edge src="56667e63-0bdb-41f0-a288-f275bde67325" tgt="9464d5ec-71b1-4018-95e1-e8a54b0a117e">
+		</edge>
+		<edge src="8376c49e-519b-47fa-b417-b44bed21295e" tgt="9d672e38-7427-48a6-b4c0-bb8a1057f992">
+			<att name="condition" type="string" value="yes"/>
+		</edge>
+		<edge src="8376c49e-519b-47fa-b417-b44bed21295e" tgt="d3ea7949-c2df-4935-8586-08494422c4f3">
+			<att name="condition" type="string" value="no"/>
 		</edge>
 		<edge src="8d1233ca-5a33-44b5-b5df-4afb1a213567" tgt="a39b6285-d525-4199-8583-b24855a8d6d0">
 		</edge>
 		<edge src="8d1233ca-5a33-44b5-b5df-4afb1a213567" tgt="bfe38d58-6e0f-4187-a63f-c30634373d0a">
 		</edge>
-		<edge src="9d672e38-7427-48a6-b4c0-bb8a1057f992">
+		<edge src="9464d5ec-71b1-4018-95e1-e8a54b0a117e" tgt="c9c9b393-dded-465c-96bb-ce5f5e48f62d">
+			<att name="condition" type="string" value="I need help | help please |help| instructions"/>
+		</edge>
+		<edge src="9464d5ec-71b1-4018-95e1-e8a54b0a117e" tgt="bb820b04-a39a-4f82-891f-a18ea2df724c">
+			<att name="condition" type="string" value="I know| no thank you |no"/>
+		</edge>
+		<edge src="962035a7-4b65-4f14-8c5c-ceec5bd6ecae" tgt="bb820b04-a39a-4f82-891f-a18ea2df724c">
+			<att name="condition" type="string" value="i want to try it out | try out | try it out"/>
+		</edge>
+		<edge src="962035a7-4b65-4f14-8c5c-ceec5bd6ecae" tgt="c9c9b393-dded-465c-96bb-ce5f5e48f62d">
+			<att name="condition" type="string" value="Instructions | again | again please | i want to hear the instructions again| i want to hear the instructions again please| help | help me"/>
+		</edge>
+		<edge src="9d672e38-7427-48a6-b4c0-bb8a1057f992" tgt="8d1233ca-5a33-44b5-b5df-4afb1a213567">
 			<att name="condition" type="string" value="input"/>
 		</edge>
-		<edge src="a39b6285-d525-4199-8583-b24855a8d6d0" tgt="799b1fdd-3f46-4dde-8c05-ea6680edf8b5">
+		<edge src="a39b6285-d525-4199-8583-b24855a8d6d0" tgt="ef6bd7d3-5f48-4308-950c-6281078bb06c">
 		</edge>
-		<edge src="bfe38d58-6e0f-4187-a63f-c30634373d0a" tgt="799b1fdd-3f46-4dde-8c05-ea6680edf8b5">
+		<edge src="bb820b04-a39a-4f82-891f-a18ea2df724c" tgt="9d672e38-7427-48a6-b4c0-bb8a1057f992">
+		</edge>
+		<edge src="bfe38d58-6e0f-4187-a63f-c30634373d0a" tgt="ef6bd7d3-5f48-4308-950c-6281078bb06c">
+		</edge>
+		<edge src="c9c9b393-dded-465c-96bb-ce5f5e48f62d" tgt="962035a7-4b65-4f14-8c5c-ceec5bd6ecae">
+		</edge>
+		<edge src="ef6bd7d3-5f48-4308-950c-6281078bb06c" tgt="8376c49e-519b-47fa-b417-b44bed21295e">
 		</edge>
 	</graph>
 </wizard>
