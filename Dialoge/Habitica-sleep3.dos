@@ -4,10 +4,10 @@
 <wizard>
 	<plugin type="resources.de.dialogos.plugin">
 	</plugin>
-	<plugin type="dialogos.plugin.tts">
-	</plugin>
 	<plugin type="dialogos.plugin.sphinx">
 		<att name="language" type="string" value="de_DE"/>
+	</plugin>
+	<plugin type="dialogos.plugin.tts">
 	</plugin>
 	<graph directed="1" Graphic="1" Layout="points">
 		<att name="width" type="integer" value="1575"/>
@@ -16,33 +16,17 @@
 		<grammar id="579a2a0d-942a-422d-b20c-fb67e0f2f1b5">
 			<name>hp and sleep (and exp)</name>
 			<value>root $input;
-<<<<<<< HEAD
  $input = Wieviel $hp (habe|besitze) ich?{$=&quot;hp&quot;} | 
-Ich möchte $sl{$=&quot;sleep&quot;}| (gehen) {$=&quot;sleep&quot;}| 
+Ich moechte $sl [gehen] {$=&quot;sleep&quot;}| 
 Wieviel $exp habe ich?{$=&quot;exp&quot;}| 
-(Hey,) wach(e) auf{$=&quot;wake_up&quot;} | 
+[Hey] wach[e] auf{$=&quot;wake_up&quot;} | 
 Nein{$=&quot;no&quot;}
-| Ich möchte meine Aufgaben{$=&quot;all_due_tasks&quot;}| 
-(Zeig(e)|Sag(e)) meine Aufgaben{$=&quot;all_due_tasks&quot;}| 
-Füge tegs {$=&quot;add_tags&quot;};
+| Ich moechte meine Aufgaben{$=&quot;all_due_tasks&quot;}| 
+(Zeig[e]|Sag[e]) meine Aufgaben{$=&quot;all_due_tasks&quot;}| 
+Fuege tegs {$=&quot;add_tags&quot;};
 $hp = Gesundheit | hp;
 $sl = schlafen;
 $exp = exp | Erfahrung;</value>
-=======
- $input = How much $hp do I have?{$=&quot;hp&quot;} | 
-I want to $sl{$=&quot;sleep&quot;}| go to $sl{$=&quot;sleep&quot;}| 
-How much $exp do I have?{$=&quot;exp&quot;}| 
-How much $hp and $exp do I have?{$=&quot;hp,exp&quot;} | 
-How much $exp and $hp do I have?{$=&quot;hp,exp&quot;} |
-Hey wake up{$=&quot;wake_up&quot;} | wake up {$=&quot;wake_up&quot;}
-No{$=&quot;no&quot;}
-| I want my tasks{$=&quot;all_due_tasks&quot;}| 
-(show|tell) me my tasks{$=&quot;all_due_tasks&quot;}|
-Add tags {$=&quot;add_tags&quot;};
-$hp = health | hp;
-$sl = sleep;
-$exp = exp | experience;</value>
->>>>>>> 37679dbf8dd9215c8ad8d36dd9881c6da5435f5b
 		</grammar>
 		<grammar id="f56d1d24-8dd0-4e12-9ebf-05b3b96f58de">
 			<name>No</name>
@@ -54,8 +38,39 @@ $no = nein| nope | nicht wirklich ;</value>
 			<name>Sleep</name>
 			<value>root $input;
 $input = $sl {$=&quot;sleep&quot;};
-$sl = ( ja | jawohl )| natürlich| klar| (a)jo| yep
+$sl = ja | jawohl | natuerlich| klar| [a]jo| yep
  [ bitte | gerne | genau] | richtig | korrekt;</value>
+		</grammar>
+		<grammar id="0b7712a7-0694-469d-8506-3f2541f45e11">
+			<name>Anleitung</name>
+			<value>root $input;
+$input = $ja{$=&quot;ja&quot;}|
+$no{$=&quot;no&quot;};
+$ja = ja | jawohl |
+ natuerlich| 
+klar| 
+[a]jo| 
+yep
+ [ bitte | gerne | genau] | 
+richtig | 
+korrekt|
+[Ich] brauche Hilfe |
+ Hilfe [bitte] ;
+
+$no = nein| nope | nicht wirklich | noe;</value>
+		</grammar>
+		<grammar id="7074b0f1-92c3-40c9-b40e-45db8d09e87f">
+			<name>wdh f. anl.</name>
+			<value>root $input;
+$input = 
+$ausprobieren {$=&quot;ausprobieren&quot;} | 
+$wiederholen {$=&quot;wiederholen&quot;};
+
+$ausprobieren = Ich will es [aus]probieren | [aus]probieren;
+
+$wiederholen = [Anleitung | Hilfe] [bitte] wiederholen | 
+Ich (möchte|will) die (Anleitung|Hilfe) [bitte] [wieder] hören |
+Hilf mir;</value>
 		</grammar>
 		<variable uid="461a1c5a-2637-4594-bc32-9e123b5d3875">
 			<name>apiuser</name>
@@ -92,7 +107,6 @@ $sl = ( ja | jawohl )| natürlich| klar| (a)jo| yep
 			<att name="title" type="string" value="Sprachsynthese"/>
 			<att name="prompt" type="text">
 				<value>Willkommen bei Diatica, einer Sprachsteuerung für Habitica.
-Bitte sprich deine Befehle auf Englisch ein.
 </value>
 			</att>
 			<att name="prompt_type" type="string" value="text"/>
@@ -113,10 +127,9 @@ Bitte sprich deine Befehle auf Englisch ein.
 		</node>
 		<node uid="8376c49e-519b-47fa-b417-b44bed21295e" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
 			<graphics x="624" y="622" fill="#b20000"/>
-			<att name="title" type="string" value="Spracherkenner"/>
+			<att name="title" type="string" value="Ja | Nein"/>
 			<att name="threshold" type="integer" value="60"/>
 			<att name="language" type="string" value="Deutsch"/>
-			<att name="grammar" type="string" value="f56d1d24-8dd0-4e12-9ebf-05b3b96f58de"/>
 		</node>
 		<node uid="8d1233ca-5a33-44b5-b5df-4afb1a213567" class="de.saar.coli.jython_dialogos_plugin.HabiticaNode">
 			<graphics x="465" y="321" fill="#5a0099"/>
@@ -129,21 +142,23 @@ Bitte sprich deine Befehle auf Englisch ein.
 			<att name="title" type="string" value="Brauchst du Hilfe?"/>
 			<att name="threshold" type="integer" value="80"/>
 			<att name="language" type="string" value="Deutsch"/>
+			<att name="grammar" type="string" value="0b7712a7-0694-469d-8506-3f2541f45e11"/>
 		</node>
 		<node uid="962035a7-4b65-4f14-8c5c-ceec5bd6ecae" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
 			<graphics x="205" y="299" fill="#b20000"/>
 			<att name="title" type="string" value="Wiederhole Anleitung? / Ausprobieren?"/>
 			<att name="language" type="string" value="Deutsch"/>
+			<att name="grammar" type="string" value="7074b0f1-92c3-40c9-b40e-45db8d09e87f"/>
 		</node>
 		<node uid="9d672e38-7427-48a6-b4c0-bb8a1057f992" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
 			<graphics x="580" y="259" fill="#b20000"/>
-			<att name="title" type="string" value="Spracherkenner"/>
+			<att name="title" type="string" value="Aufgabe sagen"/>
 			<att name="language" type="string" value="Deutsch"/>
 			<att name="grammar" type="string" value="579a2a0d-942a-422d-b20c-fb67e0f2f1b5"/>
 		</node>
 		<node uid="a39b6285-d525-4199-8583-b24855a8d6d0" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
 			<graphics x="299" y="481" fill="#00b200"/>
-			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="title" type="string" value="Erfolg"/>
 			<att name="voice" type="string" value="bits1-hsmm"/>
 			<att name="prompt" type="text">
 				<value>output</value>
@@ -153,7 +168,7 @@ Bitte sprich deine Befehle auf Englisch ein.
 		</node>
 		<node uid="bb820b04-a39a-4f82-891f-a18ea2df724c" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
 			<graphics x="581" y="171" fill="#00b200"/>
-			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="title" type="string" value="Was tun?"/>
 			<att name="prompt" type="text">
 				<value>Was kann ich für dich tun?</value>
 			</att>
@@ -162,7 +177,7 @@ Bitte sprich deine Befehle auf Englisch ein.
 		</node>
 		<node uid="bfe38d58-6e0f-4187-a63f-c30634373d0a" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
 			<graphics x="511" y="451" fill="#00b200"/>
-			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="title" type="string" value="etw. ist schief gelaufen"/>
 			<att name="prompt" type="text">
 				<value>Das konnte ich leider nicht tun</value>
 			</att>
@@ -171,14 +186,19 @@ Bitte sprich deine Befehle auf Englisch ein.
 		</node>
 		<node uid="c9c9b393-dded-465c-96bb-ce5f5e48f62d" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
 			<graphics x="204" y="211" fill="#00b200"/>
-			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="title" type="string" value="Fähigkeitenliste"/>
 			<att name="prompt" type="text">
-				<value>In Ordnung. Du kannst mich momentan 3 Dinge abfragen.
+				<value>In Ordnung. Momentan habe ich 5 Fähigkeiten.
+
 Erstens, kannst du mich Fragen, wie viel Gesundheit dein Avatar noch besitzt.
-Zweitens kannst du mich fragen wie viele Erfahrungspunkte du bereits gesammelt hast.
-Drittens kann ich dir dabei helfen keine Gesundheit zu verlieren indem ich dich schlafen lege. Und mit wake up kann ich dich auch wieder aufwecken.
-Viertens kann ich dir deine Täglichen Aufgaben sagen.
-Möchtest du es gleich ausprobieren oder die Anweisungen nochmal hören?</value>
+Zweitens kann ich dir sagen wie viele Erfahrungspunkte du bereits gesammelt hast.
+Drittens kann ich dir dabei helfen keine Gesundheit zu verlieren indem ich dich schlafen lege oder auch aufwecke.
+Viertens kann ich dir deine noch fällige  Aufgaben für den Tag sagen.
+Außerdem kann ich habitica 3 Tegs hinzufügen mit denen du deine Aufgaben nach ihrer Dauer markieren kannst. 
+Und zwar für eine Stunde, 30 oder 15 Minuten.
+ 
+Somit kann ich dir beispielsweise Aufgaben listen welche du mit 30 Minuten markiert hast. 
+Moechtest du es gleich etwas davon ausprobieren oder die Anweisung nochmal hoeren?</value>
 			</att>
 			<att name="prompt_type" type="string" value="text"/>
 			<att name="wait" type="boolean" value="1"/>
@@ -189,40 +209,40 @@ Möchtest du es gleich ausprobieren oder die Anweisungen nochmal hören?</value>
 		</node>
 		<node uid="ef6bd7d3-5f48-4308-950c-6281078bb06c" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
 			<graphics x="475" y="546" fill="#00b200"/>
-			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="title" type="string" value="Mehr Aufgaben?"/>
 			<att name="prompt" type="text">
-				<value>Kann ich sonst noch was für dich tun?</value>
+				<value>Kann ich sonst noch was fuer dich tun?</value>
 			</att>
 			<att name="prompt_type" type="string" value="text"/>
 			<att name="wait" type="boolean" value="1"/>
 		</node>
 		<edge src="16710812-8b9d-4a88-881f-ad737d758506" tgt="56667e63-0bdb-41f0-a288-f275bde67325">
 		</edge>
-		<edge src="4664d658-bc3c-46e2-8ec0-e4b7ffc59d3c" tgt="9d672e38-7427-48a6-b4c0-bb8a1057f992">
+		<edge src="4664d658-bc3c-46e2-8ec0-e4b7ffc59d3c" tgt="16710812-8b9d-4a88-881f-ad737d758506">
 		</edge>
 		<edge src="56667e63-0bdb-41f0-a288-f275bde67325" tgt="9464d5ec-71b1-4018-95e1-e8a54b0a117e">
 		</edge>
 		<edge src="8376c49e-519b-47fa-b417-b44bed21295e" tgt="9d672e38-7427-48a6-b4c0-bb8a1057f992">
-			<att name="condition" type="string" value="( ja | jawohl )| natürlich| klar| (a)jo| yep  [ bitte | gerne | genau] | richtig | korrekt;"/>
+			<att name="condition" type="string" value="ja | jawohl | natürlich| klar| [a]jo| yep | bitte | gerne | genau | richtig | korrekt "/>
 		</edge>
 		<edge src="8376c49e-519b-47fa-b417-b44bed21295e" tgt="d3ea7949-c2df-4935-8586-08494422c4f3">
-			<att name="condition" type="string" value="No"/>
+			<att name="condition" type="string" value="nein| nope | nicht wirklich"/>
 		</edge>
 		<edge src="8d1233ca-5a33-44b5-b5df-4afb1a213567" tgt="a39b6285-d525-4199-8583-b24855a8d6d0">
 		</edge>
 		<edge src="8d1233ca-5a33-44b5-b5df-4afb1a213567" tgt="bfe38d58-6e0f-4187-a63f-c30634373d0a">
 		</edge>
 		<edge src="9464d5ec-71b1-4018-95e1-e8a54b0a117e" tgt="c9c9b393-dded-465c-96bb-ce5f5e48f62d">
-			<att name="condition" type="string" value="(Ich) brauche Hilfe | Hilfe (bitte) | "/>
+			<att name="condition" type="string" value="&quot;ja&quot;"/>
 		</edge>
 		<edge src="9464d5ec-71b1-4018-95e1-e8a54b0a117e" tgt="bb820b04-a39a-4f82-891f-a18ea2df724c">
-			<att name="condition" type="string" value="Sleep"/>
+			<att name="condition" type="string" value="&quot;no&quot;"/>
 		</edge>
 		<edge src="962035a7-4b65-4f14-8c5c-ceec5bd6ecae" tgt="bb820b04-a39a-4f82-891f-a18ea2df724c">
-			<att name="condition" type="string" value="Ich will es (aus)probieren | (aus)probieren"/>
+			<att name="condition" type="string" value="&quot;ausprobieren&quot;"/>
 		</edge>
 		<edge src="962035a7-4b65-4f14-8c5c-ceec5bd6ecae" tgt="c9c9b393-dded-465c-96bb-ce5f5e48f62d">
-			<att name="condition" type="string" value="Anleitung | Hilfe | (bitte) wiederholen | I möchte (die (Anleitung|Hilfe)) (bitte) (wieder) hören | Hilf mir"/>
+			<att name="condition" type="string" value="&quot;wiederholen&quot;"/>
 		</edge>
 		<edge src="9d672e38-7427-48a6-b4c0-bb8a1057f992" tgt="8d1233ca-5a33-44b5-b5df-4afb1a213567">
 			<att name="condition" type="string" value="input"/>

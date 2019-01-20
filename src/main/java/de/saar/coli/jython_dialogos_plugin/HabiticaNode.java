@@ -158,18 +158,6 @@ public class HabiticaNode extends Node {
               return getEdge(1).getTarget();
             }
         }
-        else if (eingabe.equals("add_tags")){
-          try{
-            result = diaticaCo.sendPost(xapiuser, xapikey, "https://habitica.com/api/v3/tags");//?\"name\"=\"30min\"
-            String varName = this.getProperty(RESULT_VAR).toString();
-            Slot var = getSlot(varName);
-            var.setValue(new StringValue(result));
-            return getEdge(1).getTarget();
-          }catch(Exception e) {
-            System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
-            return getEdge(1).getTarget();
-          }
-        }
         else {
           return getEdge(1).getTarget();
         }
