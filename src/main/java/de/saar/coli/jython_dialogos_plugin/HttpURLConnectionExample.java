@@ -1,5 +1,6 @@
 package de.saar.coli.jython_dialogos_plugin;
 
+import java.nio.charset.StandardCharsets;
 import org.json.JSONObject;
 import org.json.*;
 import org.json.JSONArray;
@@ -115,8 +116,9 @@ public class HttpURLConnectionExample {
 				String task_list = "";
 				for(int num=0; num<tasks.size(); num++) {
 					task_list += ", " + tasks.get(num);
-      			}
-			return task_list;
+      	}
+
+				return task_list;
 			}
 
 		}
@@ -127,35 +129,19 @@ public class HttpURLConnectionExample {
 	}
 
 	// HTTP POST request
-	public String sendPost(String user, String key, String url) throws Exception {
+	public String sendPost(String user, String key, String url, String tag) throws Exception {
 
 		//String url = "https://habitica.com/api/v3/user/sleep";
 		URL obj = new URL(url);
 		HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
 
-		if (url.equals("https://habitica.com/api/v3/tags")){
-			System.out.println("I am in http post tag");
+		if (url.equals("https://habitica.com/api/v3/user/sleep")){
 			//add reuqest header
 			con.setRequestMethod("POST");
 			con.setRequestProperty("x-api-user",user);//);
 			con.setRequestProperty("x-api-key", key);//);
-			BufferedWriter httpRequestBodyWriter = 
-            new BufferedWriter(new OutputStreamWriter(con.getOutputStream()));
-   
-			byte[] out = "{\"name\":\"30min\"}".getBytes();
-			int length = out.length;
 
-			con.setFixedLengthStreamingMode(length);		
-			
-			//con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-			con.connect();
-			//con.setRequestProperty("name", "30min");
-			
 			String urlParameters = "";
-
-			// Indicate that we want to write to the HTTP request body
-			con.setDoOutput(true);
-			con.setRequestMethod("POST");
 
 			// Send post request
 			con.setDoOutput(true);
@@ -165,23 +151,12 @@ public class HttpURLConnectionExample {
 			wr.close();
 
 			int responseCode = con.getResponseCode();
-			System.out.println("\nSending 'POST' request to URL : " + url);
-			System.out.println("Post parameters : " + urlParameters);
+	//		System.out.println("\nSending 'POST' request to URL : " + url);
+	//		System.out.println("Post parameters : " + urlParameters);
 			System.out.println("Response Code : " + responseCode);
 
-			// Writing the post data to the HTTP request body
 			BufferedReader in = new BufferedReader(
-					new InputStreamReader(con.getInputStream()));
-			httpRequestBodyWriter.write("name=30min");
-			httpRequestBodyWriter.close();
-				 
-			// Reading from the HTTP response body
-			Scanner httpResponseScanner = new Scanner(con.getInputStream());
-			while(httpResponseScanner.hasNextLine()) {
-				System.out.println(httpResponseScanner.nextLine());
-			}
-			httpResponseScanner.close();
-
+			        new InputStreamReader(con.getInputStream()));
 			String inputLine;
 			StringBuffer response = new StringBuffer();
 
@@ -189,56 +164,59 @@ public class HttpURLConnectionExample {
 				response.append(inputLine);
 			}
 			in.close();
-			return response.substring(0);
-		}
-
-		else{
-		//add reuqest header
-		con.setRequestMethod("POST");
-		con.setRequestProperty("x-api-user",user);//);
-		con.setRequestProperty("x-api-key", key);//);
-
-		String urlParameters = "";
-
-		// Send post request
-		con.setDoOutput(true);
-		DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-		wr.writeBytes(urlParameters);
-		wr.flush();
-		wr.close();
-
-		int responseCode = con.getResponseCode();
-		System.out.println("\nSending 'POST' request to URL : " + url);
-		System.out.println("Post parameters : " + urlParameters);
-		System.out.println("Response Code : " + responseCode);
-
-		BufferedReader in = new BufferedReader(
-		        new InputStreamReader(con.getInputStream()));
-		String inputLine;
-		StringBuffer response = new StringBuffer();
-
-		while ((inputLine = in.readLine()) != null) {
-			response.append(inputLine);
-		}
-		in.close();
-		
-
-		String responsestring = response.substring(0);
-		System.out.println(responsestring);
-		Pattern reg = Pattern.compile("\"data\"\\:(true|false)");
-		Matcher m = reg.matcher(responsestring);
-		if(m.find()){
-			String s = m.group(1);
-			if (s.equals("false")){
-				return "wach";
+			String responsestring = response.substring(0);
+			System.out.println(responsestring);
+			Pattern reg = Pattern.compile("\"data\"\\:(true|false)");
+			Matcher m = reg.matcher(responsestring);
+			if(m.find()){
+				String s = m.group(1);
+				if (s.equals("false")){
+					return "wach";
+				}
+				else{
+					return "schlaf";
+				}
+			}else{
+				return null;
 			}
-			else{
-				return "schlaf";
-			}
-		}else{
-			return null;
-		}
+		} else{
+			String urlParameters = "name=" + tag;
+			byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );
+			int    postDataLength = postData.length;
+			con.setRequestMethod("POST");
+			con.setRequestProperty("x-api-user",user);//);
+			con.setRequestProperty("x-api-key", key);
 
+
+			// Send post request
+			con.setDoOutput(true);
+			con.setInstanceFollowRedirects( false );
+			con.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded");
+			con.setRequestProperty( "charset", "utf-8");
+			con.setRequestProperty( "Content-Length", Integer.toString( postDataLength));
+			con.setUseCaches( false );
+			DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+			wr.write(postData);
+
+
+			int responseCode = con.getResponseCode();
+	//		System.out.println("\nSending 'POST' request to URL : " + url);
+	//		System.out.println("Post parameters : " + urlParameters);
+			System.out.println("Response Code : " + responseCode);
+			BufferedReader in = new BufferedReader(
+			        new InputStreamReader(con.getInputStream()));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
+			}
+			in.close();
+			wr.flush();
+			wr.close();
+			System.out.println(response.substring(0));
+			return "Ich habe die Tags hinzugefügt";
+		}
 		//print result
 		//return response.toString();
 

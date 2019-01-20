@@ -1,7 +1,8 @@
 plugins {
-  id 'java'
   id 'maven'
   id 'application'
+  id 'com.github.johnrengelman.shadow' version '4.0.4'
+  id 'java'
 }
 repositories {
   mavenLocal()
@@ -11,13 +12,13 @@ repositories {
 
 dependencies {
   implementation(group:'com.github.dialogos-project', name:'dialogos',  version:'2.0.5')
-
-//https://mvnrepository.com/artifact/org.json/json
   compile group: 'org.json', name: 'json', version: '20180813'
-// implementation 'com.github.dialogos-project:jython-plugin:1.0'
-// implementation 'org.python:jython-standalone:2.7.1'
-
+  shadow 'junit:junit:3.8.2'
 }
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 mainClassName = 'com.clt.dialogos.DialogOS'
 version = '1.0'
