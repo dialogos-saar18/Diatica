@@ -75,23 +75,7 @@ public class HabiticaNode extends Node {
             System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
             return getEdge(1).getTarget();
           }
-        }
-        else if(eingabe.equals("\"test\"")){
-            try{
-                System.out.println("Ich bin in Test.");
-                result = diaticaCo.sendGet(xapiuser, xapikey, "https://habitica.com/api/v3/tasks/cc5d85be-964f-4cd3-a1db-8130958f01ba"); //für GET
-
-                String varName = this.getProperty(RESULT_VAR).toString();
-                Slot var = getSlot(varName);
-                var.setValue(new StringValue(result));
-    
-                return getEdge(0).getTarget();
-              } catch(Exception e) {
-                System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
-                return getEdge(1).getTarget();
-            }
-          }
-        else if(eingabe.equals("sleep")){ // TODO sleep zu sleep und wake up 
+        } else if(eingabe.equals("sleep")){
           try{
             String sleepstatus = diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep"); //für POST
             if (sleepstatus.equals("wach")){
@@ -137,6 +121,20 @@ public class HabiticaNode extends Node {
             }
         }
         else if (eingabe.equals("all_due_tasks")){
+          try{
+            result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/tasks/user?type=dailys"); //für GET
+            String varName = this.getProperty(RESULT_VAR).toString();
+            Slot var = getSlot(varName);
+            var.setValue(new StringValue(result));
+
+            return getEdge(0).getTarget();
+
+          }catch(Exception e) {
+              System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
+              return getEdge(1).getTarget();
+            }
+        }
+        else if (eingabe.equals("1h_tasks")){
           try{
             result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/tasks/user?type=dailys"); //für GET
             String varName = this.getProperty(RESULT_VAR).toString();

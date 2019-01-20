@@ -68,3 +68,11 @@
 - Auseinandersetzung mit dem Task-System von Habitica
 - Code-Bereinung (in Funktionen umschreiben, Kommentare einfügen, ...)
 - Starke Auseinandersetzung mit GitHub
+
+
+## Sitzung zum Featureschluss
+- ca 3-5 user tests
+- je härteres Feedback desto besser
+- Feedback geben nach Eingabe
+- README fertig schreiben und auf Piazza posten, dass es nun zum test bereit steht
+- Wie wollen leute mit meinem System reden
