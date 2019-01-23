@@ -4,10 +4,10 @@
 <wizard>
 	<plugin type="resources.de.dialogos.plugin">
 	</plugin>
-	<plugin type="dialogos.plugin.tts">
-	</plugin>
 	<plugin type="dialogos.plugin.sphinx">
 		<att name="language" type="string" value="de_DE"/>
+	</plugin>
+	<plugin type="dialogos.plugin.tts">
 	</plugin>
 	<graph directed="1" Graphic="1" Layout="points">
 		<att name="width" type="integer" value="1575"/>
@@ -16,33 +16,17 @@
 		<grammar id="579a2a0d-942a-422d-b20c-fb67e0f2f1b5">
 			<name>hp and sleep (and exp)</name>
 			<value>root $input;
-<<<<<<< HEAD
- $input = Wieviel $hp (habe|besitze) ich?{$=&quot;hp&quot;} | 
-Ich möchte $sl{$=&quot;sleep&quot;}| (gehen) {$=&quot;sleep&quot;}| 
-Wieviel $exp habe ich?{$=&quot;exp&quot;}| 
-(Hey,) wach(e) auf{$=&quot;wake_up&quot;} | 
+ $input = Wieviel $hp (habe|besitze) ich?{$=&quot;hp&quot;} |
+Ich möchte $sl{$=&quot;sleep&quot;}| (gehen) {$=&quot;sleep&quot;}|
+Wieviel $exp habe ich?{$=&quot;exp&quot;}|
+(Hey) wach(e) auf{$=&quot;wake_up&quot;} |
 Nein{$=&quot;no&quot;}
-| Ich möchte meine Aufgaben{$=&quot;all_due_tasks&quot;}| 
-(Zeig(e)|Sag(e)) meine Aufgaben{$=&quot;all_due_tasks&quot;}| 
+| Ich möchte meine Aufgaben{$=&quot;all_due_tasks&quot;}|
+(Zeig(e)|Sag(e)) meine Aufgaben{$=&quot;all_due_tasks&quot;}|
 Füge tegs {$=&quot;add_tags&quot;};
 $hp = Gesundheit | hp;
 $sl = schlafen;
 $exp = exp | Erfahrung;</value>
-=======
- $input = How much $hp do I have?{$=&quot;hp&quot;} | 
-I want to $sl{$=&quot;sleep&quot;}| go to $sl{$=&quot;sleep&quot;}| 
-How much $exp do I have?{$=&quot;exp&quot;}| 
-How much $hp and $exp do I have?{$=&quot;hp,exp&quot;} | 
-How much $exp and $hp do I have?{$=&quot;hp,exp&quot;} |
-Hey wake up{$=&quot;wake_up&quot;} | wake up {$=&quot;wake_up&quot;}
-No{$=&quot;no&quot;}
-| I want my tasks{$=&quot;all_due_tasks&quot;}| 
-(show|tell) me my tasks{$=&quot;all_due_tasks&quot;}|
-Add tags {$=&quot;add_tags&quot;};
-$hp = health | hp;
-$sl = sleep;
-$exp = exp | experience;</value>
->>>>>>> 37679dbf8dd9215c8ad8d36dd9881c6da5435f5b
 		</grammar>
 		<grammar id="f56d1d24-8dd0-4e12-9ebf-05b3b96f58de">
 			<name>No</name>
@@ -82,7 +66,7 @@ $sl = ( ja | jawohl )| natürlich| klar| (a)jo| yep
 			<export/>
 		</variable>
 		<variable uid="302dcc79-d518-4d7a-90ff-3a4d29952a4e">
-			<name>input2</name>
+			<name>tag</name>
 			<type>string</type>
 			<value>undefined</value>
 			<export/>
