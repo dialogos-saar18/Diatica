@@ -56,7 +56,9 @@ public class HabiticaNode extends Node {
         Slot apiuser = new Slot();
         Slot apikey = new Slot();
         Slot searchtag = new Slot();
-        for (int b = 0; b<slotlist.size(); b++){
+
+        try{
+          for (int b = 0; b<slotlist.size(); b++){
             if ((slotlist.get(b)).getName().equals("apiuser")){
               apiuser = slotlist.get(b);
             }else if ((slotlist.get(b)).getName().equals("apikey")){
@@ -64,7 +66,10 @@ public class HabiticaNode extends Node {
             }else if ((slotlist.get(b)).getName().equals("tag")){
               searchtag = slotlist.get(b);
             }
-        }
+          }
+        } catch (IndexOutOfBoundsException e){
+            throw new NodeExecutionException(this, "unable to find all necessary variables (apiuser, apikey, tag) ");
+          }
 
         //apiuser = slotlist.get(0);
         //apikey = slotlist.get(3);
@@ -142,7 +147,7 @@ public class HabiticaNode extends Node {
         }
         else if (eingabe.equals("all_due_tasks")){
           try{
-            result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/tasks/user?type=dailys", null); //für GET
+            result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/tasks/user?type=dailys", ""); //für GET
             String varName = this.getProperty(RESULT_VAR).toString();
             Slot var = getSlot(varName);
             var.setValue(new StringValue(result));
@@ -155,9 +160,13 @@ public class HabiticaNode extends Node {
             }
         }
         else if (eingabe.equals("spec_task")){
+          String spectag = new String();
+          String idtag = new String();
           try {
-            String spectag = (searchtag.getValue()).getReadableValue().toString();
-            result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/tasks/user?type=dailys", spectag); //TODO
+            idtag = (searchtag.getValue()).getReadableValue().toString();
+            spectag = diaticaCo.sendGet(xapiuser,xapikey, "https://habitica.com/api/v3/tags",idtag);
+            result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/tasks/user?type=dailys", spectag);
+
             String varName = this.getProperty(RESULT_VAR).toString();
             Slot var = getSlot(varName);
             var.setValue(new StringValue(result));
