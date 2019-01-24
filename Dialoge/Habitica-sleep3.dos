@@ -6,18 +6,92 @@
 	</plugin>
 	<plugin type="dialogos.plugin.sphinx">
 		<att name="language" type="string" value="de_DE"/>
+		<g2p language="de_DE">
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+		</g2p>
 	</plugin>
 	<plugin type="dialogos.plugin.tts">
 	</plugin>
 	<graph directed="1" Graphic="1" Layout="points">
 		<att name="width" type="integer" value="1575"/>
-		<att name="height" type="integer" value="974"/>
+		<att name="height" type="integer" value="1528"/>
 		<groovyFunctions></groovyFunctions>
 		<grammar id="579a2a0d-942a-422d-b20c-fb67e0f2f1b5">
 			<name>hp and sleep (and exp)</name>
 			<value>root $input;
  $input = Wieviel $hp (habe|besitze) ich?{$=&quot;hp&quot;} | 
-Ich moechte $sl [gehen] {$=&quot;sleep&quot;}| 
+$sl {$=&quot;sleep&quot;}| 
 Wieviel $exp habe ich?{$=&quot;exp&quot;}| 
 [Hey] wach[e] auf{$=&quot;wake_up&quot;} | 
 Nein{$=&quot;no&quot;}
@@ -78,6 +152,12 @@ Hilf mir;</value>
 			<value>&quot;02ee1e91-da26-4492-99bb-a1df1fabec3d&quot;</value>
 			<export/>
 		</variable>
+		<variable uid="69456db8-59a0-4fc6-8b28-afb154262eea">
+			<name>apikey</name>
+			<type>string</type>
+			<value>&quot;fd7eb04d-3c02-4249-90d7-53bb912a5a13&quot;</value>
+			<export/>
+		</variable>
 		<variable uid="c3cd4c67-e826-45fa-92d6-214b906aec92">
 			<name>input</name>
 			<type>string</type>
@@ -88,12 +168,6 @@ Hilf mir;</value>
 			<name>output</name>
 			<type>string</type>
 			<value></value>
-			<export/>
-		</variable>
-		<variable uid="69456db8-59a0-4fc6-8b28-afb154262eea">
-			<name>apikey</name>
-			<type>string</type>
-			<value>&quot;fd7eb04d-3c02-4249-90d7-53bb912a5a13&quot;</value>
 			<export/>
 		</variable>
 		<variable uid="302dcc79-d518-4d7a-90ff-3a4d29952a4e">
@@ -218,7 +292,7 @@ Moechtest du es gleich etwas davon ausprobieren oder die Anweisung nochmal hoere
 		</node>
 		<edge src="16710812-8b9d-4a88-881f-ad737d758506" tgt="56667e63-0bdb-41f0-a288-f275bde67325">
 		</edge>
-		<edge src="4664d658-bc3c-46e2-8ec0-e4b7ffc59d3c" tgt="16710812-8b9d-4a88-881f-ad737d758506">
+		<edge src="4664d658-bc3c-46e2-8ec0-e4b7ffc59d3c" tgt="bb820b04-a39a-4f82-891f-a18ea2df724c">
 		</edge>
 		<edge src="56667e63-0bdb-41f0-a288-f275bde67325" tgt="9464d5ec-71b1-4018-95e1-e8a54b0a117e">
 		</edge>

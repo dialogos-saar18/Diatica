@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE wizard SYSTEM "Wizard.dtd">
+
+<wizard>
+	<plugin type="resources.de.dialogos.plugin">
+	</plugin>
+	<plugin type="dialogos.plugin.sphinx">
+		<att name="language" type="string" value="de_DE"/>
+		<g2p language="de_DE">
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+		</g2p>
+	</plugin>
+	<plugin type="dialogos.plugin.tts">
+	</plugin>
+	<graph directed="1" Graphic="1" Layout="points">
+		<att name="width" type="integer" value="2371"/>
+		<att name="height" type="integer" value="1551"/>
+		<groovyFunctions></groovyFunctions>
+		<grammar id="9309a86a-482c-46c6-ae92-e0b255cd1695">
+			<name>Befehl</name>
+			<value>root $input;
+	$input = 
+		$help{$=&quot;help&quot;}|
+		$intro{$=&quot;intro&quot;}|
+		$sleep{$=&quot;sleep&quot;};
+$intro =
+	was bist du|
+	Was ist Diatica;
+
+$help = 
+	Was kann[st] (du|ich) [tun]|
+	Ich möchte etwas ausprobieren|
+	Nenn[e] mir [ein|ein paar] Beispiel[e] |
+	(Welche Aufgaben|Was) (kannst du|können Sie) [tun|für mich tun]
+	Weiß [ich] nicht|
+	Hilfe|
+	[Ich] weiß nicht[s] |
+	Weise mich zur Hilfe zurück;
+
+$sleep = 
+	Leg[e] (mich|meinen Avatar) schlafen|
+	[Ich (will|möchte) (mich|meinen Avatar)] schlafen [legen] |
+	Geh (ins|zum) Gasthaus|
+	[Ich will|meinen Avatar] (ins|zum) Gasthaus |
+	[Ich will] das Gasthaus besuchen|
+	Gasthaus;
+
+
+
+</value>
+		</grammar>
+		<variable uid="65918567-83a3-491e-88a7-ec0bb8b50ab5">
+			<name>apiuser</name>
+			<type>string</type>
+			<value>&quot;02ee1e91-da26-4492-99bb-a1df1fabec3d&quot;</value>
+		</variable>
+		<variable uid="d82494d6-3c81-4961-a1cd-a11a4ce9917a">
+			<name>apikey</name>
+			<type>string</type>
+			<value>&quot;fd7eb04d-3c02-4249-90d7-53bb912a5a13&quot;</value>
+		</variable>
+		<variable uid="1df6b2da-6ef2-4e80-9e3d-a6d3180857f0">
+			<name>input</name>
+			<type>string</type>
+			<value>&quot;&quot;</value>
+		</variable>
+		<variable uid="af624e90-b988-45da-8b63-8540533ed6df">
+			<name>output</name>
+			<type>string</type>
+			<value>&quot;fehlschlag&quot;</value>
+		</variable>
+		<node uid="06a84d48-938f-474d-b617-ce8f957bf168" class="com.clt.diamant.graph.nodes.EndNode">
+			<graphics x="465" y="1079" fill="#9999ff"/>
+			<att name="title" type="string" value="Ende"/>
+		</node>
+		<node uid="08f9a1e0-f7ca-40db-975d-d55e98ef0f80" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
+			<graphics x="162" y="486" fill="#b20000"/>
+			<att name="title" type="string" value="ja|nein"/>
+			<att name="language" type="string" value="Deutsch"/>
+		</node>
+		<node uid="0ed08a8e-4fd8-4037-812b-58b7ae51949c" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="117" y="587" fill="#00b200"/>
+			<att name="title" type="string" value="Diatica-Fähigkeiten"/>
+			<att name="voice" type="string" value="bits1-hsmm"/>
+			<att name="prompt" type="text">
+				<value>In Ordnung. Momentan habe ich 5 Fähigkeiten.
+
+Anweisung nochmal hören?</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="22b14f4a-b413-4c47-80c2-78c62d4d3319" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
+			<graphics x="426" y="544" fill="#b20000"/>
+			<att name="title" type="string" value="Befehle"/>
+			<att name="language" type="string" value="Deutsch"/>
+			<att name="grammar" type="string" value="9309a86a-482c-46c6-ae92-e0b255cd1695"/>
+		</node>
+		<node uid="2b348f37-2b81-4752-9089-04b614e551ac" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="494" y="716" fill="#00b200"/>
+			<att name="title" type="string" value="Fehlschlag"/>
+			<att name="prompt" type="text">
+				<value>output</value>
+			</att>
+			<att name="prompt_type" type="string" value="expression"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="2c7adc36-c639-4d92-a59c-e7c39613f2fc" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="430" y="802" fill="#00b200"/>
+			<att name="title" type="string" value="Nachfrage"/>
+			<att name="prompt" type="text">
+				<value>Kann ich sonst noch etwas für dich tun?</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="336d5966-af42-4347-990b-4071659f628d" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="356" y="716" fill="#00b200"/>
+			<att name="title" type="string" value="Erfolg"/>
+			<att name="voice" type="string" value="bits1-hsmm"/>
+			<att name="prompt" type="text">
+				<value>output</value>
+			</att>
+			<att name="prompt_type" type="string" value="expression"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="42d9b71f-b067-4cc0-aa44-f2264dbc4db4" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
+			<graphics x="371" y="326" fill="#b20000"/>
+			<att name="title" type="string" value="ja|nein"/>
+			<att name="language" type="string" value="Deutsch"/>
+		</node>
+		<node uid="48d259c1-8a4c-4c2b-86eb-a893f7e784da" class="de.saar.coli.jython_dialogos_plugin.HabiticaNode">
+			<graphics x="424" y="620" fill="#9900cc"/>
+			<att name="title" type="string" value="Habitica"/>
+			<att name="resultVar" type="string" value="output"/>
+			<att name="eingangsVar" type="string" value="input"/>
+		</node>
+		<node uid="5cc76975-e780-41b3-a00a-eadd0184f971" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="345" y="236" fill="#00b200"/>
+			<att name="title" type="string" value="Einführung?"/>
+			<att name="prompt" type="text">
+				<value>Brauchst du eine Einführung?</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="61560544-3d7f-49c3-a9e3-0774b795ed65" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="145" y="405" fill="#00b200"/>
+			<att name="title" type="string" value="Vorstellung"/>
+			<att name="prompt" type="text">
+				<value>Ich bin dein Assistent für DialogOS.
+Mit mir kannst du Habitica kontrollieren und effizienter deine Zeit nutzen.
+Soll ich dir meine Fähigkeiten vorstellen?</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="65481d52-1423-4716-a840-40b0c58a5b34" class="com.clt.diamant.graph.nodes.StartNode">
+			<graphics x="362" y="28" fill="#9999ff"/>
+			<att name="title" type="string" value="Start"/>
+		</node>
+		<node uid="6cdcbd77-7ded-44ad-a313-77e0c8e4e8ee" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
+			<graphics x="457" y="893" fill="#b20000"/>
+			<att name="title" type="string" value="ja|nein"/>
+			<att name="language" type="string" value="Deutsch"/>
+		</node>
+		<node uid="715dfdaf-6268-4154-942a-596a2278babd" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="429" y="450" fill="#00b200"/>
+			<att name="title" type="string" value="Alle Fähigkeiten"/>
+			<att name="prompt" type="text">
+				<value>Was kann ich für dich tun?</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="acbdace7-05ad-411a-8c8d-bb833d34b5d2" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
+			<graphics x="117" y="686" fill="#b20000"/>
+			<att name="title" type="string" value="Antwort"/>
+			<att name="language" type="string" value="Deutsch"/>
+		</node>
+		<node uid="b0caa286-7ea4-4fca-b24c-51dd00a23f13" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="347" y="130" fill="#00b200"/>
+			<att name="title" type="string" value="Begrüßung"/>
+			<att name="voice" type="string" value="bits1-hsmm"/>
+			<att name="prompt" type="text">
+				<value>Hallo. Hier ist Diatica.</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="f57bfdd4-d34c-4a7e-91d6-755cbbd23107" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="440" y="992" fill="#00b200"/>
+			<att name="title" type="string" value="Verabschieden"/>
+			<att name="prompt" type="text">
+				<value>Aufwiedersehen</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<edge src="08f9a1e0-f7ca-40db-975d-d55e98ef0f80" tgt="0ed08a8e-4fd8-4037-812b-58b7ae51949c">
+			<att name="condition" type="string" value="ja | jawohl | natürlich| klar| [a]jo| yep | bitte | gerne | genau | richtig | korrekt "/>
+		</edge>
+		<edge src="08f9a1e0-f7ca-40db-975d-d55e98ef0f80" tgt="715dfdaf-6268-4154-942a-596a2278babd">
+			<att name="condition" type="string" value="nein| nope | nicht wirklich"/>
+		</edge>
+		<edge src="0ed08a8e-4fd8-4037-812b-58b7ae51949c" tgt="acbdace7-05ad-411a-8c8d-bb833d34b5d2">
+		</edge>
+		<edge src="22b14f4a-b413-4c47-80c2-78c62d4d3319" tgt="0ed08a8e-4fd8-4037-812b-58b7ae51949c">
+			<att name="condition" type="string" value="&quot;help&quot;"/>
+		</edge>
+		<edge src="22b14f4a-b413-4c47-80c2-78c62d4d3319" tgt="61560544-3d7f-49c3-a9e3-0774b795ed65">
+			<att name="condition" type="string" value="&quot;intro&quot;"/>
+		</edge>
+		<edge src="22b14f4a-b413-4c47-80c2-78c62d4d3319" tgt="48d259c1-8a4c-4c2b-86eb-a893f7e784da">
+			<att name="condition" type="string" value="input"/>
+		</edge>
+		<edge src="2b348f37-2b81-4752-9089-04b614e551ac" tgt="2c7adc36-c639-4d92-a59c-e7c39613f2fc">
+		</edge>
+		<edge src="2c7adc36-c639-4d92-a59c-e7c39613f2fc" tgt="6cdcbd77-7ded-44ad-a313-77e0c8e4e8ee">
+		</edge>
+		<edge src="336d5966-af42-4347-990b-4071659f628d" tgt="2c7adc36-c639-4d92-a59c-e7c39613f2fc">
+		</edge>
+		<edge src="42d9b71f-b067-4cc0-aa44-f2264dbc4db4" tgt="61560544-3d7f-49c3-a9e3-0774b795ed65">
+			<att name="condition" type="string" value="ja | jawohl | natürlich| klar| [a]jo| yep | bitte | gerne | genau | richtig | korrekt "/>
+		</edge>
+		<edge src="42d9b71f-b067-4cc0-aa44-f2264dbc4db4" tgt="715dfdaf-6268-4154-942a-596a2278babd">
+			<att name="condition" type="string" value="nein| nope | nicht wirklich"/>
+		</edge>
+		<edge src="48d259c1-8a4c-4c2b-86eb-a893f7e784da" tgt="336d5966-af42-4347-990b-4071659f628d">
+		</edge>
+		<edge src="48d259c1-8a4c-4c2b-86eb-a893f7e784da" tgt="2b348f37-2b81-4752-9089-04b614e551ac">
+		</edge>
+		<edge src="5cc76975-e780-41b3-a00a-eadd0184f971" tgt="42d9b71f-b067-4cc0-aa44-f2264dbc4db4">
+		</edge>
+		<edge src="61560544-3d7f-49c3-a9e3-0774b795ed65" tgt="08f9a1e0-f7ca-40db-975d-d55e98ef0f80">
+		</edge>
+		<edge src="65481d52-1423-4716-a840-40b0c58a5b34" tgt="b0caa286-7ea4-4fca-b24c-51dd00a23f13">
+		</edge>
+		<edge src="6cdcbd77-7ded-44ad-a313-77e0c8e4e8ee" tgt="715dfdaf-6268-4154-942a-596a2278babd">
+			<att name="condition" type="string" value="ja | jawohl | natürlich| klar| [a]jo| yep | bitte | gerne | genau | richtig | korrekt "/>
+		</edge>
+		<edge src="6cdcbd77-7ded-44ad-a313-77e0c8e4e8ee" tgt="f57bfdd4-d34c-4a7e-91d6-755cbbd23107">
+			<att name="condition" type="string" value="nein| nope | nicht wirklich"/>
+		</edge>
+		<edge src="715dfdaf-6268-4154-942a-596a2278babd" tgt="22b14f4a-b413-4c47-80c2-78c62d4d3319">
+		</edge>
+		<edge src="acbdace7-05ad-411a-8c8d-bb833d34b5d2" tgt="0ed08a8e-4fd8-4037-812b-58b7ae51949c">
+			<att name="condition" type="string" value="&quot;weiter&quot;"/>
+		</edge>
+		<edge src="acbdace7-05ad-411a-8c8d-bb833d34b5d2" tgt="0ed08a8e-4fd8-4037-812b-58b7ae51949c">
+			<att name="condition" type="string" value="&quot;nochmal&quot;"/>
+		</edge>
+		<edge src="acbdace7-05ad-411a-8c8d-bb833d34b5d2" tgt="715dfdaf-6268-4154-942a-596a2278babd">
+			<att name="condition" type="string" value="&quot;nein&quot;"/>
+		</edge>
+		<edge src="acbdace7-05ad-411a-8c8d-bb833d34b5d2" tgt="f57bfdd4-d34c-4a7e-91d6-755cbbd23107">
+			<att name="condition" type="string" value="&quot;Abschied&quot;"/>
+		</edge>
+		<edge src="b0caa286-7ea4-4fca-b24c-51dd00a23f13" tgt="5cc76975-e780-41b3-a00a-eadd0184f971">
+		</edge>
+		<edge src="f57bfdd4-d34c-4a7e-91d6-755cbbd23107" tgt="06a84d48-938f-474d-b617-ce8f957bf168">
+		</edge>
+	</graph>
+</wizard>
