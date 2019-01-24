@@ -53,8 +53,27 @@ public class HabiticaNode extends Node {
     public Node execute(WozInterface wozInterface, InputCenter inputCenter, ExecutionLogger executionLogger){
 
         List<Slot> slotlist = this.getGraph().getAllVariables(Graph.LOCAL);
-        Slot apiuser = slotlist.get(0);
-        Slot apikey = slotlist.get(3);
+        Slot apiuser = new Slot();
+        Slot apikey = new Slot();
+        Slot searchtag = new Slot();
+
+        try{
+          for (int b = 0; b<slotlist.size(); b++){
+            if ((slotlist.get(b)).getName().equals("apiuser")){
+              apiuser = slotlist.get(b);
+            }else if ((slotlist.get(b)).getName().equals("apikey")){
+              apikey = slotlist.get(b);
+            }else if ((slotlist.get(b)).getName().equals("tag")){
+              searchtag = slotlist.get(b);
+            }
+          }
+        } catch (IndexOutOfBoundsException e){
+            throw new NodeExecutionException(this, "unable to find all necessary variables (apiuser, apikey, tag) ");
+          }
+
+        //apiuser = slotlist.get(0);
+        //apikey = slotlist.get(3);
+        //searchtag = slotlist.get(4);
         String xapiuser = (apiuser.getValue()).getReadableValue().toString();
         String xapikey = (apikey.getValue()).getReadableValue().toString();
         String eingabe = getSlot(this.getProperty(Eingang_VAR).toString()).getValue().getReadableValue().toString();
@@ -66,7 +85,7 @@ public class HabiticaNode extends Node {
         if (eingabe.equals("hp")){
           try{
 
-            result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/user?userFields=stats.hp"); //für GET
+            result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/user?userFields=stats.hp", null); //für GET
 
             String varName = this.getProperty(RESULT_VAR).toString();
             Slot var = getSlot(varName);
@@ -83,6 +102,8 @@ public class HabiticaNode extends Node {
             if (sleepstatus.equals("wach")){
               diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep", null);
               result = "Du schläfst bereits.";
+            } else{
+              result = "Du schläfst nun. ";
             }
             String varName = this.getProperty(RESULT_VAR).toString();
             Slot var = getSlot(varName);
@@ -99,6 +120,8 @@ public class HabiticaNode extends Node {
               if (sleepstatus.equals("schlaf")){
                  diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep",null);
                  result = "Du bist bereits wach.";
+              } else{
+                result = "Du bist nun wach.";
               }
               String varName = this.getProperty(RESULT_VAR).toString();
               Slot var = getSlot(varName);
@@ -111,7 +134,7 @@ public class HabiticaNode extends Node {
             }
         }else if (eingabe.equals("exp")){
           try{
-            result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/user?userFields=stats.exp"); //für GET
+            result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/user?userFields=stats.exp", null); //für GET
             String varName = this.getProperty(RESULT_VAR).toString();
             Slot var = getSlot(varName);
             var.setValue(new StringValue(result));
@@ -124,7 +147,7 @@ public class HabiticaNode extends Node {
         }
         else if (eingabe.equals("all_due_tasks")){
           try{
-            result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/tasks/user?type=dailys"); //für GET
+            result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/tasks/user?type=dailys", ""); //für GET
             String varName = this.getProperty(RESULT_VAR).toString();
             Slot var = getSlot(varName);
             var.setValue(new StringValue(result));
@@ -136,6 +159,25 @@ public class HabiticaNode extends Node {
               return getEdge(1).getTarget();
             }
         }
+        else if (eingabe.equals("spec_task")){
+          String spectag = new String();
+          String idtag = new String();
+          try {
+            idtag = (searchtag.getValue()).getReadableValue().toString();
+            spectag = diaticaCo.sendGet(xapiuser,xapikey, "https://habitica.com/api/v3/tags",idtag);
+            result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/tasks/user?type=dailys", spectag);
+
+            String varName = this.getProperty(RESULT_VAR).toString();
+            Slot var = getSlot(varName);
+            var.setValue(new StringValue(result));
+
+            return getEdge(0).getTarget();
+
+          }catch(Exception e) {
+              System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
+              return getEdge(1).getTarget();
+            }
+          }
         else if (eingabe.equals("add_tags")){
           try{
               LinkedList tags = new LinkedList<String>();

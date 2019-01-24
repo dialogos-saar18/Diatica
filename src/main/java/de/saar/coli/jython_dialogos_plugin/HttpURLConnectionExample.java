@@ -38,7 +38,7 @@ public class HttpURLConnectionExample {
 
 	// HTTP GET request
 
-	public String sendGet(String user, String key, String url) throws Exception {
+	public String sendGet(String user, String key, String url, String wtag) throws Exception {
 
 		//String url = "https://habitica.com/api/v3/user?userFields=stats.hp";
 		/*"https://habitica.com/api/v3/tasks/cc5d85be-964f-4cd3-a1db-8130958f01ba"; // for one specific daily
@@ -97,35 +97,82 @@ public class HttpURLConnectionExample {
 			}else{
 				return null; //new ParseException("Failed to retrieve Account information");
 				}
-		}else if(url.equals("https://habitica.com/api/v3/tasks/user?type=dailys")) {
-			JSONObject jo = new JSONObject(response.substring(0));
-			LinkedList tasks = new LinkedList();
-			JSONArray jsonArray = jo.getJSONArray("data");
-			for (int i = 0; i<jsonArray.length(); i++){
-				JSONObject objt = jsonArray.getJSONObject(i);
-				Boolean due = objt.getBoolean("completed");
-				if(!due) {
-					String id = objt.getString("text");
-					tasks.add(id);
+		}else if (url.equals("https://habitica.com/api/v3/tasks/user?type=dailys")) {
+				System.out.println(wtag);
+				if (wtag.equals("")){
+					System.out.println("hi");
+					JSONObject jo = new JSONObject(response.substring(0));
+					LinkedList tasks = new LinkedList();
+					JSONArray jsonArray = jo.getJSONArray("data");
+					for (int i = 0; i<jsonArray.length(); i++){
+						JSONObject objt = jsonArray.getJSONObject(i);
+						Boolean due = objt.getBoolean("completed");
+						if(!due) {
+							String id = objt.getString("text");
+							System.out.println("dailys: "+ id);
+							tasks.add(id);
+						}
+					}
+
+					if(tasks.isEmpty()) {
+						return null;
+					}else{
+						String task_list = "";
+						for(int num=0; num<tasks.size(); num++) {
+							task_list += ", " + tasks.get(num);
+		      	}
+
+						return task_list;
+					}
+				} else {
+					JSONObject jo = new JSONObject(response.substring(0));
+					LinkedList tasks = new LinkedList();
+					JSONArray jsonArray = jo.getJSONArray("data");
+					for (int i = 0; i<jsonArray.length(); i++){
+						JSONObject objt = jsonArray.getJSONObject(i);
+						Boolean due = objt.getBoolean("completed");
+						if(!due) {
+
+							JSONArray tagarray = objt.getJSONArray("tags");
+							if (!tagarray.isNull(0)){
+								for (int t = 0; t<tagarray.length(); t++ ){
+									if ((tagarray.getString(t)).equals(wtag)) {
+										String id = objt.getString("text");
+										System.out.println("spec: "+id);
+										tasks.add(id);
+									}
+								}
+							}
+						}
+					}
+					if(tasks.isEmpty()) {
+						return "Es gibt keine Aufgaben mit diesem Täg für dich zu tun.";
+					}else{
+						String task_list = "";
+						for(int num=0; num<tasks.size(); num++) {
+							task_list += ", " + tasks.get(num);
+						}
+						return task_list;
+					}
 				}
+		} else if(url.equals("https://habitica.com/api/v3/tags")){
+			JSONObject otherobj = new JSONObject(response.substring(0));
+			JSONArray idarray = otherobj.getJSONArray("data");
+			String idname = new String();
+			JSONObject idobj = new JSONObject();
+			String result = new String();
+			for (int p = 0; p<idarray.length();p++){
+					idobj = idarray.getJSONObject(p);
+					idname = idobj.getString("name");
+					if (wtag.equals(idname)){
+						result = idobj.getString("id");
+					}
 			}
-
-			if(tasks.isEmpty()) {
-				return null;
-			}else{
-				String task_list = "";
-				for(int num=0; num<tasks.size(); num++) {
-					task_list += ", " + tasks.get(num);
-      	}
-
-				return task_list;
-			}
-
+			return result;
 		}
 		else{
 			return null;
 		}
-
 	}
 
 	// HTTP POST request
@@ -219,6 +266,10 @@ public class HttpURLConnectionExample {
 		}
 		//print result
 		//return response.toString();
-
 	}
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 28e32ba24a2ab62300bd4342adac2cf867e73b94
 }

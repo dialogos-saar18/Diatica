@@ -83,6 +83,8 @@
 	</plugin>
 	<plugin type="dialogos.plugin.tts">
 	</plugin>
+	<plugin type="dialogos.plugin.tts">
+	</plugin>
 	<graph directed="1" Graphic="1" Layout="points">
 		<att name="width" type="integer" value="1575"/>
 		<att name="height" type="integer" value="1528"/>
@@ -90,6 +92,7 @@
 		<grammar id="579a2a0d-942a-422d-b20c-fb67e0f2f1b5">
 			<name>hp and sleep (and exp)</name>
 			<value>root $input;
+<<<<<<< HEAD
  $input = Wieviel $hp (habe|besitze) ich?{$=&quot;hp&quot;} | 
 $sl {$=&quot;sleep&quot;}| 
 Wieviel $exp habe ich?{$=&quot;exp&quot;}| 
@@ -98,6 +101,16 @@ Nein{$=&quot;no&quot;}
 | Ich moechte meine Aufgaben{$=&quot;all_due_tasks&quot;}| 
 (Zeig[e]|Sag[e]) meine Aufgaben{$=&quot;all_due_tasks&quot;}| 
 Fuege tegs {$=&quot;add_tags&quot;};
+=======
+ $input = Wieviel $hp (habe|besitze) ich?{$=[&quot;hp&quot;,&quot;&quot;]} |
+Ich möchte $sl{$=[&quot;sleep&quot;,&quot;&quot;]}| (gehen) {$=[&quot;sleep&quot;,&quot;&quot;]}|
+Wieviel $exp habe ich?{$=[&quot;exp&quot;,&quot;&quot;]}|
+(Hey) wach(e) auf{$=[&quot;wake_up&quot;,&quot;&quot;]} |
+Nein{$=[&quot;no&quot;,&quot;&quot;]}
+| Ich möchte meine Aufgaben{$=[&quot;all_due_tasks&quot;,&quot;&quot;]}|
+(Zeig(e)|Sag(e)) meine Aufgaben die ich in einer Stunde machen kann{$=[&quot;all_due_tasks&quot;,&quot;1h&quot;]}|
+Füge tegs hinzu{$=[&quot;add_tags&quot;,&quot;&quot;]};
+>>>>>>> 28e32ba24a2ab62300bd4342adac2cf867e73b94
 $hp = Gesundheit | hp;
 $sl = schlafen;
 $exp = exp | Erfahrung;</value>
@@ -171,7 +184,7 @@ Hilf mir;</value>
 			<export/>
 		</variable>
 		<variable uid="302dcc79-d518-4d7a-90ff-3a4d29952a4e">
-			<name>input2</name>
+			<name>tag</name>
 			<type>string</type>
 			<value>undefined</value>
 			<export/>
@@ -319,7 +332,7 @@ Moechtest du es gleich etwas davon ausprobieren oder die Anweisung nochmal hoere
 			<att name="condition" type="string" value="&quot;wiederholen&quot;"/>
 		</edge>
 		<edge src="9d672e38-7427-48a6-b4c0-bb8a1057f992" tgt="8d1233ca-5a33-44b5-b5df-4afb1a213567">
-			<att name="condition" type="string" value="input"/>
+			<att name="condition" type="string" value="[input,tag]"/>
 		</edge>
 		<edge src="a39b6285-d525-4199-8583-b24855a8d6d0" tgt="ef6bd7d3-5f48-4308-950c-6281078bb06c">
 		</edge>
