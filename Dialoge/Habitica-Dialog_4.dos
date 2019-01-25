@@ -84,29 +84,22 @@
 	<plugin type="dialogos.plugin.tts">
 	</plugin>
 	<graph directed="1" Graphic="1" Layout="points">
-		<att name="width" type="integer" value="2371"/>
+		<att name="width" type="integer" value="2407"/>
 		<att name="height" type="integer" value="1551"/>
 		<groovyFunctions></groovyFunctions>
 		<grammar id="9309a86a-482c-46c6-ae92-e0b255cd1695">
 			<name>Befehl</name>
 			<value>root $input;
 	$input = 
-		$help{$=&quot;help&quot;}|
-		$intro{$=&quot;intro&quot;}|
-		$sleep{$=&quot;sleep&quot;};
-$intro =
-	was bist du|
-	Was ist Diatica;
-
-$help = 
-	Was kann[st] (du|ich) [tun]|
-	Ich möchte etwas ausprobieren|
-	Nenn[e] mir [ein|ein paar] Beispiel[e] |
-	(Welche Aufgaben|Was) (kannst du|können Sie) [tun|für mich tun]
-	Weiß [ich] nicht|
-	Hilfe|
-	[Ich] weiß nicht[s] |
-	Weise mich zur Hilfe zurück;
+		$sleep{$=&quot;sleep&quot;}|
+		$wake_up{$=&quot;wake_up&quot;}|
+		$dailies{$=&quot;dailies&quot;}|
+		$hp{$=&quot;hp&quot;}|
+		$exp{$=&quot;exp&quot;}|
+		$fzmin{$=&quot;15min&quot;}|
+		$drgmin{$=&quot;30min&quot;}|
+		$eh{$=&quot;1h&quot;}|
+		$hallo{$=&quot;hallo&quot;};
 
 $sleep = 
 	Leg[e] (mich|meinen Avatar) schlafen|
@@ -115,6 +108,52 @@ $sleep =
 	[Ich will|meinen Avatar] (ins|zum) Gasthaus |
 	[Ich will] das Gasthaus besuchen|
 	Gasthaus;
+	
+$wake_up =
+	Weck[e] (mich|meinen Avatar) auf|
+	[Ich (will|möchte) [mich]|meinen Avatar] aufwecken |
+	Verlasse das Gasthaus|
+	[Ich (will|möchte)] das Gasthaus verlassen;
+
+$dailies =
+	Liste meine Aufgabe[n] auf |
+	Was sind meine Aufgaben? |
+	[Welche Aufgabe] ist [heute] fällig?|
+	Welche Aufgaben sind [heute] fällig?|
+	Was (kann|muss|habe) ich [heute] [noch] [zu]tun? ;
+
+$hp = 
+	(Wie|Was) ist (meine Gesundheit| die Gesundheit meines Avatars)? |
+	Wie viel (hp|Gesundheit) ((habe|besitze) ich|(hat|besitzt) mein Avatar)?
+	Wie weit (bin ich|mein Avatar) vom Tod entfernt? |
+	Wie nah[e] (bin ich|ist mein Avatar) dem Tod?;
+
+$exp =
+	Wie viel [exp|Erfahrung[s]][Punkte] (habe|besitze) (ich|mein Avatar)?|
+	Wie steht es um (meine|die) [exp|Erfahrung[s]][Punkte] [meines Avatars]?|
+	Wie (weit|nah[e]) (bin ich|ist mein Avatar) (vom nächsten Level|von der nächsten Stufe) [entfernt]?;
+
+$fzmin=
+	(Was für|Welche) (Aufgabe[n]|tahsk[s]) mit dem Täg 15 Minuten (habe ich|sind fällig)? |
+	Ich habe 15 Minuten Zeit.|
+	Liste [alle] (Aufgaben|Tahsks) [mit dem Täg|welche] 15 Minuten (auf|lang sind) |
+	Was kann ich in 15 Minuten tun?;
+
+$drgmin=
+	(Was für|Welche) (Aufgabe[n]|tahsk[s]) mit dem Täg 30 Minuten (habe ich|sind fällig)? |
+	Ich habe 30 Minuten Zeit.|
+	Liste [alle] (Aufgaben|Tahsks) [mit dem Täg|welche] 30 Minuten (auf|lang sind) |
+	Was kann ich in 30 Minuten tun?;
+
+$eh=
+	(Was für|Welche) (Aufgabe[n]|tahsk[s]) mit dem Täg eine Stunde (habe ich|sind fällig)? |
+	Ich habe eine Stunde Zeit.|
+	Liste [alle] (Aufgaben|Tahsks) [mit dem Täg|welche] eine Stunde (auf|lang sind) |
+	Was kann ich in einer Stunde tun?;
+
+$hallo =
+	Hallo?;
+
 
 
 
@@ -143,23 +182,6 @@ $sleep =
 		<node uid="06a84d48-938f-474d-b617-ce8f957bf168" class="com.clt.diamant.graph.nodes.EndNode">
 			<graphics x="465" y="1079" fill="#9999ff"/>
 			<att name="title" type="string" value="Ende"/>
-		</node>
-		<node uid="08f9a1e0-f7ca-40db-975d-d55e98ef0f80" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
-			<graphics x="162" y="486" fill="#b20000"/>
-			<att name="title" type="string" value="ja|nein"/>
-			<att name="language" type="string" value="Deutsch"/>
-		</node>
-		<node uid="0ed08a8e-4fd8-4037-812b-58b7ae51949c" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
-			<graphics x="117" y="587" fill="#00b200"/>
-			<att name="title" type="string" value="Diatica-Fähigkeiten"/>
-			<att name="voice" type="string" value="bits1-hsmm"/>
-			<att name="prompt" type="text">
-				<value>In Ordnung. Momentan habe ich 5 Fähigkeiten.
-
-Anweisung nochmal hören?</value>
-			</att>
-			<att name="prompt_type" type="string" value="text"/>
-			<att name="wait" type="boolean" value="1"/>
 		</node>
 		<node uid="22b14f4a-b413-4c47-80c2-78c62d4d3319" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
 			<graphics x="426" y="544" fill="#b20000"/>
@@ -215,17 +237,6 @@ Anweisung nochmal hören?</value>
 			<att name="prompt_type" type="string" value="text"/>
 			<att name="wait" type="boolean" value="1"/>
 		</node>
-		<node uid="61560544-3d7f-49c3-a9e3-0774b795ed65" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
-			<graphics x="145" y="405" fill="#00b200"/>
-			<att name="title" type="string" value="Vorstellung"/>
-			<att name="prompt" type="text">
-				<value>Ich bin dein Assistent für DialogOS.
-Mit mir kannst du Habitica kontrollieren und effizienter deine Zeit nutzen.
-Soll ich dir meine Fähigkeiten vorstellen?</value>
-			</att>
-			<att name="prompt_type" type="string" value="text"/>
-			<att name="wait" type="boolean" value="1"/>
-		</node>
 		<node uid="65481d52-1423-4716-a840-40b0c58a5b34" class="com.clt.diamant.graph.nodes.StartNode">
 			<graphics x="362" y="28" fill="#9999ff"/>
 			<att name="title" type="string" value="Start"/>
@@ -243,11 +254,6 @@ Soll ich dir meine Fähigkeiten vorstellen?</value>
 			</att>
 			<att name="prompt_type" type="string" value="text"/>
 			<att name="wait" type="boolean" value="1"/>
-		</node>
-		<node uid="acbdace7-05ad-411a-8c8d-bb833d34b5d2" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
-			<graphics x="117" y="686" fill="#b20000"/>
-			<att name="title" type="string" value="Antwort"/>
-			<att name="language" type="string" value="Deutsch"/>
 		</node>
 		<node uid="b0caa286-7ea4-4fca-b24c-51dd00a23f13" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
 			<graphics x="347" y="130" fill="#00b200"/>
@@ -268,20 +274,6 @@ Soll ich dir meine Fähigkeiten vorstellen?</value>
 			<att name="prompt_type" type="string" value="text"/>
 			<att name="wait" type="boolean" value="1"/>
 		</node>
-		<edge src="08f9a1e0-f7ca-40db-975d-d55e98ef0f80" tgt="0ed08a8e-4fd8-4037-812b-58b7ae51949c">
-			<att name="condition" type="string" value="ja | jawohl | natürlich| klar| [a]jo| yep | bitte | gerne | genau | richtig | korrekt "/>
-		</edge>
-		<edge src="08f9a1e0-f7ca-40db-975d-d55e98ef0f80" tgt="715dfdaf-6268-4154-942a-596a2278babd">
-			<att name="condition" type="string" value="nein| nope | nicht wirklich"/>
-		</edge>
-		<edge src="0ed08a8e-4fd8-4037-812b-58b7ae51949c" tgt="acbdace7-05ad-411a-8c8d-bb833d34b5d2">
-		</edge>
-		<edge src="22b14f4a-b413-4c47-80c2-78c62d4d3319" tgt="0ed08a8e-4fd8-4037-812b-58b7ae51949c">
-			<att name="condition" type="string" value="&quot;help&quot;"/>
-		</edge>
-		<edge src="22b14f4a-b413-4c47-80c2-78c62d4d3319" tgt="61560544-3d7f-49c3-a9e3-0774b795ed65">
-			<att name="condition" type="string" value="&quot;intro&quot;"/>
-		</edge>
 		<edge src="22b14f4a-b413-4c47-80c2-78c62d4d3319" tgt="48d259c1-8a4c-4c2b-86eb-a893f7e784da">
 			<att name="condition" type="string" value="input"/>
 		</edge>
@@ -291,7 +283,7 @@ Soll ich dir meine Fähigkeiten vorstellen?</value>
 		</edge>
 		<edge src="336d5966-af42-4347-990b-4071659f628d" tgt="2c7adc36-c639-4d92-a59c-e7c39613f2fc">
 		</edge>
-		<edge src="42d9b71f-b067-4cc0-aa44-f2264dbc4db4" tgt="61560544-3d7f-49c3-a9e3-0774b795ed65">
+		<edge src="42d9b71f-b067-4cc0-aa44-f2264dbc4db4" tgt="715dfdaf-6268-4154-942a-596a2278babd">
 			<att name="condition" type="string" value="ja | jawohl | natürlich| klar| [a]jo| yep | bitte | gerne | genau | richtig | korrekt "/>
 		</edge>
 		<edge src="42d9b71f-b067-4cc0-aa44-f2264dbc4db4" tgt="715dfdaf-6268-4154-942a-596a2278babd">
@@ -303,8 +295,6 @@ Soll ich dir meine Fähigkeiten vorstellen?</value>
 		</edge>
 		<edge src="5cc76975-e780-41b3-a00a-eadd0184f971" tgt="42d9b71f-b067-4cc0-aa44-f2264dbc4db4">
 		</edge>
-		<edge src="61560544-3d7f-49c3-a9e3-0774b795ed65" tgt="08f9a1e0-f7ca-40db-975d-d55e98ef0f80">
-		</edge>
 		<edge src="65481d52-1423-4716-a840-40b0c58a5b34" tgt="b0caa286-7ea4-4fca-b24c-51dd00a23f13">
 		</edge>
 		<edge src="6cdcbd77-7ded-44ad-a313-77e0c8e4e8ee" tgt="715dfdaf-6268-4154-942a-596a2278babd">
@@ -314,18 +304,6 @@ Soll ich dir meine Fähigkeiten vorstellen?</value>
 			<att name="condition" type="string" value="nein| nope | nicht wirklich"/>
 		</edge>
 		<edge src="715dfdaf-6268-4154-942a-596a2278babd" tgt="22b14f4a-b413-4c47-80c2-78c62d4d3319">
-		</edge>
-		<edge src="acbdace7-05ad-411a-8c8d-bb833d34b5d2" tgt="0ed08a8e-4fd8-4037-812b-58b7ae51949c">
-			<att name="condition" type="string" value="&quot;weiter&quot;"/>
-		</edge>
-		<edge src="acbdace7-05ad-411a-8c8d-bb833d34b5d2" tgt="0ed08a8e-4fd8-4037-812b-58b7ae51949c">
-			<att name="condition" type="string" value="&quot;nochmal&quot;"/>
-		</edge>
-		<edge src="acbdace7-05ad-411a-8c8d-bb833d34b5d2" tgt="715dfdaf-6268-4154-942a-596a2278babd">
-			<att name="condition" type="string" value="&quot;nein&quot;"/>
-		</edge>
-		<edge src="acbdace7-05ad-411a-8c8d-bb833d34b5d2" tgt="f57bfdd4-d34c-4a7e-91d6-755cbbd23107">
-			<att name="condition" type="string" value="&quot;Abschied&quot;"/>
 		</edge>
 		<edge src="b0caa286-7ea4-4fca-b24c-51dd00a23f13" tgt="5cc76975-e780-41b3-a00a-eadd0184f971">
 		</edge>

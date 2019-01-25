@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE wizard SYSTEM "Wizard.dtd">
+
+<wizard>
+	<plugin type="resources.de.dialogos.plugin">
+	</plugin>
+	<plugin type="dialogos.plugin.sphinx">
+		<att name="language" type="string" value="de_DE"/>
+	</plugin>
+	<plugin type="dialogos.plugin.tts">
+	</plugin>
+	<graph directed="1" Graphic="1" Layout="points">
+		<att name="width" type="integer" value="750"/>
+		<att name="height" type="integer" value="588"/>
+		<groovyFunctions></groovyFunctions>
+		<grammar id="579a2a0d-942a-422d-b20c-fb67e0f2f1b5">
+			<name>hp and sleep (and exp)</name>
+			<value>root $input;
+ $input = I want to $sl{$=[&quot;sleep&quot;,&quot;&quot;]} ;
+
+$sl = sleep | wake up;</value>
+		</grammar>
+		<grammar id="10e95709-9463-408a-b559-79120d60529d">
+			<name>janein - sleep</name>
+			<value>root $input;
+ $input = $sl ?{$=&quot;sleep&quot;} 
+| $no{$=&quot;no&quot;} ;
+$sl = yes| of course| naturally| yeah| yep;
+$no = no| nope | not really ;</value>
+		</grammar>
+		<variable uid="461a1c5a-2637-4594-bc32-9e123b5d3875">
+			<name>apiuser</name>
+			<type>string</type>
+			<value>&quot;02ee1e91-da26-4492-99bb-a1df1fabec3d&quot;</value>
+			<export/>
+		</variable>
+		<variable uid="c3cd4c67-e826-45fa-92d6-214b906aec92">
+			<name>input</name>
+			<type>string</type>
+			<value></value>
+			<export/>
+		</variable>
+		<variable uid="19e7c970-42c2-4704-adaf-a4afc7a0357e">
+			<name>output</name>
+			<type>string</type>
+			<value></value>
+			<export/>
+		</variable>
+		<variable uid="69456db8-59a0-4fc6-8b28-afb154262eea">
+			<name>apikey</name>
+			<type>string</type>
+			<value>&quot;fd7eb04d-3c02-4249-90d7-53bb912a5a13&quot;</value>
+			<export/>
+		</variable>
+		<variable uid="2c29db5c-e8e9-405d-bf2b-f89f563ea149">
+			<name>tag</name>
+			<type>string</type>
+			<value></value>
+		</variable>
+		<node uid="4664d658-bc3c-46e2-8ec0-e4b7ffc59d3c" class="com.clt.diamant.graph.nodes.StartNode">
+			<graphics x="363" y="3" fill="#9999ff"/>
+			<att name="title" type="string" value="Start"/>
+		</node>
+		<node uid="799b1fdd-3f46-4dde-8c05-ea6680edf8b5" class="com.clt.diamant.graph.nodes.EndNode">
+			<graphics x="364" y="404" fill="#9999ff"/>
+			<att name="title" type="string" value="Ende"/>
+		</node>
+		<node uid="8d1233ca-5a33-44b5-b5df-4afb1a213567" class="de.saar.coli.jython_dialogos_plugin.HabiticaNode">
+			<graphics x="355" y="160" fill="#ff2dff"/>
+			<att name="title" type="string" value="Habitica"/>
+			<att name="resultVar" type="string" value="output"/>
+			<att name="eingangsVar" type="string" value="input"/>
+		</node>
+		<node uid="9d672e38-7427-48a6-b4c0-bb8a1057f992" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
+			<graphics x="341" y="76" fill="#b20000"/>
+			<att name="title" type="string" value="Spracherkenner"/>
+			<att name="language" type="string" value="US English"/>
+			<att name="grammar" type="string" value="579a2a0d-942a-422d-b20c-fb67e0f2f1b5"/>
+		</node>
+		<node uid="a39b6285-d525-4199-8583-b24855a8d6d0" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="232" y="253" fill="#00b200"/>
+			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="voice" type="string" value="bits1-hsmm"/>
+			<att name="prompt" type="text">
+				<value>output</value>
+			</att>
+			<att name="prompt_type" type="string" value="expression"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="bfe38d58-6e0f-4187-a63f-c30634373d0a" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="427" y="252" fill="#00b200"/>
+			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="prompt" type="text">
+				<value>Kein Erfolg</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<edge src="4664d658-bc3c-46e2-8ec0-e4b7ffc59d3c" tgt="9d672e38-7427-48a6-b4c0-bb8a1057f992">
+		</edge>
+		<edge src="8d1233ca-5a33-44b5-b5df-4afb1a213567" tgt="a39b6285-d525-4199-8583-b24855a8d6d0">
+		</edge>
+		<edge src="8d1233ca-5a33-44b5-b5df-4afb1a213567" tgt="bfe38d58-6e0f-4187-a63f-c30634373d0a">
+		</edge>
+		<edge src="9d672e38-7427-48a6-b4c0-bb8a1057f992" tgt="8d1233ca-5a33-44b5-b5df-4afb1a213567">
+			<att name="condition" type="string" value="[input,tag]"/>
+		</edge>
+		<edge src="a39b6285-d525-4199-8583-b24855a8d6d0" tgt="799b1fdd-3f46-4dde-8c05-ea6680edf8b5">
+		</edge>
+		<edge src="bfe38d58-6e0f-4187-a63f-c30634373d0a" tgt="799b1fdd-3f46-4dde-8c05-ea6680edf8b5">
+		</edge>
+	</graph>
+</wizard>
