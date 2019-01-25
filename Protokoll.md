@@ -80,3 +80,5 @@
 ## Präsentation
 - kurze Erinnerung, was gemacht, was passiert ist, möglicher Dialog als live demo oder dein demo Video, hardcut 20 min
 - am ende ähnlich wie eine konklusion in einem Paper
+- zum Ende des Semesters muss alles fertig sein!!!!
+- System muss überleben.
