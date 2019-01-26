@@ -76,3 +76,30 @@
 - Feedback geben nach Eingabe
 - README fertig schreiben und auf Piazza posten, dass es nun zum test bereit steht
 - Wie wollen leute mit meinem System reden
+
+## Sitzung 9
+- Eine read.me Datei / Dokumentation zu unserem Programm schreiben
+  - GitHub-Wiki eintrag erstellen
+- Dynamische Grammatik(en) zu den Tags machen (damit man alle tags verwenden kann)
+ (Siehe Kochbuch-Technologie)
+ - Grammatik etwas kompakter schreiben
+ - Bei der Grammatik den Debugger laufen lassen um zu sehen was schief läuft
+ - Abtrennung vom Habitica-Knoten in der Tool-Leiste mittels anderer PlugID(?)
+ - Gegenseitige Benutzer-Tests machen
+ - Wiki-Eintrag ins Habitica-Wiki (kann man später erledigen, aber bis Ende zum Semesters sollte es erledigt sein)
+ 
+
+## Präsentation
+- höchstens 20 Minuten (hardcut 20 min)
+- kurze Erinnerung, was gemacht, was passiert ist, 
+  - erzählen was man
+    - wollte
+    - was man getan hat
+    - was und wie man es gelöst hat
+    - was offen geblieben ist
+    - was 'cool' für die Zukunft wäre (FutureWork - Liste ?)
+    - vgl. mit was man versprochen gegen was man erreicht hat
+- möglichen Dialog als live demo oder ein demo Video (wenn Video dann mgl. auf YouTube zu stellen als Werbung, um Eltern zu zeigen ...)
+- am ende ähnlich wie eine konklusion in einem Paper
+- zum Ende des Semesters muss alles fertig sein!!!!
+- System muss überleben.

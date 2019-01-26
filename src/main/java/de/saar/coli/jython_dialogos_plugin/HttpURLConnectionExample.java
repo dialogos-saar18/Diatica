@@ -267,6 +267,9 @@ public class HttpURLConnectionExample {
 		//print result
 		//return response.toString();
 	}
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 28e32ba24a2ab62300bd4342adac2cf867e73b94
 }

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE wizard SYSTEM "Wizard.dtd">
+
+<wizard>
+	<plugin type="resources.de.dialogos.plugin">
+	</plugin>
+	<plugin type="dialogos.plugin.sphinx">
+		<att name="language" type="string" value="de_DE"/>
+		<g2p language="de_DE">
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Faehigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Faehigkeiten" p="f e h I+ g k aI t n"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Diatica" p="d i: a t i: k a"/>
+			<entry g="Gasthaus" p="g a s t h a: U+ s"/>
+			<entry g="Fähigkeit" p="f e h I+ g k aI t "/>
+			<entry g="Fähigkeiten" p="f e h I+ g k aI t n"/>
+		</g2p>
+	</plugin>
+	<plugin type="dialogos.plugin.tts">
+	</plugin>
+	<graph directed="1" Graphic="1" Layout="points">
+		<att name="width" type="integer" value="750"/>
+		<att name="height" type="integer" value="734"/>
+		<groovyFunctions></groovyFunctions>
+		<variable uid="12965747-c8f6-44c5-b8f2-ae99d8ef82ba">
+			<name>apiuser</name>
+			<type>string</type>
+			<value>&quot;02ee1e91-da26-4492-99bb-a1df1fabec3d&quot;</value>
+		</variable>
+		<variable uid="26f7f8c0-78e7-4257-9b49-7f8d62efc0b4">
+			<name>apikey</name>
+			<type>string</type>
+			<value>&quot;fd7eb04d-3c02-4249-90d7-53bb912a5a13&quot;</value>
+		</variable>
+		<variable uid="71a1c180-fee8-4674-93b8-a41d4f028c80">
+			<name>input</name>
+			<type>string</type>
+			<value>&quot;hp&quot;</value>
+		</variable>
+		<variable uid="d42b106a-63be-4489-9823-50d1ffaa3ebe">
+			<name>output</name>
+			<type>string</type>
+			<value>&quot;&quot;</value>
+		</variable>
+		<node uid="18a42975-ea56-4246-b230-06ca379a6bea" class="com.clt.diamant.graph.nodes.EndNode">
+			<graphics x="413" y="351" fill="#9999ff"/>
+			<att name="title" type="string" value="Ende"/>
+		</node>
+		<node uid="5bd84a92-e6a2-45c6-9d4f-fc9b37fee68a" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="534" y="278" fill="#00b200"/>
+			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="prompt" type="text">
+				<value>nein</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="8fb74ef2-fe21-4437-b2f4-9edcbd84dcc1" class="de.saar.coli.jython_dialogos_plugin.HabiticaNode">
+			<graphics x="387" y="151" fill="#c0c0c0"/>
+			<att name="title" type="string" value="Habitica"/>
+			<att name="resultVar" type="string" value="output"/>
+			<att name="eingangsVar" type="string" value="input"/>
+		</node>
+		<node uid="adb612fe-03c9-4140-a7f9-1848e4cf3a91" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="359" y="266" fill="#00b200"/>
+			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="prompt" type="text">
+				<value>output</value>
+			</att>
+			<att name="prompt_type" type="string" value="expression"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="d03188f6-b59f-4cd4-834a-4ffc71e8e304" class="com.clt.diamant.graph.nodes.StartNode">
+			<graphics x="370" y="40" fill="#9999ff"/>
+			<att name="title" type="string" value="Start"/>
+		</node>
+		<edge src="5bd84a92-e6a2-45c6-9d4f-fc9b37fee68a" tgt="18a42975-ea56-4246-b230-06ca379a6bea">
+		</edge>
+		<edge src="8fb74ef2-fe21-4437-b2f4-9edcbd84dcc1" tgt="adb612fe-03c9-4140-a7f9-1848e4cf3a91">
+		</edge>
+		<edge src="8fb74ef2-fe21-4437-b2f4-9edcbd84dcc1" tgt="5bd84a92-e6a2-45c6-9d4f-fc9b37fee68a">
+		</edge>
+		<edge src="adb612fe-03c9-4140-a7f9-1848e4cf3a91" tgt="18a42975-ea56-4246-b230-06ca379a6bea">
+		</edge>
+		<edge src="d03188f6-b59f-4cd4-834a-4ffc71e8e304" tgt="8fb74ef2-fe21-4437-b2f4-9edcbd84dcc1">
+		</edge>
+	</graph>
+</wizard>
