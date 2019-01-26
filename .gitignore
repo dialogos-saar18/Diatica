@@ -4,3 +4,5 @@
 /protokoll.md
 /gradlew.bat
 /.gradle/
+/.nb-gradle/
+/.idea/
