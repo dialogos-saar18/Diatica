@@ -4,10 +4,10 @@
 <wizard>
 	<plugin type="resources.de.dialogos.plugin">
 	</plugin>
-	<plugin type="dialogos.plugin.tts">
-	</plugin>
 	<plugin type="dialogos.plugin.sphinx">
 		<att name="language" type="string" value="de_DE"/>
+	</plugin>
+	<plugin type="dialogos.plugin.tts">
 	</plugin>
 	<graph directed="1" Graphic="1" Layout="points">
 		<att name="width" type="integer" value="750"/>
@@ -19,10 +19,11 @@
  $input = How much $hp do I have?{$=[&quot;hp&quot;,&quot;&quot;]} 
 | I want to $sl{$=[&quot;sleep&quot;,&quot;&quot;]} 
 | I want to $test{$ = [&quot;test&quot;,&quot;&quot;]}
+| Tell me my experience (points){$=[&quot;exp&quot;,&quot;&quot;]} 
 | What can i do in one hour?{$=[&quot;spec_task&quot;,&quot;1h&quot;]}
 | What can i do in half an hour?{$=[&quot;spec_task&quot;,&quot;30min&quot;]}
 | What can i do in fifteen minutes?{$=[&quot;spec_task&quot;,&quot;15min&quot;]}
-| What can still do today?{$=[&quot;all_due_tasks&quot;,&quot;&quot;]}
+| What can i (still) do today?{$=[&quot;all_due_tasks&quot;,&quot;&quot;]}
 | Tell me stuff i can do{$=[&quot;all_due_tasks&quot;,&quot;&quot;]};
 
 //| How much $hp and $exp do I have?{$=&quot;hp,exp&quot;} 

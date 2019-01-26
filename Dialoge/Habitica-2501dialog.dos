@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE wizard SYSTEM "Wizard.dtd">
+
+<wizard>
+	<plugin type="resources.de.dialogos.plugin">
+	</plugin>
+	<plugin type="dialogos.plugin.sphinx">
+		<att name="language" type="string" value="de_DE"/>
+	</plugin>
+	<plugin type="dialogos.plugin.tts">
+	</plugin>
+	<graph directed="1" Graphic="1" Layout="points">
+		<att name="width" type="integer" value="1575"/>
+		<att name="height" type="integer" value="974"/>
+		<groovyFunctions></groovyFunctions>
+		<grammar id="579a2a0d-942a-422d-b20c-fb67e0f2f1b5">
+			<name>hp and sleep (and exp)</name>
+			<value>root $input;
+ $input = Wieviel $hp (habe|besitze) ich?{$=[&quot;hp&quot;,&quot;&quot;]} |
+Wie gehts mir {$=[&quot;hp&quot;,&quot;&quot;]} |
+Was sind meine Lebenspunkte{$=[&quot;hp&quot;,&quot;&quot;]} |
+(Ich möchte|Geh) $sl{$=[&quot;sleep&quot;,&quot;&quot;]}| (gehen) {$=[&quot;sleep&quot;,&quot;&quot;]}|
+Wieviel $exp habe ich?{$=[&quot;exp&quot;,&quot;&quot;]}|
+(Hey) wach(e) auf{$=[&quot;wake_up&quot;,&quot;&quot;]} |
+auf(stehen|wachen){$=[&quot;wake_up&quot;,&quot;&quot;]} |
+wecke mich{$=[&quot;wake_up&quot;,&quot;&quot;]} |
+Nein{$=[&quot;no&quot;,&quot;&quot;]}| 
+Was (habe ich|gibts) heute{$=[&quot;all_due_tasks&quot;,&quot;&quot;]}|
+Ich möchte meine Aufgaben [(die ich heute (erledigen kann|absolvieren kann|tun kann|machen kann|schaffen kann))] (wissen|erfahren|erklärt haben|erfahren){$=[&quot;all_due_tasks&quot;,&quot;&quot;]}|
+(Zeige|Sag|Liste|Nenne|Sage) mir meine Aufgaben (die ich (erledigen kann|absolvieren kann|tun kann|machen kann|schaffen kann)){$=[&quot;all_due_tasks&quot;,&quot;&quot;]}|
+(Zeige|Sag|Liste|Nenne|Sage) mir meine Aufgaben {$=[&quot;all_due_tasks&quot;,&quot;&quot;]}|
+(Was für| Welche) Aufgaben kann ich (in einer Stunde| in sechzig Minuten) (erledigen|absolvieren|machen|schaffen|tun|erfüllen|abarbeiten){$=[&quot;spec_task&quot;,&quot;1h&quot;]}|
+(Was für| Welche) Aufgaben kann ich (in einer halben Stunde| in dreißig Minuten) (erledigen|absolvieren|machen|schaffen|tun|erfüllen|abarbeiten){$=[&quot;spec_task&quot;,&quot;30min&quot;]}|
+(Was für| Welche) Aufgaben kann ich (in einer viertel Stunde| in fünfzehn Minuten) (erledigen|absolvieren|machen|schaffen|tun|erfüllen|abarbeiten){$=[&quot;spec_task&quot;,&quot;15min&quot;]}|
+
+(Zeig(e)|Sag(e)|Nenne|Liste|Erzähle) meine Aufgaben die ich in einer Stunde machen kann{$=[&quot;spec_task&quot;,&quot;1h&quot;]}|
+(Zeig(e)|Sag(e)|Nenne|Liste|Erzähle) meine Aufgaben die ich in einer halben Stunde machen kann{$=[&quot;spec_task&quot;,&quot;30min&quot;]}|
+(Zeig(e)|Sag(e)|Nenne|Liste|Erzähle) meine Aufgaben die ich in einer viertel Stunde machen kann{$=[&quot;spec_task&quot;,&quot;15min&quot;]}|
+(Zeig(e)|Sag(e)|Nenne|Liste|Erzähle) meine (sechzig Minuten|eine Stunden) Aufgaben{$=[&quot;spec_task&quot;,&quot;1h&quot;]}|
+(Zeig(e)|Sag(e)|Nenne|Liste|Erzähle) meine (dreißig Minuten|halbe Stunden) Aufgaben{$=[&quot;spec_task&quot;,&quot;30min&quot;]}|
+(Zeig(e)|Sag(e)|Nenne|Liste|Erzähle) meine (fünfzehn Minuten|viertel Stunde) Aufgaben{$=[&quot;spec_task&quot;,&quot;15min&quot;]}|
+erstelle tegs{$=[&quot;add_tags&quot;,&quot;&quot;]};
+$hp = Gesundheit | hp| Lebenspunkte;
+$sl = schlafen;
+$exp = exp | Erfahrung|Erfahrungspunkte;</value>
+		</grammar>
+		<grammar id="f56d1d24-8dd0-4e12-9ebf-05b3b96f58de">
+			<name>No</name>
+			<value>root $input;
+$input = $no{$=&quot;no&quot;} ;
+$no = nein| nope | nicht wirklich ;</value>
+		</grammar>
+		<grammar id="fb400c88-0094-4f6c-a70f-f92df5e83e8e">
+			<name>Sleep</name>
+			<value>root $input;
+$input = $sl {$=&quot;sleep&quot;};
+$sl = ( ja | jawohl )| natürlich| klar| (a)jo| yep
+ [ bitte | gerne | genau] | richtig | korrekt;</value>
+		</grammar>
+		<variable uid="461a1c5a-2637-4594-bc32-9e123b5d3875">
+			<name>apiuser</name>
+			<type>string</type>
+			<value>&quot;02ee1e91-da26-4492-99bb-a1df1fabec3d&quot;</value>
+			<export/>
+		</variable>
+		<variable uid="c3cd4c67-e826-45fa-92d6-214b906aec92">
+			<name>input</name>
+			<type>string</type>
+			<value></value>
+			<export/>
+		</variable>
+		<variable uid="19e7c970-42c2-4704-adaf-a4afc7a0357e">
+			<name>output</name>
+			<type>string</type>
+			<value></value>
+			<export/>
+		</variable>
+		<variable uid="69456db8-59a0-4fc6-8b28-afb154262eea">
+			<name>apikey</name>
+			<type>string</type>
+			<value>&quot;fd7eb04d-3c02-4249-90d7-53bb912a5a13&quot;</value>
+			<export/>
+		</variable>
+		<variable uid="302dcc79-d518-4d7a-90ff-3a4d29952a4e">
+			<name>tag</name>
+			<type>string</type>
+			<value>undefined</value>
+			<export/>
+		</variable>
+		<node uid="037a8ed5-d31f-4008-8b7d-816dd1c5de01" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
+			<graphics x="125" y="222" fill="#b20000"/>
+			<att name="title" type="string" value="Mehr Informationen"/>
+			<att name="threshold" type="integer" value="60"/>
+			<att name="language" type="string" value="Deutsch"/>
+		</node>
+		<node uid="14656fc3-4ae4-4ba8-a773-8d4118430d02" class="com.clt.diamant.graph.nodes.LabelNode">
+			<graphics x="492" y="26" fill="#4c4c80"/>
+			<att name="title" type="string" value="Don't Abort"/>
+		</node>
+		<node uid="16710812-8b9d-4a88-881f-ad737d758506" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="341" y="28" fill="#6666ff"/>
+			<att name="title" type="string" value="Willkommen"/>
+			<att name="prompt" type="text">
+				<value>Willkommen bei Diatica, einer Sprachsteuerung für Habitica.
+
+</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="213dbaf9-10ba-4fe1-876e-97e331de5e14" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="68" y="511" fill="#00b200"/>
+			<att name="title" type="string" value="tägliche Aufgaben"/>
+			<att name="prompt" type="text">
+				<value>Ich kann dir deine täglichen Aufgaben, die du noch zu erledigen hast sagen. Oder ich kann dir eine spezifische Aufgabe mit einem von dir gesetztem Tääg sagen.
+Dazu sage beispielsweise:
+Nenne mir meine Aufgaben. Welche Aufgaben kann ich in einer Stunde erledigen.</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="22acbbe3-ff58-4ac7-9b6c-33e5c2a8ad4b" class="com.clt.diamant.graph.nodes.LabelNode">
+			<graphics x="55" y="154" fill="#4c4c80"/>
+			<att name="title" type="string" value="Back to the Themen"/>
+		</node>
+		<node uid="2324fdae-6c28-4e5e-af42-b9f07d130c5e" class="com.clt.diamant.graph.nodes.GotoNode">
+			<graphics x="184" y="727" fill="#4c4c80"/>
+			<att name="title" type="string" value="Sprung"/>
+			<att name="label_uid" type="string" value="22acbbe3-ff58-4ac7-9b6c-33e5c2a8ad4b"/>
+		</node>
+		<node uid="3c0cb115-06a6-473c-b5df-7fe13b21c209" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="144" y="456" fill="#00b200"/>
+			<att name="title" type="string" value="Lebenspunkte"/>
+			<att name="prompt" type="text">
+				<value>Ich kann dir deine aktuellen Lebenspunkte sagen.
+Frage mich dazu beispielsweise:
+Wie viele HP habe ich? Oder. Wie viele Lebenspunkte habe ich?</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="459c41d6-91a7-4568-b7a2-0952c5fe8696" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="328" y="575" fill="#00b200"/>
+			<att name="title" type="string" value="Abort"/>
+			<att name="prompt" type="text">
+				<value>Willst du wirklich abbrechen?</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="4664d658-bc3c-46e2-8ec0-e4b7ffc59d3c" class="com.clt.diamant.graph.nodes.StartNode">
+			<graphics x="179" y="3" fill="#9999ff"/>
+			<att name="title" type="string" value="Start"/>
+		</node>
+		<node uid="46848967-b3c6-4fb4-b62d-c023c5995540" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="228" y="505" fill="#00b200"/>
+			<att name="title" type="string" value="Erfahrungspunkte"/>
+			<att name="prompt" type="text">
+				<value>Ich kann dir deine aktuellen Erfahrunspunkte sagen.
+Frage mich dazu beispielsweise:
+Wie viele EXP habe ich? Oder. Wie viele Erfahrungspunkte habe ich?</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="56667e63-0bdb-41f0-a288-f275bde67325" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="341" y="99" fill="#00cccc"/>
+			<att name="title" type="string" value="Hilfe"/>
+			<att name="prompt" type="text">
+				<value>Brauchst du Hilfe?</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="5e85ae7f-5580-4ce5-b01b-6bcbd0239c03" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
+			<graphics x="427" y="646" fill="#b20000"/>
+			<att name="title" type="string" value="Abort?"/>
+			<att name="threshold" type="integer" value="60"/>
+			<att name="language" type="string" value="Deutsch"/>
+		</node>
+		<node uid="5fe11b9e-aa6c-4d46-9d16-3e9781fb84c1" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="158" y="640" fill="#00b200"/>
+			<att name="title" type="string" value="Do and Repeat"/>
+			<att name="prompt" type="text">
+				<value>Möchtest du Informationen zu einem weiteren Thema erhalten?</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="76f75184-4c43-4b41-8083-5c5d1f6beef5" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
+			<graphics x="99" y="380" fill="#b20000"/>
+			<att name="title" type="string" value="Themenliste"/>
+			<att name="threshold" type="integer" value="75"/>
+			<att name="language" type="string" value="Deutsch"/>
+		</node>
+		<node uid="8376c49e-519b-47fa-b417-b44bed21295e" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
+			<graphics x="579" y="578" fill="#b20000"/>
+			<att name="title" type="string" value="Fortfahren"/>
+			<att name="threshold" type="integer" value="60"/>
+			<att name="language" type="string" value="Deutsch"/>
+		</node>
+		<node uid="8d1233ca-5a33-44b5-b5df-4afb1a213567" class="de.saar.coli.jython_dialogos_plugin.HabiticaNode">
+			<graphics x="450" y="332" fill="#5a0099"/>
+			<att name="title" type="string" value="Habitica"/>
+			<att name="resultVar" type="string" value="output"/>
+			<att name="eingangsVar" type="string" value="input"/>
+		</node>
+		<node uid="8de67507-4227-4b43-8a79-ba63810be84d" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="261" y="296" fill="#00b200"/>
+			<att name="title" type="string" value="Tags"/>
+			<att name="prompt" type="text">
+				<value>Falls dies deine erste Benutzung ist kannst du deinem Akkaunt einige Tähgs hinzufügen, nach denen du dann suchen kannst.
+Dazu verwende : Erstelle Tähgs..
+Danach füge diese Tähgs zu deinen Aufaben auf der habitica Webseite hinzu.</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="9464d5ec-71b1-4018-95e1-e8a54b0a117e" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
+			<graphics x="366" y="163" fill="#b20000"/>
+			<att name="title" type="string" value="Help?"/>
+			<att name="threshold" type="integer" value="80"/>
+			<att name="language" type="string" value="Deutsch"/>
+		</node>
+		<node uid="9d672e38-7427-48a6-b4c0-bb8a1057f992" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
+			<graphics x="580" y="259" fill="#b20000"/>
+			<att name="title" type="string" value="Anfrage"/>
+			<att name="threshold" type="integer" value="80"/>
+			<att name="language" type="string" value="Deutsch"/>
+			<att name="grammar" type="string" value="579a2a0d-942a-422d-b20c-fb67e0f2f1b5"/>
+		</node>
+		<node uid="a39b6285-d525-4199-8583-b24855a8d6d0" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="343" y="443" fill="#00b200"/>
+			<att name="title" type="string" value="Aussprache"/>
+			<att name="voice" type="string" value="bits1-hsmm"/>
+			<att name="prompt" type="text">
+				<value>output</value>
+			</att>
+			<att name="prompt_type" type="string" value="expression"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="aa72bd66-5d16-4b5a-892f-5782ede4ebc9" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="3" y="456" fill="#00b200"/>
+			<att name="title" type="string" value="Schlafen"/>
+			<att name="prompt" type="text">
+				<value>Ich kann dich in Habitica zum schlafen oder aufwachen bringen. Dadurch verlierst du keine Lebenspunkte mehr.
+Sage dazu beispielsweise. Ich möchte schlafen. Oder. Wecke mich auf.</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="bb820b04-a39a-4f82-891f-a18ea2df724c" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="556" y="179" fill="#00b200"/>
+			<att name="title" type="string" value="Was Gibts?"/>
+			<att name="prompt" type="text">
+				<value>Was kann ich für dich tun?</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="bfe38d58-6e0f-4187-a63f-c30634373d0a" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="511" y="443" fill="#00b200"/>
+			<att name="title" type="string" value="Fehler"/>
+			<att name="prompt" type="text">
+				<value>Ich habe dich leider nicht verstanden.</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="c9c9b393-dded-465c-96bb-ce5f5e48f62d" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="184" y="153" fill="#00b200"/>
+			<att name="title" type="string" value="Short Response"/>
+			<att name="prompt" type="text">
+				<value>In Ordnung. Ich kann Folgende Dinge für dich erledigen:
+Deine Lebens und Erfahrungspunkte angeben, dich aufwecken oder schlafen legen und dir deine täglichen Aufgaben sagen.
+Möchtest du zu einem dieser Punkte nähere Informationen bekommen?</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="cc4978c7-c45a-4997-be54-89cbed80e2ee" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="46" y="300" fill="#00b200"/>
+			<att name="title" type="string" value="Themen"/>
+			<att name="prompt" type="text">
+				<value>Zu welchem Punkt möchtest du mehr Informationen?
+Lebenspunkte, Erfahrungspunkte, Schlafen, oder tägliche Aufgaben?</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="d3ea7949-c2df-4935-8586-08494422c4f3" class="com.clt.diamant.graph.nodes.EndNode">
+			<graphics x="605" y="727" fill="#9999ff"/>
+			<att name="title" type="string" value="Ende"/>
+		</node>
+		<node uid="e66d7fd8-4cdc-4e98-8c10-eb874664c6c6" class="com.clt.diamant.graph.nodes.GotoNode">
+			<graphics x="424" y="728" fill="#4c4c80"/>
+			<att name="title" type="string" value="Sprung"/>
+			<att name="label_uid" type="string" value="14656fc3-4ae4-4ba8-a773-8d4118430d02"/>
+		</node>
+		<node uid="ef6bd7d3-5f48-4308-950c-6281078bb06c" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="434" y="518" fill="#00b200"/>
+			<att name="title" type="string" value="Fortsetzung"/>
+			<att name="prompt" type="text">
+				<value>Brauchst du noch etwas?</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="f521817b-300c-4586-88a6-475f7d35bb0e" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="645" y="439" fill="#00b200"/>
+			<att name="title" type="string" value="Bestätigung"/>
+			<att name="prompt" type="text">
+				<value>In Ordnung</value>
+			</att>
+			<att name="prompt_type" type="string" value="text"/>
+			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<edge src="037a8ed5-d31f-4008-8b7d-816dd1c5de01" tgt="cc4978c7-c45a-4997-be54-89cbed80e2ee">
+			<att name="condition" type="string" value="ja | jawohl | natürlich| klar| (a)jo| yep  |lbitte | gerne | genau | richtig | korrekt"/>
+		</edge>
+		<edge src="037a8ed5-d31f-4008-8b7d-816dd1c5de01" tgt="8de67507-4227-4b43-8a79-ba63810be84d">
+			<att name="condition" type="string" value="Nein"/>
+		</edge>
+		<edge src="14656fc3-4ae4-4ba8-a773-8d4118430d02" tgt="16710812-8b9d-4a88-881f-ad737d758506">
+		</edge>
+		<edge src="16710812-8b9d-4a88-881f-ad737d758506" tgt="56667e63-0bdb-41f0-a288-f275bde67325">
+		</edge>
+		<edge src="213dbaf9-10ba-4fe1-876e-97e331de5e14" tgt="5fe11b9e-aa6c-4d46-9d16-3e9781fb84c1">
+		</edge>
+		<edge src="22acbbe3-ff58-4ac7-9b6c-33e5c2a8ad4b" tgt="037a8ed5-d31f-4008-8b7d-816dd1c5de01">
+		</edge>
+		<edge src="3c0cb115-06a6-473c-b5df-7fe13b21c209" tgt="5fe11b9e-aa6c-4d46-9d16-3e9781fb84c1">
+		</edge>
+		<edge src="459c41d6-91a7-4568-b7a2-0952c5fe8696" tgt="5e85ae7f-5580-4ce5-b01b-6bcbd0239c03">
+		</edge>
+		<edge src="4664d658-bc3c-46e2-8ec0-e4b7ffc59d3c" tgt="16710812-8b9d-4a88-881f-ad737d758506">
+		</edge>
+		<edge src="46848967-b3c6-4fb4-b62d-c023c5995540" tgt="5fe11b9e-aa6c-4d46-9d16-3e9781fb84c1">
+		</edge>
+		<edge src="56667e63-0bdb-41f0-a288-f275bde67325" tgt="9464d5ec-71b1-4018-95e1-e8a54b0a117e">
+		</edge>
+		<edge src="5e85ae7f-5580-4ce5-b01b-6bcbd0239c03" tgt="d3ea7949-c2df-4935-8586-08494422c4f3">
+			<att name="condition" type="string" value="ja | jawohl | natürlich| klar| (a)jo| yep  |lbitte | gerne | genau | richtig | korrekt"/>
+		</edge>
+		<edge src="5e85ae7f-5580-4ce5-b01b-6bcbd0239c03" tgt="e66d7fd8-4cdc-4e98-8c10-eb874664c6c6">
+			<att name="condition" type="string" value="Nein | nö | ei nee| nee"/>
+		</edge>
+		<edge src="5fe11b9e-aa6c-4d46-9d16-3e9781fb84c1" tgt="2324fdae-6c28-4e5e-af42-b9f07d130c5e">
+		</edge>
+		<edge src="76f75184-4c43-4b41-8083-5c5d1f6beef5" tgt="aa72bd66-5d16-4b5a-892f-5782ede4ebc9">
+			<att name="condition" type="string" value="schlafen |zum Schlafen"/>
+		</edge>
+		<edge src="76f75184-4c43-4b41-8083-5c5d1f6beef5" tgt="213dbaf9-10ba-4fe1-876e-97e331de5e14">
+			<att name="condition" type="string" value="tägliche Aufgaben | zu täglichen Aufgaben|Aufgaben |zu Aufgaben"/>
+		</edge>
+		<edge src="76f75184-4c43-4b41-8083-5c5d1f6beef5" tgt="3c0cb115-06a6-473c-b5df-7fe13b21c209">
+			<att name="condition" type="string" value="Lebenspunkte | zu Lebenspunkten"/>
+		</edge>
+		<edge src="76f75184-4c43-4b41-8083-5c5d1f6beef5" tgt="46848967-b3c6-4fb4-b62d-c023c5995540">
+			<att name="condition" type="string" value="Erfahrungspunkte | zu Erfahrungspunkten"/>
+		</edge>
+		<edge src="76f75184-4c43-4b41-8083-5c5d1f6beef5" tgt="8de67507-4227-4b43-8a79-ba63810be84d">
+			<att name="condition" type="string" value="Weiter| zu keinem | keine Informationen |keine Infos|nein|nichts"/>
+		</edge>
+		<edge src="76f75184-4c43-4b41-8083-5c5d1f6beef5" tgt="459c41d6-91a7-4568-b7a2-0952c5fe8696">
+			<att name="condition" type="string" value="stop|abbrechen"/>
+		</edge>
+		<edge src="8376c49e-519b-47fa-b417-b44bed21295e" tgt="f521817b-300c-4586-88a6-475f7d35bb0e">
+			<att name="condition" type="string" value="ja | jawohl | natürlich| klar| (a)jo| yep  |lbitte | gerne | genau | richtig | korrekt"/>
+		</edge>
+		<edge src="8376c49e-519b-47fa-b417-b44bed21295e" tgt="d3ea7949-c2df-4935-8586-08494422c4f3">
+			<att name="condition" type="string" value="Nein | nö | ei nee| nee"/>
+		</edge>
+		<edge src="8d1233ca-5a33-44b5-b5df-4afb1a213567" tgt="a39b6285-d525-4199-8583-b24855a8d6d0">
+		</edge>
+		<edge src="8d1233ca-5a33-44b5-b5df-4afb1a213567" tgt="bfe38d58-6e0f-4187-a63f-c30634373d0a">
+		</edge>
+		<edge src="8de67507-4227-4b43-8a79-ba63810be84d" tgt="bb820b04-a39a-4f82-891f-a18ea2df724c">
+		</edge>
+		<edge src="9464d5ec-71b1-4018-95e1-e8a54b0a117e" tgt="c9c9b393-dded-465c-96bb-ce5f5e48f62d">
+			<att name="condition" type="string" value="(Ich) brauche Hilfe | Hilfe (bitte) | Ja (ich brauche Hilfe)| ja bitte | Ja"/>
+		</edge>
+		<edge src="9464d5ec-71b1-4018-95e1-e8a54b0a117e" tgt="bb820b04-a39a-4f82-891f-a18ea2df724c">
+			<att name="condition" type="string" value="Nein| Nein danke|ich brauche keine Hilfe"/>
+		</edge>
+		<edge src="9d672e38-7427-48a6-b4c0-bb8a1057f992" tgt="8d1233ca-5a33-44b5-b5df-4afb1a213567">
+			<att name="condition" type="string" value="[input,tag]"/>
+		</edge>
+		<edge src="a39b6285-d525-4199-8583-b24855a8d6d0" tgt="ef6bd7d3-5f48-4308-950c-6281078bb06c">
+		</edge>
+		<edge src="aa72bd66-5d16-4b5a-892f-5782ede4ebc9" tgt="5fe11b9e-aa6c-4d46-9d16-3e9781fb84c1">
+		</edge>
+		<edge src="bb820b04-a39a-4f82-891f-a18ea2df724c" tgt="9d672e38-7427-48a6-b4c0-bb8a1057f992">
+		</edge>
+		<edge src="bfe38d58-6e0f-4187-a63f-c30634373d0a" tgt="ef6bd7d3-5f48-4308-950c-6281078bb06c">
+		</edge>
+		<edge src="c9c9b393-dded-465c-96bb-ce5f5e48f62d" tgt="037a8ed5-d31f-4008-8b7d-816dd1c5de01">
+		</edge>
+		<edge src="cc4978c7-c45a-4997-be54-89cbed80e2ee" tgt="76f75184-4c43-4b41-8083-5c5d1f6beef5">
+		</edge>
+		<edge src="ef6bd7d3-5f48-4308-950c-6281078bb06c" tgt="8376c49e-519b-47fa-b417-b44bed21295e">
+		</edge>
+		<edge src="f521817b-300c-4586-88a6-475f7d35bb0e" tgt="9d672e38-7427-48a6-b4c0-bb8a1057f992">
+		</edge>
+	</graph>
+</wizard>
