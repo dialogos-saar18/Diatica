@@ -7,9 +7,8 @@ This is the source-code repository for the Diatica DialogOS plugin. Diatica was 
 For this plugin to work you need:
 - A habitica account on http://habitica.com/
 - The apiuser and the apikey of your account. You can find these in the settings of your account under API.
-
 ### Installing
-
+Look into the `gradle.build` file and update the dependencies (mainly DialogOS) if necessary.
 ```
 ./gradlew build
 ```
