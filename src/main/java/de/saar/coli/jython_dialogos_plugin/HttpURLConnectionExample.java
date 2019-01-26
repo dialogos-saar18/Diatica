@@ -47,9 +47,9 @@ public class HttpURLConnectionExample {
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-		// optional default is GET
+		// establishing GET connection
 		con.setRequestMethod("GET");
-
+		// reading id and key
 		con.setRequestProperty("x-api-user", user);
 		con.setRequestProperty("x-api-key", key);
 
@@ -60,32 +60,26 @@ public class HttpURLConnectionExample {
 		BufferedReader in = new BufferedReader(
 				new InputStreamReader(con.getInputStream()));
 
-
 		String inputLine;
 		StringBuffer response = new StringBuffer();
-
-		//String str = response.toString();
-
 		while ((inputLine = in.readLine()) != null) {
 			response.append(inputLine);
 		}
 
 		if (url.equals("https://habitica.com/api/v3/user?userFields=stats.hp")){
-			int hp_index = response.indexOf("hp");
 
+			int hp_index = response.indexOf("hp");
 			String stat = response.substring(hp_index,hp_index+2);
 			String wert = response.substring((hp_index + 4),(hp_index+6));
-
-			//print result
 			String result = "";
 			in.close();
+
 			return result = "du hast noch " + wert +" "+ (stat.toUpperCase());
 
 		} else if(url.equals("https://habitica.com/api/v3/user?userFields=stats.exp")) {
 			JSONObject jo = new JSONObject(response.substring(0));
 			int foo = ((jo.getJSONObject("data")).getJSONObject("stats")).getInt("exp");
 			String foob = jo.getJSONObject("data").toString();
-			System.out.println(foob);
 
 			String responsestring = response.substring(0);
 			Pattern reg = Pattern.compile("\\{\"exp\"\\:(\\d+)}");
@@ -267,9 +261,5 @@ public class HttpURLConnectionExample {
 		//print result
 		//return response.toString();
 	}
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 28e32ba24a2ab62300bd4342adac2cf867e73b94
 }

@@ -71,13 +71,10 @@ public class HabiticaNode extends Node {
             throw new NodeExecutionException(this, "unable to find all necessary variables (apiuser, apikey, tag) ");
           }
 
-        //apiuser = slotlist.get(0);
-        //apikey = slotlist.get(3);
-        //searchtag = slotlist.get(4);
+        //Reading the Variables
         String xapiuser = (apiuser.getValue()).getReadableValue().toString();
         String xapikey = (apikey.getValue()).getReadableValue().toString();
         String eingabe = getSlot(this.getProperty(Eingang_VAR).toString()).getValue().getReadableValue().toString();
-        //System.out.println(xapiuser);
         HttpURLConnectionExample diaticaCo = new HttpURLConnectionExample();
         String result = "";
         System.out.println(eingabe);
@@ -145,6 +142,7 @@ public class HabiticaNode extends Node {
               return getEdge(1).getTarget();
             }
         }
+        //all due Task
         else if (eingabe.equals("all_due_tasks")){
           try{
             result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/tasks/user?type=dailys", ""); //für GET
@@ -159,6 +157,7 @@ public class HabiticaNode extends Node {
               return getEdge(1).getTarget();
             }
         }
+        //asking for specific Task
         else if (eingabe.equals("spec_task")){
           String spectag = new String();
           String idtag = new String();
@@ -178,6 +177,7 @@ public class HabiticaNode extends Node {
               return getEdge(1).getTarget();
             }
           }
+        //Tags are added
         else if (eingabe.equals("add_tags")){
           try{
               LinkedList tags = new LinkedList<String>();
@@ -209,12 +209,12 @@ public class HabiticaNode extends Node {
     public JComponent createEditorComponent(Map<String, Object> properties) {
         JPanel p = new JPanel();
         JPanel horiz = new JPanel();
-        horiz.add(new JLabel("eingangsVar:"));
+        horiz.add(new JLabel("eingang:"));
         horiz.add(NodePropertiesDialog.createComboBox(properties, Eingang_VAR,
                 this.getGraph().getAllVariables(Graph.LOCAL)));
         p.add(horiz);
         horiz = new JPanel();
-        horiz.add(new JLabel("return:"));
+        horiz.add(new JLabel("ausgabe:"));
         horiz.add(NodePropertiesDialog.createComboBox(properties, RESULT_VAR,
                 this.getGraph().getAllVariables(Graph.LOCAL)));
         p.add(horiz);

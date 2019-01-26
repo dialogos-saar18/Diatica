@@ -19,8 +19,7 @@
 	$input = 
 		$sleep{$=[&quot;sleep&quot;,&quot;&quot;]};
 
-$sleep =
-	Ich möchte schlafen;</value>
+$sleep = Ich möchte schlafen;</value>
 		</grammar>
 		<grammar id="10e95709-9463-408a-b559-79120d60529d">
 			<name>janein - sleep</name>
