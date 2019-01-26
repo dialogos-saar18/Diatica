@@ -8,7 +8,7 @@ repositories {
   mavenLocal()
   jcenter()
   maven { url "https://jitpack.io" }
-} 
+}
 
 dependencies {
   implementation(group:'com.github.dialogos-project', name:'dialogos',  version:'2.1.0')
