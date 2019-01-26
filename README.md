@@ -37,7 +37,7 @@ The plugin sends a httprequest to habitca and processes the response it gets fro
 
 ## Built With
 
-* [[Gradle](https://github.com/gradle/gradle) - Build Framework
+* [Gradle](https://github.com/gradle/gradle) - Build Framework
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [DialogOS](https://github.com/dialogos-project/dialogos) - Dialogsystem
 
