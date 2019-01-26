@@ -44,4 +44,4 @@ The plugin sends a httprequest to habitca and processes the response it gets fro
 
 ## Acknowledgments
 * Professor Alexander Koller
-* the awesome Seminar group, who were always very helpful even when they were struggleing themselves
+* the awesome Seminar group, who were always very helpful even when they were struggling themselves
