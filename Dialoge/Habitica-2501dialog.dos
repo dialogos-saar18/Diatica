@@ -14,7 +14,7 @@
 		<att name="height" type="integer" value="974"/>
 		<groovyFunctions></groovyFunctions>
 		<grammar id="579a2a0d-942a-422d-b20c-fb67e0f2f1b5">
-			<name>hp and sleep (and exp)</name>
+			<name>oldgrammar</name>
 			<value>root $input;
  $input = Wieviel $hp (habe|besitze) ich?{$=[&quot;hp&quot;,&quot;&quot;]} |
 Wie gehts mir {$=[&quot;hp&quot;,&quot;&quot;]} |
@@ -24,7 +24,7 @@ Wieviel $exp habe ich?{$=[&quot;exp&quot;,&quot;&quot;]}|
 (Hey) wach(e) auf{$=[&quot;wake_up&quot;,&quot;&quot;]} |
 auf(stehen|wachen){$=[&quot;wake_up&quot;,&quot;&quot;]} |
 wecke mich{$=[&quot;wake_up&quot;,&quot;&quot;]} |
-Nein{$=[&quot;no&quot;,&quot;&quot;]}| 
+Nein{$=[&quot;no&quot;,&quot;&quot;]}|
 Was (habe ich|gibts) heute{$=[&quot;all_due_tasks&quot;,&quot;&quot;]}|
 Ich möchte meine Aufgaben [(die ich heute (erledigen kann|absolvieren kann|tun kann|machen kann|schaffen kann))] (wissen|erfahren|erklärt haben|erfahren){$=[&quot;all_due_tasks&quot;,&quot;&quot;]}|
 (Zeige|Sag|Liste|Nenne|Sage) mir meine Aufgaben (die ich (erledigen kann|absolvieren kann|tun kann|machen kann|schaffen kann)){$=[&quot;all_due_tasks&quot;,&quot;&quot;]}|
@@ -84,8 +84,33 @@ $sl = ( ja | jawohl )| natürlich| klar| (a)jo| yep
 		<variable uid="302dcc79-d518-4d7a-90ff-3a4d29952a4e">
 			<name>tag</name>
 			<type>string</type>
-			<value>undefined</value>
+			<value>&quot;taglist&quot;</value>
 			<export/>
+		</variable>
+		<variable uid="57fde5bb-8940-4413-8d27-ad8bf5a23ee7">
+			<name>create_taglist</name>
+			<type>string</type>
+			<value>&quot;get_taglist&quot;</value>
+		</variable>
+		<variable uid="d650bc09-1322-4c52-a62d-8d812fad6270">
+			<name>save_taglist</name>
+			<type>string</type>
+			<value></value>
+		</variable>
+		<variable uid="fa0e06f4-3236-48f1-b522-538f6f7dfb26">
+			<name>maingrammar</name>
+			<type>string</type>
+			<value></value>
+		</variable>
+		<variable uid="ba992940-efbc-4795-abca-151c38bcc971">
+			<name>x</name>
+			<type>string</type>
+			<value>undefined</value>
+		</variable>
+		<variable uid="fa60f9e9-9136-47c5-892b-4d5da66335fb">
+			<name>taglist</name>
+			<type>list</type>
+			<value>undefined</value>
 		</variable>
 		<node uid="037a8ed5-d31f-4008-8b7d-816dd1c5de01" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
 			<graphics x="125" y="222" fill="#b20000"/>
@@ -193,6 +218,12 @@ Wie viele EXP habe ich? Oder. Wie viele Erfahrungspunkte habe ich?</value>
 			<att name="threshold" type="integer" value="75"/>
 			<att name="language" type="string" value="Deutsch"/>
 		</node>
+		<node uid="78e7a18c-5a95-4bd5-8abb-71d317114e5f" class="de.saar.coli.jython_dialogos_plugin.HabiticaNode">
+			<graphics x="486" y="141" fill="#9900ff"/>
+			<att name="title" type="string" value="Habitica"/>
+			<att name="resultVar" type="string" value="save_taglist"/>
+			<att name="eingangsVar" type="string" value="create_taglist"/>
+		</node>
 		<node uid="8376c49e-519b-47fa-b417-b44bed21295e" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
 			<graphics x="579" y="578" fill="#b20000"/>
 			<att name="title" type="string" value="Fortfahren"/>
@@ -200,7 +231,7 @@ Wie viele EXP habe ich? Oder. Wie viele Erfahrungspunkte habe ich?</value>
 			<att name="language" type="string" value="Deutsch"/>
 		</node>
 		<node uid="8d1233ca-5a33-44b5-b5df-4afb1a213567" class="de.saar.coli.jython_dialogos_plugin.HabiticaNode">
-			<graphics x="450" y="332" fill="#5a0099"/>
+			<graphics x="432" y="370" fill="#5a0099"/>
 			<att name="title" type="string" value="Habitica"/>
 			<att name="resultVar" type="string" value="output"/>
 			<att name="eingangsVar" type="string" value="input"/>
@@ -223,11 +254,11 @@ Danach füge diese Tähgs zu deinen Aufaben auf der habitica Webseite hinzu.</va
 			<att name="language" type="string" value="Deutsch"/>
 		</node>
 		<node uid="9d672e38-7427-48a6-b4c0-bb8a1057f992" class="edu.cmu.lti.dialogos.sphinx.plugin.SphinxNode">
-			<graphics x="580" y="259" fill="#b20000"/>
+			<graphics x="562" y="324" fill="#b20000"/>
 			<att name="title" type="string" value="Anfrage"/>
 			<att name="threshold" type="integer" value="80"/>
 			<att name="language" type="string" value="Deutsch"/>
-			<att name="grammar" type="string" value="579a2a0d-942a-422d-b20c-fb67e0f2f1b5"/>
+			<att name="grammarExpression" type="string" value="maingrammar"/>
 		</node>
 		<node uid="a39b6285-d525-4199-8583-b24855a8d6d0" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
 			<graphics x="343" y="443" fill="#00b200"/>
@@ -250,7 +281,7 @@ Sage dazu beispielsweise. Ich möchte schlafen. Oder. Wecke mich auf.</value>
 			<att name="wait" type="boolean" value="1"/>
 		</node>
 		<node uid="bb820b04-a39a-4f82-891f-a18ea2df724c" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
-			<graphics x="556" y="179" fill="#00b200"/>
+			<graphics x="443" y="272" fill="#00b200"/>
 			<att name="title" type="string" value="Was Gibts?"/>
 			<att name="prompt" type="text">
 				<value>Was kann ich für dich tun?</value>
@@ -277,6 +308,21 @@ Möchtest du zu einem dieser Punkte nähere Informationen bekommen?</value>
 			</att>
 			<att name="prompt_type" type="string" value="text"/>
 			<att name="wait" type="boolean" value="1"/>
+		</node>
+		<node uid="cb0a27d9-a50c-4f3b-bb9b-fdc030c176cb" class="com.clt.diamant.graph.nodes.ScriptNode">
+			<graphics x="457" y="206" fill="#992dcc"/>
+			<att name="title" type="string" value="Script"/>
+			<att name="script" type="text">
+				<value>maingrammar = &quot;root $input;&quot;;
+maingrammar = maingrammar + &quot;$input= ((Zeige|Zeig|Nenne|Nenn|Sage) mir) meine (Aufgaben|Tätigkeiten) mit dem Tag $new_tag{$=[\&quot;spec_task\&quot; , $new_tag]}| Wie gehts mir {$=[\&quot;hp\&quot;,\&quot;\&quot;]}|Was sind meine Lebenspunkte{$=[\&quot;hp\&quot;,\&quot;\&quot;]} |(Ich möchte|Geh) $sl{$=[\&quot;sleep\&quot;,\&quot;\&quot;]}| (gehen) {$=[\&quot;sleep\&quot;,\&quot;\&quot;]}|Wieviel $exp habe ich?{$=[\&quot;exp\&quot;,\&quot;\&quot;]}|(Hey) wach(e) auf{$=[\&quot;wake_up\&quot;,\&quot;\&quot;]} |auf(stehen|wachen){$=[\&quot;wake_up\&quot;,\&quot;\&quot;]} |wecke mich{$=[\&quot;wake_up\&quot;,\&quot;\&quot;]} |Nein{$=[\&quot;no\&quot;,\&quot;\&quot;]}|Was (habe ich|gibts) heute{$=[\&quot;all_due_tasks\&quot;,\&quot;\&quot;]}|(Zeige|Sag|Liste|Nenne|Sage) mir meine Aufgaben (die ich (erledigen kann|absolvieren kann|tun kann|machen kann|schaffen kann)){$=[\&quot;all_due_tasks\&quot;,\&quot;\&quot;]}|(Zeige|Sag|Liste|Nenne|Sage) mir meine Aufgaben {$=[\&quot;all_due_tasks\&quot;,\&quot;\&quot;]}|(Was für| Welche) Aufgaben kann ich (in einer Stunde| in sechzig Minuten) (erledigen|absolvieren|machen|schaffen|tun|erfüllen|abarbeiten){$=[\&quot;spec_task\&quot;,\&quot;1h\&quot;]}|(Was für| Welche) Aufgaben kann ich (in einer halben Stunde| in dreißig Minuten) (erledigen|absolvieren|machen|schaffen|tun|erfüllen|abarbeiten){$=[\&quot;spec_task\&quot;,\&quot;30min\&quot;]}|(Was für| Welche) Aufgaben kann ich (in einer viertel Stunde| in fünfzehn Minuten) (erledigen|absolvieren|machen|schaffen|tun|erfüllen|abarbeiten){$=[\&quot;spec_task\&quot;,\&quot;15min\&quot;]}|(Zeig(e)|Sag(e)|Nenne|Liste|Erzähle) meine Aufgaben die ich in einer Stunde machen kann{$=[\&quot;spec_task\&quot;,\&quot;1h\&quot;]}|(Zeig(e)|Sag(e)|Nenne|Liste|Erzähle) meine Aufgaben die ich in einer halben Stunde machen kann{$=[\&quot;spec_task\&quot;,\&quot;30min\&quot;]}|(Zeig(e)|Sag(e)|Nenne|Liste|Erzähle) meine Aufgaben die ich in einer viertel Stunde machen kann{$=[\&quot;spec_task\&quot;,\&quot;15min\&quot;]}|(Zeig(e)|Sag(e)|Nenne|Liste|Erzähle) meine (sechzig Minuten|eine Stunden) Aufgaben{$=[\&quot;spec_task\&quot;,\&quot;1h\&quot;]}|(Zeig(e)|Sag(e)|Nenne|Liste|Erzähle) meine (dreißig Minuten|halbe Stunden) Aufgaben{$=[\&quot;spec_task\&quot;,\&quot;30min\&quot;]}|(Zeig(e)|Sag(e)|Nenne|Liste|Erzähle) meine (fünfzehn Minuten|viertel Stunde) Aufgaben{$=[\&quot;spec_task\&quot;,\&quot;15min\&quot;]}| Ich möchte meine Aufgaben [(die ich heute (erledigen kann|absolvieren kann|tun kann|machen kann|schaffen kann))] (wissen|erfahren|erklärt haben|erfahren){$=[\&quot;all_due_tasks\&quot;,\&quot;\&quot;]}| erstelle Tags{$=[\&quot;add_tags\&quot;,\&quot;\&quot;]} ;$hp = Gesundheit | hp| Lebenspunkte;$sl = schlafen;$exp = exp | Erfahrung|Erfahrungspunkte;&quot;;
+x = save_taglist;
+taglist = split(x,&quot;,&quot;);
+maingrammar = maingrammar + &quot;$new_tag = &quot; + get(taglist,0);
+for (int i = 1;i&lt;length(taglist);i++)
+	maingrammar = maingrammar + &quot; | &quot; + get(taglist,i);
+maingrammar = maingrammar + &quot;;&quot;;
+</value>
+			</att>
 		</node>
 		<node uid="cc4978c7-c45a-4997-be54-89cbed80e2ee" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
 			<graphics x="46" y="300" fill="#00b200"/>
@@ -365,6 +411,10 @@ Lebenspunkte, Erfahrungspunkte, Schlafen, oder tägliche Aufgaben?</value>
 		<edge src="76f75184-4c43-4b41-8083-5c5d1f6beef5" tgt="459c41d6-91a7-4568-b7a2-0952c5fe8696">
 			<att name="condition" type="string" value="stop|abbrechen"/>
 		</edge>
+		<edge src="78e7a18c-5a95-4bd5-8abb-71d317114e5f" tgt="cb0a27d9-a50c-4f3b-bb9b-fdc030c176cb">
+		</edge>
+		<edge src="78e7a18c-5a95-4bd5-8abb-71d317114e5f" tgt="bfe38d58-6e0f-4187-a63f-c30634373d0a">
+		</edge>
 		<edge src="8376c49e-519b-47fa-b417-b44bed21295e" tgt="f521817b-300c-4586-88a6-475f7d35bb0e">
 			<att name="condition" type="string" value="ja | jawohl | natürlich| klar| (a)jo| yep  |lbitte | gerne | genau | richtig | korrekt"/>
 		</edge>
@@ -375,12 +425,12 @@ Lebenspunkte, Erfahrungspunkte, Schlafen, oder tägliche Aufgaben?</value>
 		</edge>
 		<edge src="8d1233ca-5a33-44b5-b5df-4afb1a213567" tgt="bfe38d58-6e0f-4187-a63f-c30634373d0a">
 		</edge>
-		<edge src="8de67507-4227-4b43-8a79-ba63810be84d" tgt="bb820b04-a39a-4f82-891f-a18ea2df724c">
+		<edge src="8de67507-4227-4b43-8a79-ba63810be84d" tgt="78e7a18c-5a95-4bd5-8abb-71d317114e5f">
 		</edge>
 		<edge src="9464d5ec-71b1-4018-95e1-e8a54b0a117e" tgt="c9c9b393-dded-465c-96bb-ce5f5e48f62d">
 			<att name="condition" type="string" value="(Ich) brauche Hilfe | Hilfe (bitte) | Ja (ich brauche Hilfe)| ja bitte | Ja"/>
 		</edge>
-		<edge src="9464d5ec-71b1-4018-95e1-e8a54b0a117e" tgt="bb820b04-a39a-4f82-891f-a18ea2df724c">
+		<edge src="9464d5ec-71b1-4018-95e1-e8a54b0a117e" tgt="78e7a18c-5a95-4bd5-8abb-71d317114e5f">
 			<att name="condition" type="string" value="Nein| Nein danke|ich brauche keine Hilfe"/>
 		</edge>
 		<edge src="9d672e38-7427-48a6-b4c0-bb8a1057f992" tgt="8d1233ca-5a33-44b5-b5df-4afb1a213567">
@@ -395,6 +445,8 @@ Lebenspunkte, Erfahrungspunkte, Schlafen, oder tägliche Aufgaben?</value>
 		<edge src="bfe38d58-6e0f-4187-a63f-c30634373d0a" tgt="ef6bd7d3-5f48-4308-950c-6281078bb06c">
 		</edge>
 		<edge src="c9c9b393-dded-465c-96bb-ce5f5e48f62d" tgt="037a8ed5-d31f-4008-8b7d-816dd1c5de01">
+		</edge>
+		<edge src="cb0a27d9-a50c-4f3b-bb9b-fdc030c176cb" tgt="bb820b04-a39a-4f82-891f-a18ea2df724c">
 		</edge>
 		<edge src="cc4978c7-c45a-4997-be54-89cbed80e2ee" tgt="76f75184-4c43-4b41-8083-5c5d1f6beef5">
 		</edge>

@@ -18,6 +18,7 @@ import com.clt.diamant.graph.nodes.NodeExecutionException;
 import com.clt.diamant.gui.NodePropertiesDialog;
 import com.clt.script.exp.Value;
 import com.clt.script.exp.values.StringValue;
+import com.clt.script.exp.values.ListValue;
 import com.clt.xml.XMLReader;
 import com.clt.xml.XMLWriter;
 import org.xml.sax.SAXException;
@@ -78,12 +79,10 @@ public class HabiticaNode extends Node {
         HttpURLConnectionExample diaticaCo = new HttpURLConnectionExample();
         String result = "";
         System.out.println(eingabe);
-
+        //making Requests based on Eingabe
         if (eingabe.equals("hp")){
           try{
-
             result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/user?userFields=stats.hp", null); //für GET
-
             String varName = this.getProperty(RESULT_VAR).toString();
             Slot var = getSlot(varName);
             var.setValue(new StringValue(result));
@@ -194,6 +193,21 @@ public class HabiticaNode extends Node {
               var.setValue(new StringValue(result));
 
               return getEdge(0).getTarget();
+
+          }catch(Exception e) {
+              System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
+              return getEdge(1).getTarget();
+            }
+        }
+        else if (eingabe.equals("get_taglist")){
+          try{
+            result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/tags", "taglist"); //für GET
+            String varName = this.getProperty(RESULT_VAR).toString();
+            Slot var = getSlot(varName);
+
+            var.setValue(new StringValue(result));
+
+            return getEdge(0).getTarget();
 
           }catch(Exception e) {
               System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");

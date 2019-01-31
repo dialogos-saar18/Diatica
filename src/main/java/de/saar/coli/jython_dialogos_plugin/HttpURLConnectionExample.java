@@ -59,13 +59,14 @@ public class HttpURLConnectionExample {
 
 		BufferedReader in = new BufferedReader(
 				new InputStreamReader(con.getInputStream()));
-
+		//Response created
 		String inputLine;
 		StringBuffer response = new StringBuffer();
 		while ((inputLine = in.readLine()) != null) {
 			response.append(inputLine);
 		}
-
+		//requests processing
+		//hp request
 		if (url.equals("https://habitica.com/api/v3/user?userFields=stats.hp")){
 
 			int hp_index = response.indexOf("hp");
@@ -76,7 +77,8 @@ public class HttpURLConnectionExample {
 
 			return result = "du hast noch " + wert +" "+ (stat.toUpperCase());
 
-		} else if(url.equals("https://habitica.com/api/v3/user?userFields=stats.exp")) {
+		} //exp request
+		else if(url.equals("https://habitica.com/api/v3/user?userFields=stats.exp")) {
 			JSONObject jo = new JSONObject(response.substring(0));
 			int foo = ((jo.getJSONObject("data")).getJSONObject("stats")).getInt("exp");
 			String foob = jo.getJSONObject("data").toString();
@@ -90,10 +92,10 @@ public class HttpURLConnectionExample {
 
 			}else{
 				return null; //new ParseException("Failed to retrieve Account information");
-				}
-		}else if (url.equals("https://habitica.com/api/v3/tasks/user?type=dailys")) {
-				System.out.println(wtag);
-				if (wtag.equals("")){
+			}
+		}//Daily task request
+		else if (url.equals("https://habitica.com/api/v3/tasks/user?type=dailys")) {
+				if (wtag.equals("")){ //if no tags then all tasks
 					System.out.println("hi");
 					JSONObject jo = new JSONObject(response.substring(0));
 					LinkedList tasks = new LinkedList();
@@ -103,7 +105,6 @@ public class HttpURLConnectionExample {
 						Boolean due = objt.getBoolean("completed");
 						if(!due) {
 							String id = objt.getString("text");
-							System.out.println("dailys: "+ id);
 							tasks.add(id);
 						}
 					}
@@ -118,7 +119,7 @@ public class HttpURLConnectionExample {
 
 						return task_list;
 					}
-				} else {
+				} else {//all tasks with Tag
 					JSONObject jo = new JSONObject(response.substring(0));
 					LinkedList tasks = new LinkedList();
 					JSONArray jsonArray = jo.getJSONArray("data");
@@ -149,22 +150,51 @@ public class HttpURLConnectionExample {
 						return task_list;
 					}
 				}
-		} else if(url.equals("https://habitica.com/api/v3/tags")){
-			JSONObject otherobj = new JSONObject(response.substring(0));
-			JSONArray idarray = otherobj.getJSONArray("data");
-			String idname = new String();
-			JSONObject idobj = new JSONObject();
-			String result = new String();
-			for (int p = 0; p<idarray.length();p++){
-					idobj = idarray.getJSONObject(p);
-					idname = idobj.getString("name");
-					if (wtag.equals(idname)){
-						result = idobj.getString("id");
+		} //get Tag ID or Taglist
+		else if(url.equals("https://habitica.com/api/v3/tags")){
+			if(wtag.equals("taglist")){
+				JSONObject otherobj = new JSONObject(response.substring(0));
+				JSONArray idarray = otherobj.getJSONArray("data");
+				LinkedList tagslist = new LinkedList();
+				JSONObject idobj = new JSONObject();
+
+				for (int p = 0; p<idarray.length();p++){
+						idobj = idarray.getJSONObject(p);
+						String id = idobj.getString("name");
+						tagslist.add(id);
+				}
+				System.out.println(tagslist.toString());
+				if(tagslist.isEmpty()) {
+					return null;
+				}
+				else{
+					String tags_list = "";
+					tags_list += tagslist.get(0);
+					for(int num=1; num<tagslist.size(); num++) {
+						tags_list += ", " + tagslist.get(num);
 					}
+					System.out.println(tags_list.toString());
+					return tags_list;
+				}
 			}
-			return result;
+			else {
+				JSONObject otherobj = new JSONObject(response.substring(0));
+				JSONArray idarray = otherobj.getJSONArray("data");
+				String idname = new String();
+				JSONObject idobj = new JSONObject();
+				String result = new String();
+				for (int p = 0; p<idarray.length();p++){
+						idobj = idarray.getJSONObject(p);
+						idname = idobj.getString("name");
+						if (wtag.equals(idname)){
+							result = idobj.getString("id");
+						}
+				}
+				return result;
+			}//create taglist for dynamic grammar
+
 		}
-		else{
+		else {
 			return null;
 		}
 	}
@@ -181,7 +211,6 @@ public class HttpURLConnectionExample {
 			con.setRequestMethod("POST");
 			con.setRequestProperty("x-api-user",user);//);
 			con.setRequestProperty("x-api-key", key);//);
-
 			String urlParameters = "";
 
 			// Send post request
@@ -192,8 +221,6 @@ public class HttpURLConnectionExample {
 			wr.close();
 
 			int responseCode = con.getResponseCode();
-	//		System.out.println("\nSending 'POST' request to URL : " + url);
-	//		System.out.println("Post parameters : " + urlParameters);
 			System.out.println("Response Code : " + responseCode);
 
 			BufferedReader in = new BufferedReader(
@@ -206,10 +233,9 @@ public class HttpURLConnectionExample {
 			}
 			in.close();
 			String responsestring = response.substring(0);
-			System.out.println(responsestring);
 			Pattern reg = Pattern.compile("\"data\"\\:(true|false)");
 			Matcher m = reg.matcher(responsestring);
-			if(m.find()){
+			if(m.find()){ //check if already sleeping
 				String s = m.group(1);
 				if (s.equals("false")){
 					return "wach";
@@ -220,8 +246,9 @@ public class HttpURLConnectionExample {
 			}else{
 				return null;
 			}
-		} else{
-			String urlParameters = "name=" + tag;
+		}//adding Tags request
+		else{
+			String urlParameters = "name=" + tag; //necessary for the body
 			byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );
 			int    postDataLength = postData.length;
 			con.setRequestMethod("POST");
@@ -229,7 +256,7 @@ public class HttpURLConnectionExample {
 			con.setRequestProperty("x-api-key", key);
 
 
-			// Send post request
+			// Send post request with body
 			con.setDoOutput(true);
 			con.setInstanceFollowRedirects( false );
 			con.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded");
@@ -239,10 +266,7 @@ public class HttpURLConnectionExample {
 			DataOutputStream wr = new DataOutputStream(con.getOutputStream());
 			wr.write(postData);
 
-
 			int responseCode = con.getResponseCode();
-	//		System.out.println("\nSending 'POST' request to URL : " + url);
-	//		System.out.println("Post parameters : " + urlParameters);
 			System.out.println("Response Code : " + responseCode);
 			BufferedReader in = new BufferedReader(
 			        new InputStreamReader(con.getInputStream()));
@@ -255,11 +279,9 @@ public class HttpURLConnectionExample {
 			in.close();
 			wr.flush();
 			wr.close();
-			System.out.println(response.substring(0));
 			return "Ich habe die Tags hinzugefügt";
 		}
 		//print result
 		//return response.toString();
 	}
-
 }

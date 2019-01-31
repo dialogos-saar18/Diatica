@@ -11,7 +11,7 @@ repositories {
 }
 
 dependencies {
-  implementation(group:'com.github.dialogos-project', name:'dialogos',  version:'2.1.0')
+  implementation(group:'com.github.dialogos-project', name:'dialogos',  version:'2.0.5')
   compile group: 'org.json', name: 'json', version: '20180813'
   shadow 'junit:junit:3.8.2'
 }
