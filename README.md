@@ -55,7 +55,7 @@ The plugin sends a httprequest to habitca and processes the response it gets fro
 ## Future work
 Some features which we would wanted to apply but hadn't the time to or think would be great advantacements:
 - Buy potions (and maybe other stuff)
-- 
+- Being able to complete Tasks based on Tags or no Tags
 
 ## Acknowledgments
 * Professor Alexander Koller
