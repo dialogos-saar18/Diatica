@@ -9,7 +9,7 @@ We aimed to provide a tool for working with habitica effectivly while having som
 2. You have catched a cold and can therefore not perform any task in habitica (except for going early to bed). For this Diatica can be asked to send the avatar in the inn.
 3. You are curious how much experience you have gathered so far. This way you can guess wheather you ar at the beginning of a new level or maybe even close to the next. For this instance Diatica has the ability to state the current experience points.
 4. Yesterday many tasks have been left undone. Many of them did cost some health but was it enough to risk losing ones life? Well, just for this purpose one can aks Diatica. Maybe this leads that one will buy a health potion.
-5. You are in the mood for being productive but you don't want to be distracted by other, maybe easiere, task. For this you can use Diatica that will state all the task which have been marked with a tag of your choice. 
+5. You are in the mood for being productive but you don't want to be distracted by other, maybe easier, tasks. For this you can use Diatica that will state all the task which have been marked with a tag of your choice. 
 
 ## Getting Started
 
