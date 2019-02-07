@@ -46,6 +46,7 @@ The plugin sends a httprequest to habitca and processes the response it gets fro
 - if you want the dailys `["all_due_tasks",""]`
 - if you want the specific tasks based on a tag set the value of `tag` `["spec_task","1h"]`
 
+Some sample Dialogs are provided in the Directory `/Dialoge`.
 ## Built With
 
 * [Gradle](https://github.com/gradle/gradle) - Build Framework
