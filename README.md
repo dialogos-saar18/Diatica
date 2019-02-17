@@ -15,31 +15,43 @@ We aimed to provide a tool for working with habitica effectivly while having som
 
 ### Prerequisites
 For this plugin to work you need:
+- DialogOS
 - A habitica account on http://habitica.com/
-  - Once you decide on a language you have to use it consequently. Else does the recognice not understand.
 - The apiuser and the apikey of your account. You can find these in the settings of your account under API.
+- Once you decide on a language you have to use it consequently. Else does the recognicer not understand your utterances
 - If you use one of the provided dialogs look in the descriptions of every habitica node and put the specified variables in the stated fields.
 
-### Installing
+### Installation
+Download this project. Unpack it and change into the folder which you have unpacked.
+There you will see a file named `gradle.build`.
 Look into the `gradle.build` file and update the dependencies (mainly DialogOS) if necessary.
+Like that the version in the file will match the DialogOS version which you are using.
+After this open the command line and change navigate to the path where the `gradle.build` lies.
+Run the command below:
+
 ```
 ./gradlew build
 ```
+
 Gradle will now build the project and deposit the files in the build directory. In `/build/libs/` you will find the necessary .jar file of the plugin. Simply copy or move this file in your DialogOS directory into the `Plugins` folder. 
 On a mac it would properly look like this `/Applications/DialogOS/plugins`.
+In windows you will find it under ''. (ToDo)
 
+### Setting up Habitica in DialogOS (todo)
+Open a Dialoge in DialogOS. Up in the menu bar move to the entry ''. There will be an entry called ''. In there, you will have to add 5 variables(name,type,value):
 
-Open a Dialouge in DialogOS. And go to the variables, where you have to add 5 variables(name,type,value):
+  - apiuser, String, "(your userid)"
+  - apikey, String, "(your api-token/key)"
+  - input, String, "" (You have to set this variable in the Habitca node)
+  - output, String, "" (You have to set this variable in the Habitca node)
   - tag, String, ""
-  - apiuser, String, "your userid"
-  - apikey, String, "your api-token/key"
-  - input, String, "" - You have to set this variable in the Habitca node
-  - output, String, "" - You have to set this variable in the Habitca node
   
  Just drag&drop the Habitca node from the sidebar into your Dialogue and set the `eingang` to `input` and  `ausgabe` to `output`.
 
-## Running the Plugin
-The plugin sends a httprequest to habitca and processes the response it gets from habitica. There are different keywords for every command, but some commands need extra data therefore you need to assign a value to `input` and to `tag` in the grammar:
+## How the PlugIn works
+The plugin sends a http-request to habitca and processes the response it gets from habitica. There are different keywords for every command, but some commands need extra data. Therefore you need to assign a value to `input` and to `tag` in the grammar.
+Here is a list of values which the plugin accepts to run the assigned tasks:
+
 - if you want to send a `sleep` or `wake up` request you need to set the values to either `["sleep",""]` or `["wake_up",""]` 
 - if you want either hp or exp set the values to `["hp",""]` or `["exp",""]`
 - if you want to set the tags `["add_tags",""]`
@@ -47,6 +59,7 @@ The plugin sends a httprequest to habitca and processes the response it gets fro
 - if you want the specific tasks based on a tag set the value of `tag` `["spec_task","1h"]`
 
 Some sample Dialogs are provided in the Directory `/Dialoge`.
+
 ## Built With
 
 * [Gradle](https://github.com/gradle/gradle) - Build Framework
@@ -60,4 +73,4 @@ Some features which we would wanted to apply but hadn't the time to or think wou
 
 ## Acknowledgments
 * Professor Alexander Koller
-* the awesome Seminar group, who were always very helpful even when they were struggling themselves
+* the awesome Seminar group, who were always very helpful even when they were struggling themselves.
