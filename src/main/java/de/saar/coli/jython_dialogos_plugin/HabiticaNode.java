@@ -32,14 +32,14 @@ import java.util.*;
  */
 public class HabiticaNode extends Node {
 
-    public static final String RESULT_VAR = "resultVar";
-    public static final String Eingang_VAR = "eingangsVar";
+    public static final String RESULT_VAR = "resultVar"; //returned to DialogOS
+    public static final String Eingang_VAR = "eingangsVar"; //received from DialogOS
 
-    public HabiticaNode(){
+    public HabiticaNode(){ //specification of the Habitica node in DialogOS
+      addEdge(); //outgoing edges of the node
       addEdge();
-      addEdge();
-      setProperty(Eingang_VAR,"");
-      setProperty(RESULT_VAR,"");
+      setProperty(Eingang_VAR,""); //placeholder for input from DialogOS to Habitica
+      setProperty(RESULT_VAR,""); //placeholder for output from Habtica received forwarded to DialogOS
     }
     public Slot getSlot(String name) {
         List<Slot> slots = this.getGraph().getAllVariables(Graph.LOCAL);
@@ -54,11 +54,11 @@ public class HabiticaNode extends Node {
     public Node execute(WozInterface wozInterface, InputCenter inputCenter, ExecutionLogger executionLogger){
 
         List<Slot> slotlist = this.getGraph().getAllVariables(Graph.LOCAL);
-        Slot apiuser = new Slot();
-        Slot apikey = new Slot();
+        Slot apiuser = new Slot(); // api information needed to access Habitica account
+        Slot apikey = new Slot(); // api information needed to access Habitica account
         Slot searchtag = new Slot();
 
-        try{
+        try{ // looking up information from DialogOS
           for (int b = 0; b<slotlist.size(); b++){
             if ((slotlist.get(b)).getName().equals("apiuser")){
               apiuser = slotlist.get(b);
@@ -110,7 +110,7 @@ public class HabiticaNode extends Node {
             System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
             return getEdge(1).getTarget();
           }
-        } else if(eingabe.equals("wake_up")){
+        } else if(eingabe.equals("wake_up")){ //feedback if avatar stays in the inn
             try{
               String sleepstatus = diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/user/sleep",null); //für POST
               if (sleepstatus.equals("schlaf")){
@@ -128,7 +128,7 @@ public class HabiticaNode extends Node {
               System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
               return getEdge(1).getTarget();
             }
-        }else if (eingabe.equals("exp")){
+        }else if (eingabe.equals("exp")){ //feedback how much exp the avatar has
           try{
             result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/user?userFields=stats.exp", null); //für GET
             String varName = this.getProperty(RESULT_VAR).toString();
@@ -142,7 +142,7 @@ public class HabiticaNode extends Node {
             }
         }
         //all due Task
-        else if (eingabe.equals("all_due_tasks")){
+        else if (eingabe.equals("all_due_tasks")){ //feedback which task are still due
           try{
             result = diaticaCo.sendGet(xapiuser, xapikey,"https://habitica.com/api/v3/tasks/user?type=dailys", ""); //für GET
             String varName = this.getProperty(RESULT_VAR).toString();
@@ -151,7 +151,7 @@ public class HabiticaNode extends Node {
 
             return getEdge(0).getTarget();
 
-          }catch(Exception e) {
+          }catch(Exception e) { // some error occured, maybe no internet connection
               System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
               return getEdge(1).getTarget();
             }
@@ -187,14 +187,14 @@ public class HabiticaNode extends Node {
               for (int i=0; i< tags.size(); i++){
                 diaticaCo.sendPost(xapiuser, xapikey,"https://habitica.com/api/v3/tags",(tags.get(i)).toString()); //für GET
               }
-              result = "Ich habe die Tags für dich hinzugefügt";
+              result = "Ich habe die Tags für dich hinzugefügt"; //success of task
               String varName = this.getProperty(RESULT_VAR).toString();
               Slot var = getSlot(varName);
               var.setValue(new StringValue(result));
 
               return getEdge(0).getTarget();
 
-          }catch(Exception e) {
+          }catch(Exception e) { //something went wrong
               System.out.println("Fehler: Bitte überprüfe deine Internetverbindung!");
               return getEdge(1).getTarget();
             }
