@@ -35,9 +35,9 @@ Run the command below:
 
 Gradle will now build the project and deposit the files in the build directory. In `/build/libs/` you will find the necessary .jar file of the plugin. Simply copy or move this file in your DialogOS directory into the `Plugins` folder. 
 On a mac it would properly look like this `/Applications/DialogOS/plugins`.
-In windows you will find it under ''. (ToDo)
+In windows you will find it under 'C:\Program Files\ DialogOS\plugins'.
 
-### Setting up Habitica in DialogOS (todo)
+### Setting up Habitica in DialogOS
 Open a Dialoge in DialogOS. Up in the menu bar move to the entry ''. There will be an entry called ''. In there, you will have to add 5 variables(name,type,value):
 
   - apiuser, String, "(your userid)"
